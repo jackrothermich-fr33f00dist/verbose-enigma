@@ -24,13 +24,16 @@
   },
 
   // ── Gateway ──────────────────────────────────────────────────────────────────
+  // NOTE: This setup uses Tailscale — gateway binds to Tailscale IP, not loopback.
+  // WSL cannot reach the gateway (no Tailscale in WSL); use PowerShell for status checks.
   gateway: {
     mode: "local",
     port: 18789,
-    bind: "loopback",
+    bind: "tailnet",         // Tailscale network interface
     auth: {
       mode: "token",
-      token: "${OPENCLAW_GATEWAY_TOKEN}"
+      token: "${OPENCLAW_GATEWAY_TOKEN}",
+      allowTailscale: true   // trust Tailscale identity layer
     },
     controlUi: {
       enabled: true,
