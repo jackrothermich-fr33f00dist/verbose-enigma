@@ -1,0 +1,108 @@
+// OpenClaw Gateway Configuration for Forge Fire / Boss's setup
+// Location: copy to ~/.openclaw/openclaw.json on your WSL/tablet machine
+// Format: JSON5 (comments allowed)
+// After editing, run: openclaw doctor --fix
+
+{
+  // ── Secrets ──────────────────────────────────────────────────────────────────
+  secrets: {
+    providers: {
+      default: { source: "env" }
+      // All ${VAR} references below resolve from ~/.openclaw/.env
+    }
+  },
+
+  // ── Auth / LLM Provider ──────────────────────────────────────────────────────
+  auth: {
+    profiles: {
+      "anthropic:default": {
+        provider: "anthropic",
+        mode: "api_key"
+        // requires ANTHROPIC_API_KEY in .env
+      }
+    }
+  },
+
+  // ── Gateway ──────────────────────────────────────────────────────────────────
+  gateway: {
+    mode: "local",
+    port: 18789,
+    bind: "loopback",
+    auth: {
+      mode: "token",
+      token: "${OPENCLAW_GATEWAY_TOKEN}"
+    },
+    controlUi: {
+      enabled: true,
+      basePath: "/openclaw"
+    }
+  },
+
+  // ── Telegram Channel (phone access) ──────────────────────────────────────────
+  // Setup steps: see SETUP.md → "Connecting Your Phone via Telegram"
+  channels: {
+    telegram: {
+      enabled: true,
+      botToken: "${TELEGRAM_BOT_TOKEN}",
+      // dmPolicy "pairing": first message from unknown user gets a one-time code
+      // Change to "allowlist" after pairing and set allowFrom to your Telegram user ID
+      dmPolicy: "pairing",
+      // After pairing, add your Telegram user ID here and switch dmPolicy to "allowlist":
+      // allowFrom: ["tg:YOUR_TELEGRAM_USER_ID"],
+      groups: {
+        "*": { requireMention: true }
+      },
+      historyLimit: 50,
+      mediaMaxMb: 50
+    }
+  },
+
+  // ── Agent Defaults ────────────────────────────────────────────────────────────
+  agents: {
+    defaults: {
+      model: "anthropic/claude-sonnet-4-6",
+      thinking: "enabled",
+      // Point this at your Forge Fire workspace root — adjust path as needed
+      // For WSL accessing D: drive: /mnt/d/verbose-enigma
+      workspace: "/mnt/d/verbose-enigma",
+      memory: {
+        enabled: true
+      }
+    }
+  },
+
+  // ── Scheduler / Cron ─────────────────────────────────────────────────────────
+  cron: {
+    enabled: true,
+    maxConcurrentRuns: 4,
+    sessionRetention: "48h",
+    retry: {
+      maxAttempts: 3,
+      backoffMs: [30000, 60000, 300000],
+      retryOn: ["rate_limit", "overloaded", "network", "timeout"]
+    },
+    failureAlert: {
+      enabled: true,
+      after: 2,
+      cooldownMs: 3600000,
+      mode: "announce"   // sends failure alert to your Telegram
+    }
+  },
+
+  // ── Skills ────────────────────────────────────────────────────────────────────
+  skills: {
+    load: {
+      extraDirs: [
+        // Skills from this repo — uncomment once the repo is cloned locally
+        // "/mnt/d/verbose-enigma/tools/skills"
+      ]
+    }
+  },
+
+  // ── Logging ───────────────────────────────────────────────────────────────────
+  logging: {
+    level: "info",
+    consoleStyle: "pretty",
+    redactSensitive: "tools"
+  }
+}
