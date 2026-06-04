@@ -24,8 +24,7 @@
   },
 
   // ── Gateway ──────────────────────────────────────────────────────────────────
-  // NOTE: This setup uses Tailscale — gateway binds to Tailscale IP, not loopback.
-  // WSL cannot reach the gateway (no Tailscale in WSL); use PowerShell for status checks.
+  // Gateway binds to Tailscale network interface. WSL has Tailscale correctly configured.
   gateway: {
     mode: "local",
     port: 18789,
