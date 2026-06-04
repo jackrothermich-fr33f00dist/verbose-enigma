@@ -23,7 +23,7 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 - **WhisperBOT** = tool under Fordrasil
 - **SuperDiskie**/**SSD Card** = E: drive (Fordrasil home) and D: drive (LivingSpark Circuit Board lives here)
 - **LivingSpark** = overall agent network / circuit board
-- **Sinter/**Claude Code** = another local coding agent (wake/sleep skills already built)
+- **Sinter**/**Claude Code** = another local coding agent (wake/sleep skills already built)
 - **SecondMe** = digital twin project
 - **Zen**/**Zenflow** = previous task system, migrated to ClickUp
 - Boss was terminated from Chestnut ~Jan 2026, active legal/grievance process
