@@ -17,16 +17,15 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 **Key learnings about the ecosystem:**
 - **Forge Fire** = Boss's personal company/operation
-- **Athanor** = primary AI agent/automation system (running on local machine)
-- **Codex** = AI coding/knowledge agent
+- **Athanor**/**Codex** = Codng AI agent/automation system (running on local machine)
 - **Charybdis** = evidence custody pipeline project (related to Chestnut termination legal case)
 - **Fordrasil** = automation denizens on E: drive
 - **WhisperBOT** = tool under Fordrasil
-- **SuperDiskie** = E: drive (Fordrasil home) and D: drive (LivingSpark Circuit Board lives here)
+- **SuperDiskie**/**SSD Card** = E: drive (Fordrasil home) and D: drive (LivingSpark Circuit Board lives here)
 - **LivingSpark** = overall agent network / circuit board
-- **Sinter** = another local agent (wake/sleep skills already built)
+- **Sinter/**Claude Code** = another local coding agent (wake/sleep skills already built)
 - **SecondMe** = digital twin project
-- **Zenflow** = previous task system, migrated to ClickUp
+- **Zen**/**Zenflow** = previous task system, migrated to ClickUp
 - Boss was terminated from Chestnut ~Jan 2026, active legal/grievance process
 - Selling house at 7707 Murdoch Ave
 - Budget tracked monthly through May 2026
@@ -34,7 +33,7 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 **Active Forge Fire projects (priority order as I see it):**
 1. OpenClaw local/WSL stabilization — unblocks autonomous persistence
 2. Circuit Board Dashboard — visibility into the full agent network
-3. Athanor Playbook Update — operational clarity
+3. Agent Playbooks Updates — operational clarity
 4. WitnessVault / Charybdis evidence pipeline — legal value
 5. Dashboard System (local-first project visibility)
 6. Growth Rings domain + WhisperBOT scaffolding
