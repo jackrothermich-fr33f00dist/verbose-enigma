@@ -1,4 +1,4 @@
-# Forge Fire Roadmap — Claude's Operating Plan
+# Forge Fire Roadmap — Ember's Operating Plan
 
 Last updated: 2026-06-03
 
@@ -21,7 +21,7 @@ Get the infrastructure working so everything else can run autonomously.
 
 | Item | Status | Notes |
 |------|--------|-------|
-| CLAUDE.md (persistent memory) | ✅ Done | |
+| Ember_Playbook.md (persistent memory) | ✅ Done | |
 | Repo structure (plans, logs, openclaw, tools) | ✅ Done | |
 | OpenClaw config (openclaw.json, .env.template) | ✅ Done | Copy to tablet |
 | Telegram channel config | ✅ Done | Needs bot token from Boss |
@@ -65,7 +65,7 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ### 2C — Agent Network Stability
 - **Circuit Board Dashboard** — Boss needs visibility into all running agents
-- **Athanor Playbook update** — keeps the main agent operational
+- **Athanor Playbook update** — keeps the agent stack documented and current
 - **OpenClaw stability** — Phase 0, but ongoing
 
 ### 2D — Job Search Support
@@ -100,4 +100,3 @@ Once OpenClaw is running and I have situational awareness, I can run scheduled t
 - All Forge Fire active tasks live in ClickUp space `90173686954`
 - Previous task system was Zenflow — migrated to ClickUp (tasks reference both)
 - Sinter agent already has wake/sleep skills built (task `86e1gw755` marked complete)
-- Athanor Playbook is the canonical operating doc for the local agent stack
