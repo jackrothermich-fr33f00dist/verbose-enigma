@@ -1,6 +1,6 @@
 # Forge Fire Roadmap — Ember's Operating Plan
 
-Last updated: 2026-06-03
+Last updated: 2026-06-06
 
 ---
 
@@ -27,9 +27,9 @@ Get the infrastructure working so everything else can run autonomously.
 | Telegram channel config | ✅ Done | Needs bot token from Boss |
 | Tablet troubleshooting guide | ✅ Done | See openclaw/SETUP.md |
 | AGENTS.md (workspace context for OpenClaw) | ✅ Done | |
-| Push to GitHub + PR | ⏳ This session | |
-| Boss follows SETUP.md on tablet | ⏳ Boss action | |
-| Phone connected via Telegram | ⏳ Boss action | |
+| Push to GitHub + PR | ✅ Done | PR #1 open |
+| Boss follows SETUP.md on tablet | ⏳ Boss action | JSON5 fix + systemd fix first |
+| Phone connected via Telegram | ⏳ Boss action | Blocked on OpenClaw fixes |
 
 ---
 
@@ -39,11 +39,11 @@ Survey what's actually happening so I can prioritize intelligently.
 
 | Item | Status | Notes |
 |------|--------|-------|
-| ClickUp active tasks reviewed | 🔄 Partial | 21 Forge Fire tasks found, details blocked by rate limit |
-| Gmail survey (what's urgent?) | ⏳ Next session | |
-| Calendar survey (what's coming?) | ⏳ Next session | |
-| Finance review (budget status, June gap) | ⏳ Next session | Budget tracked through May, June missing |
-| Charybdis / legal status | ⏳ Next session | Evidence pipeline task found but details unclear |
+| ClickUp active tasks reviewed | ✅ Done | Key tasks: OpenClaw (86e1a42fj), WitnessVault (86e1mmfdj) |
+| Gmail survey (what's urgent?) | ✅ Done | Facebook login alert (verify!), CC due Jun 13, income received |
+| Calendar survey (what's coming?) | ✅ Done | Furnace filter Jun 7, Commerce CC $47 Jun 13 |
+| Finance review (budget status, June gap) | ⏳ Next | June budget not yet created |
+| Charybdis / legal status | 🔄 Partial | Pipeline scope clear; legal status/urgency unknown |
 | LivingSpark Circuit Board review | ⏳ Needs D: drive access | Via SuperDiskie in ClickUp or file share |
 
 ---
@@ -53,9 +53,16 @@ Survey what's actually happening so I can prioritize intelligently.
 Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ### 2A — Legal / Charybdis (potentially most urgent)
-- **WitnessVault / Charybdis evidence custody pipeline** — if there's an active legal case against Chestnut, solid evidence organization could be high-stakes
-- Task: `86e1mmfdj` in ClickUp — need to dig into this
-- What I can do: help design/build the pipeline, organize documentation, research legal tech tools
+- **WitnessVault / Charybdis evidence custody pipeline** — active legal case against Chestnut; solid evidence organization is high-stakes
+- Task: `86e1mmfdj` in ClickUp — reviewed. Pipeline: Phone A/V → WhisperBOT → SigilForge → OrcaVault → SuperDiskie → Jarvis
+- Canonical project: `D:\02Domains\04Growth_Rings\01Charybdis\04WitnessVault_Project`
+- Already done on D: drive: overview, roadmap, raw intake convention, custody manifest schema
+- **Ember drafted (Jun 6)**: all four missing contracts in `charybdis/` folder — review and copy to D: drive
+  - Processed vault manifest schema
+  - WhisperBOT handoff contract
+  - SigilForge bundle input contract
+  - OrcaVault/SuperDiskie drop receipt contract
+- **Guardrail**: no project movement, folder renaming, repo rerouting without Boss approval
 
 ### 2B — Income Generation
 - **Growth Rings domain** — new business domain being scaffolded
@@ -88,10 +95,12 @@ Once OpenClaw is running and I have situational awareness, I can run scheduled t
 ## Open Questions
 
 - [ ] What is the actual D: drive path for the repo? (needed for `workspace` in openclaw.json)
-- [ ] What messaging channel does Boss prefer for proactive alerts? (Telegram confirmed)
+- [x] What messaging channel does Boss prefer for proactive alerts? → Telegram confirmed
 - [ ] What is the status of the Chestnut legal case? How urgent is Charybdis?
 - [ ] Is there a specific income target or timeline for Forge Fire?
 - [ ] Does Boss want me to search for jobs actively, or is Forge Fire the only path?
+- [ ] Riverside.fm — is this for content creation / WhisperBOT integration, or personal?
+- [ ] Facebook security alert (Jun 5) — was that login near St. Louis yours?
 
 ---
 
