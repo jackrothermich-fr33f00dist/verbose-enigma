@@ -67,7 +67,7 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 **Key learnings about the ecosystem:**
 - **Forge Fire** = Boss's personal company/operation
 - **Athanor**/**Codex** = Codng AI agent/automation system (running on local machine)
-- **Charybdis** = evidence custody pipeline project (related to Chestnut termination legal case)
+- **Charybdis** = evidence custody pipeline project (separate from Chestnut situation)
 - **Fordrasil** = automation denizens on E: drive
 - **WhisperBOT** = tool under Fordrasil
 - **SuperDiskie**/**SSD Card** = E: drive (Fordrasil home) and D: drive (LivingSpark Circuit Board lives here)

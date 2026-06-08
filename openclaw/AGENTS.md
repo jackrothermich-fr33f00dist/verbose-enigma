@@ -19,7 +19,7 @@ Read `Ember_Playbook.md` at the start of each session.
 | Athanor | Local AI agent system (on tablet/D: drive) |
 | Codex | AI coding agent |
 | Sinter | Local agent with wake/sleep skills |
-| Charybdis | Evidence custody pipeline (Chestnut legal case) |
+| Charybdis | Evidence custody pipeline (unrelated to Chestnut) |
 | Fordrasil | Automation denizens on E: drive |
 | WhisperBOT | Tool under Fordrasil |
 | SecondMe | Digital twin project |

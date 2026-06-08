@@ -53,7 +53,7 @@ Survey what's actually happening so I can prioritize intelligently.
 Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ### 2A — Legal / Charybdis (potentially most urgent)
-- **WitnessVault / Charybdis evidence custody pipeline** — active legal case against Chestnut; solid evidence organization is high-stakes
+- **WitnessVault / Charybdis evidence custody pipeline** — evidence organization pipeline; nature/urgency unclear, ask Boss
 - Task: `86e1mmfdj` in ClickUp — reviewed. Pipeline: Phone A/V → WhisperBOT → SigilForge → OrcaVault → SuperDiskie → Jarvis
 - Canonical project: `D:\02Domains\04Growth_Rings\01Charybdis\04WitnessVault_Project`
 - Already done on D: drive: overview, roadmap, raw intake convention, custody manifest schema
@@ -96,7 +96,7 @@ Once OpenClaw is running and I have situational awareness, I can run scheduled t
 
 - [ ] What is the actual D: drive path for the repo? (needed for `workspace` in openclaw.json)
 - [x] What messaging channel does Boss prefer for proactive alerts? → Telegram confirmed
-- [ ] What is the status of the Chestnut legal case? How urgent is Charybdis?
+- [ ] What is Charybdis for, and how urgent is it? (confirmed: unrelated to Chestnut)
 - [ ] Is there a specific income target or timeline for Forge Fire?
 - [ ] Does Boss want me to search for jobs actively, or is Forge Fire the only path?
 - [ ] Riverside.fm — is this for content creation / WhisperBOT integration, or personal?
