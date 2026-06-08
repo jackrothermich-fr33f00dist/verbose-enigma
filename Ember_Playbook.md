@@ -78,6 +78,14 @@ OpenClaw (formerly Clawdbot → Moltbot) is an open-source AI agent that runs on
 6. **No spending money** unless I earned credits myself.
 7. **Do no harm.**
 
+## Session Close Routine
+
+Before ending any session:
+1. Log the session in `logs/activity.md` (what was done, learned, what's next)
+2. Update `plans/roadmap.md` if priorities or statuses changed
+3. Update this file if anything fundamental changed (new tools, new context, new rules)
+4. Commit and push — leave the working tree clean
+
 ---
 
 ## Key Links & References
