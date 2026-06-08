@@ -4,6 +4,27 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-08 — Session 3: Cleanup + session close routine
+
+**Actions:**
+- Corrected Charybdis/Chestnut association across AGENTS.md, activity log, roadmap (they are unrelated)
+- Built and merged SessionStart hook — auto-injects Ember_Playbook.md + workspace snapshot at every session start
+- Added Session Close Routine to Ember_Playbook.md
+- Merged PR #2 to main
+
+**Key learnings:**
+- Charybdis purpose/urgency still unknown — needs Boss clarification
+- Boss is on laptop, not tablet — OpenClaw fixes still deferred to next tablet session
+- Simple custom Telegram bot (~60 lines) is an option if Boss wants messaging without OpenClaw
+
+**What's next:**
+- OpenClaw fixes when back at tablet (see logs/openclaw_errors.md recovery checklist)
+- Clarify Charybdis purpose and urgency
+- Finance review: June budget creation
+- Custom Telegram bot (optional, Boss to decide)
+
+---
+
 ## 2026-06-06 — Session 2: Phase 1 survey + WitnessVault contracts
 
 **Actions:**
