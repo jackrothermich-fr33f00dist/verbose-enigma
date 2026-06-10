@@ -4,6 +4,42 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-10 — Session 4: Email Forge spec + finance/timeline flags
+
+**Actions:**
+- Surveyed Gmail (50 unlabeled inbox threads) + ClickUp open tasks
+- Drafted `plans/email_forge_spec.md`: full triage rule table for the 7 HIGH-priority
+  "Email Forge" tasks in Athanor/Codex Operations (label taxonomy, retroactive
+  categorization rules, automation gaps requiring fuller Gmail API: filters, VIP
+  routing, Charybdis case-number detection, email-to-task, escalation)
+- Started retroactive labeling pass — **blocked**: Gmail MCP token expired mid-session
+  (re-auth needed on Boss's side, then re-run the pass using the rule table in the spec)
+- Investigated "Discreet Ledger" — found it's a real coding project (GitHub:
+  `expense_tracker`, Vite+React+TS+Drizzle+MySQL, full feature list in ClickUp task
+  86e0km0a0) but that repo isn't in this session's GitHub scope (only verbose-enigma)
+- Checked FordrasilsSeedling CI failure notification — also out of session scope
+
+**Urgent flags for Boss:**
+- **American Water bill due ~Jun 14** (5-day reminder received Jun 9), on top of
+  Commerce CC ($47) due Jun 13
+- **Cash App: 3 "Unknown Device removed" alerts** (Jun 8, 6:12pm) — verify this was you
+- **"Determine a Timeline" (Sell Murdoch, task 86e0m6xkj) is URGENT and ~1 month overdue**
+  (was due ~May 7). Its subtask "Declare Intent to Sell to Commerce Mortgage Office"
+  (due ~May 14) is also overdue, stuck in "planning". This blocks all other Sell Murdoch
+  tasks — needs a phone call to Commerce, can't be done by an agent.
+- Asked about a Cowork "attention-board" HTML file — local file, not accessible from
+  this remote session. Idea parked: host via GitHub Pages or drag-drop into chat for
+  persistent access.
+
+**What's next:**
+- Re-auth Gmail MCP, then run the labeling pass per `plans/email_forge_spec.md`
+- Boss: call Commerce re: Sell Murdoch timeline (overdue, urgent)
+- Boss: verify Cash App device-removal alerts and water bill payment
+- Add `expense_tracker` repo to session scope if Discreet Ledger work is wanted
+- Finance review / June budget still outstanding
+
+---
+
 ## 2026-06-08 — Session 3: Cleanup + session close routine
 
 **Actions:**
