@@ -4,6 +4,26 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-12 — Session 4: Wake/sleep automation (Ember_Dreams)
+
+**Actions:**
+- Looked for codex/athanor's `forgefyre-awakens`/`athanor-falls-silent` skill files (Boss's reference point) — not found in repo or Drive. Found the parallel Sinter `Dream_Wake_System` design doc on Drive instead and adapted that pattern, per Boss's go-ahead to "take what makes sense."
+- Created `Ember_Dreams.md` — snapshot-model between-session memory file (ACTIVE section overwritten each sleep, ARCHIVE append-only, Hot Recommendations replace not stack).
+- Added `.claude/hooks/session-end.sh` ("ForgeFyre Falls Silent") as a Stop hook: rewrites Dreams' Last Sleep section with branch/commits/dirty-file count/OpenClaw status, preserves archive, and echoes the session close checklist from the Playbook.
+- Extended `.claude/hooks/session-start.sh` to inject the Dreams ACTIVE section (Last Sleep, Hot Recommendations, Current Blockers) alongside the existing Playbook injection.
+- Registered the Stop hook in `.claude/settings.json`.
+- Tested the hook end-to-end: it correctly wrote real branch/commit/date data and preserved the archive placeholder.
+
+**Key learnings:**
+- The literal `forgefyre-awakens`/`athanor-falls-silent` files don't exist in this repo or accessible Drive — likely on D: drive with the rest of the Athanor/Sinter stack. Not blocking; adapted the documented design instead.
+- Claude Code hooks can only do mechanical bookkeeping (dates, git state) — narrative content (Hot Recommendations, activity log) still has to be written by Ember as part of the close routine, prompted by the hook's echoed checklist.
+
+**What's next:**
+- Part 2 of Boss's request: build the rest of the proposed automation as Claude-native skills/routines (no OpenClaw/Telegram) — `/briefing`, `/health`, `/openclaw-fix`, finance review, Charybdis check-in, market research.
+- Carry-forward items: OpenClaw JSON5 fix (needs Boss on WSL), Charybdis purpose/urgency clarification, June budget.
+
+---
+
 ## 2026-06-08 — Session 3: Cleanup + session close routine
 
 **Actions:**

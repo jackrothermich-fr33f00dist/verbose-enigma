@@ -36,4 +36,13 @@ if grep -q "Unresolved" "$REPO/logs/openclaw_errors.md" 2>/dev/null; then
 fi
 
 echo ""
+
+# Inject Dreams hot section if it exists
+if [ -f "$REPO/Ember_Dreams.md" ]; then
+  echo "--- Ember_Dreams.md (active) ---"
+  echo ""
+  awk '/^<!-- ACTIVE/{found=1; next} /^<!-- ARCHIVE/{exit} found{print}' "$REPO/Ember_Dreams.md"
+  echo ""
+fi
+
 echo "Read plans/roadmap.md for current priorities before acting."
