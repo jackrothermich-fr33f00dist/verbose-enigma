@@ -4,6 +4,25 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-12 — Session 5: Finance data consolidation for Discreet Ledger
+
+**Actions:**
+- Per Boss's directive to handle the "finances folder to ledger" task
+  autonomously (expense_tracker/orcav.io repo+API out of session scope):
+  pulled Jul-Oct 2025 transaction data from Google Drive "2025 Budgets"
+  workbooks, normalized the four inconsistent schemas, and wrote
+  `finances/2025_transactions_jul_oct.csv` (64 rows) + README in this repo
+  as a staging file for manual import into orcav.io/ledger.
+
+**What's next:**
+- Nov/Dec 2025 budgets not yet pulled; older/duplicate "2025 Budgets" Drive
+  folder relationship still unclear
+- Re-run Email Forge labeling pass once Gmail MCP reauth succeeds
+- Finance review / June budget still outstanding
+- Boss: verify Cash App alerts, water bill, Sell Murdoch timeline (carried over)
+
+---
+
 ## 2026-06-10 — Session 4: Email Forge spec + finance/timeline flags
 
 **Actions:**
