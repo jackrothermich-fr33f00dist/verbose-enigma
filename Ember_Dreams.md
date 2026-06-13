@@ -10,20 +10,19 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-13 09:25
+- **Date**: 2026-06-13 09:33
 - **Branch**: claude/openclaw-readiness-review-X4sya
 - **Last commits**:
+  - 1d473b5 Session 5 close: ForgeFoundation investigation, Dreams handoff notes
   - 3541a7e Merge main (PR #5 squash-merged) into feature branch
   - 1a40a37 Add Claude-native automation skills (Part 2) (#5)
-  - 171f733 Fix session-end hook to use SessionEnd instead of Stop
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- Boss asked about "ForgeFoundation" — investigated and identified it as Boss's renamed local copy (E: drive, `Entities/Fordrasil's Trunk/Skills/`) of the public `addyosmani/agent-skills` Claude Code plugin (workflow commands `/spec → /plan → /build → /test → /review → /ship`, agent personas, and a SessionStart-only hook).
-- Recommended NOT installing it into `verbose-enigma` — this repo is Ember's ops/memory repo, not a "ship code features" codebase, so the dev-lifecycle quality gates don't map well here. Better fit: install ForgeFoundation into an actual Forge Fire product repo (WhisperBOT, Growth Rings tooling, dashboards) once one exists.
-- Boss's `UserPromptSubmit` idea (ping ForgeFoundation as a quality-gate check every turn) — flagged that the upstream plugin has no such hook; we'd be building it custom, and it'd add per-turn latency. Awaiting Boss's decision on whether/where to pursue this.
+- Boss confirmed ForgeFoundation (renamed local copy of `addyosmani/agent-skills`) should be installed **globally** (user-level `~/.claude/settings.json`, via `/plugin marketplace add addyosmani/agent-skills` + `/plugin install agent-skills@addy-agent-skills`), with per-project kill-switches via `enabledPlugins: {"agent-skills@addy-agent-skills": false}` in a repo's `.claude/settings.json`/`settings.local.json`. Confirmed mechanism is sound (settings precedence user < project < local).
+- **Caveat for Boss**: this session runs in an isolated remote container — global install must happen on Boss's actual machines (tablet/laptop/WSL), not here. Offered two options: (1) write up install + kill-switch instructions as a doc in this repo, and/or (2) add the kill-switch to `verbose-enigma`'s own settings as a working example (since this repo doesn't need the dev-lifecycle gates). Awaiting Boss's pick.
 - Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
 
 ## Current Blockers
