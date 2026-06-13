@@ -4,6 +4,24 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-13 — Session 5: SessionEnd hook fix + ForgeFoundation investigation
+
+**Actions:**
+- Fixed the session-end hook loop discovered live: `.claude/settings.json` had it registered on `Stop` (fires every turn), causing repeated overwrites of `Ember_Dreams.md`. Switched to `SessionEnd` (fires once at true session end). Committed and pushed (171f733).
+- Merged PR #5 (Part 2 Claude-native skills: `health`, `briefing`, `openclaw-fix`, `finance-review`, `charybdis-checkin`, `market-research`) — marked ready for review and squash-merged to main.
+- Boss asked about "ForgeFoundation" (E: drive, `Entities/Fordrasil's Trunk/Skills/`). Investigated and identified it as Boss's renamed local copy of the public `addyosmani/agent-skills` Claude Code plugin marketplace.
+
+**Key learnings:**
+- `addyosmani/agent-skills` provides `/spec → /plan → /build → /test → /review → /ship` workflow commands, 4 agent personas, and a SessionStart-only hook (no UserPromptSubmit hook built in).
+- This is a software dev-lifecycle framework — doesn't map cleanly onto `verbose-enigma` (Ember's ops/memory repo). Recommended installing it into an actual Forge Fire product repo instead, once one exists.
+- Boss's idea of pinging ForgeFoundation as a quality-gate on `UserPromptSubmit` would be custom-built (not part of the upstream plugin) and would add per-turn latency — flagged for Boss's decision.
+
+**What's next:**
+- Awaiting Boss's call on ForgeFoundation placement/UserPromptSubmit idea.
+- Carry-forward: OpenClaw JSON5 fix, Charybdis purpose/urgency, June budget.
+
+---
+
 ## 2026-06-12 — Session 4: Wake/sleep automation (Ember_Dreams) + Part 2 skills
 
 **Actions (Part 1 — merged via PR #4):**

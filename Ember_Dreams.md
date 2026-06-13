@@ -10,23 +10,21 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-13 03:19
+- **Date**: 2026-06-13 09:25
 - **Branch**: claude/openclaw-readiness-review-X4sya
 - **Last commits**:
-  - 0ee4c6d Update Dreams handoff notes after Part 2 session close
-  - c9717d5 Add Claude-native automation skills (Part 2)
-  - 66ba257 Merge pull request #4 from jackrothermich-fr33f00dist/claude/openclaw-readiness-review-X4sya
+  - 3541a7e Merge main (PR #5 squash-merged) into feature branch
+  - 1a40a37 Add Claude-native automation skills (Part 2) (#5)
+  - 171f733 Fix session-end hook to use SessionEnd instead of Stop
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- **Fixed**: the session-end hook was registered on `Stop`, which fires after every agent turn (not just true session end) — caused a loop of rewriting `Ember_Dreams.md` and re-flagging the repo dirty. Switched `.claude/settings.json` to the `SessionEnd` event, which fires once when the session actually ends.
-- Part 2 done: six Claude-native skills now live under `.claude/skills/` — `health`, `briefing`, `openclaw-fix`, `finance-review`, `charybdis-checkin`, `market-research`. PR #5 is open as a draft against main, no CI configured, no review comments yet.
-- Next session: review/merge PR #5 if Boss hasn't already, then do a first real run of `/health` and `/briefing` to validate the new skills against live Gmail/Calendar/ClickUp data.
-- Fix OpenClaw JSON5 error (line 164) — still deferred, needs Boss on WSL/tablet — `/openclaw-fix` is ready when that happens
-- Review Charybdis purpose/urgency with Boss — still unknown
-- June budget not yet created — flag again if still missing
+- Boss asked about "ForgeFoundation" — investigated and identified it as Boss's renamed local copy (E: drive, `Entities/Fordrasil's Trunk/Skills/`) of the public `addyosmani/agent-skills` Claude Code plugin (workflow commands `/spec → /plan → /build → /test → /review → /ship`, agent personas, and a SessionStart-only hook).
+- Recommended NOT installing it into `verbose-enigma` — this repo is Ember's ops/memory repo, not a "ship code features" codebase, so the dev-lifecycle quality gates don't map well here. Better fit: install ForgeFoundation into an actual Forge Fire product repo (WhisperBOT, Growth Rings tooling, dashboards) once one exists.
+- Boss's `UserPromptSubmit` idea (ping ForgeFoundation as a quality-gate check every turn) — flagged that the upstream plugin has no such hook; we'd be building it custom, and it'd add per-turn latency. Awaiting Boss's decision on whether/where to pursue this.
+- Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
 
 ## Current Blockers
 
