@@ -10,20 +10,19 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-13 11:57
+- **Date**: 2026-06-13 12:08
 - **Branch**: claude/openclaw-readiness-review-X4sya
 - **Last commits**:
+  - 261f19c Add ForgeFoundation Claude setup doc and apply kill-switch to this repo
   - f5a9876 Update Dreams snapshot (ForgeFoundation global-install handoff)
   - 1d473b5 Session 5 close: ForgeFoundation investigation, Dreams handoff notes
-  - 3541a7e Merge main (PR #5 squash-merged) into feature branch
-- **Uncommitted at close**: 2 file(s)
+- **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- ForgeFoundation setup done: `forgefoundation/CLAUDE_SETUP.md` documents the global install (`/plugin marketplace add` + `/plugin install agent-skills@addy-agent-skills` on each of Boss's machines) and the per-project kill-switch syntax.
-- Kill-switch applied to `verbose-enigma` itself: `.claude/settings.json` now has `"enabledPlugins": {"agent-skills@addy-agent-skills": false}` — demonstrates the pattern and keeps this ops repo free of the dev-lifecycle gates.
-- Reminder for Boss: the global install step still needs to be run manually on each physical machine (tablet/laptop/WSL) — I can't do that from this remote container.
+- ForgeFoundation setup committed (261f19c): `forgefoundation/CLAUDE_SETUP.md` + kill-switch in `verbose-enigma`'s `.claude/settings.json` (`"enabledPlugins": {"agent-skills@addy-agent-skills": false}`).
+- Boss asked whether install works from the already-downloaded local copy (E: drive `ForgeFoundation`). Confirmed: `/plugin marketplace add <local-path>` works if `.claude-plugin/marketplace.json` exists at the root, but local paths don't auto-update (no sync with upstream `addyosmani/agent-skills`) — GitHub URL recommended if Boss wants updates. Offered to add this local-path option to `CLAUDE_SETUP.md` but Boss hasn't confirmed yet.
 - Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
 
 ## Current Blockers
