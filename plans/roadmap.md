@@ -15,6 +15,32 @@ What creates the most happiness and value for Boss right now, given:
 
 ---
 
+## Overarching Finance Goal (added 2026-06-13)
+
+**Replace manual monthly budget spreadsheets with Discreet Ledger
+(orcav.io/ledger) going forward.** The xlsx/csv workbooks in Drive's
+"2025 Budgets" folder (and the `06JUN2026` sheet created this session) are a
+**stopgap only** — the target end-state is Boss logging transactions directly
+in the live ledger app, with this repo's consolidated CSV (`finances/`) used
+once to backfill 2025 history.
+
+**Single blocking dependency**: the `expense_tracker` GitHub repo
+(`jackrothermich-fr33f00dist/expense_tracker`) is not in this session's
+GitHub MCP scope, and orcav.io/ledger is a JS SPA with no inspectable
+API/import docs via WebFetch (tried `/api/transactions`, `/api/import` —
+both just return the SPA shell). Until that repo is added to scope (or Boss
+adds it via the web UI's repo picker), I cannot:
+- inspect the ledger's data model / import format
+- write a script to push `finances/2025_transactions_jul_oct.csv` into it
+- confirm whether CSV import even exists as a feature
+
+**When unblocked**, next steps are: read the expense_tracker schema (likely
+Drizzle/MySQL models), map `finances/2025_transactions_jul_oct.csv` columns
+to it, and either call an import API or write rows directly via a migration
+script.
+
+---
+
 ## Phase 0 — Foundation (Current)
 
 Get the infrastructure working so everything else can run autonomously.

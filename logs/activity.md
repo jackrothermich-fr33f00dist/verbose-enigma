@@ -4,6 +4,32 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-13 — Session 7: Discreet Ledger goal clarified, repo-scope blocker confirmed again
+
+**Actions:**
+- Boss clarified the overarching goal: replace manual budget spreadsheets
+  with Discreet Ledger (orcav.io/ledger) going forward — the
+  finances/`06JUN2026` workbook approach is a stopgap, not the destination.
+- Checked again for a way around the `expense_tracker` repo scope wall
+  (no `list_repos`/`add_repo` tool available this session). Tried WebFetch
+  on orcav.io/ledger and its `/api/transactions`, `/api/import` paths — SPA
+  with no inspectable API, confirms repo access is the only path to learn
+  the data model.
+- Documented this clearly in `plans/roadmap.md` as a new "Overarching
+  Finance Goal" section with the single blocking dependency spelled out, so
+  the next session (or one where Boss has added the repo) can act
+  immediately without re-discovering this.
+
+**What's next:**
+- Boss: add `jackrothermich-fr33f00dist/expense_tracker` to this session's
+  GitHub MCP repo scope (only unblock for the core finance goal)
+- Once unblocked: inspect ledger schema, map `finances/2025_transactions_jul_oct.csv`
+  to it, import 2025 history
+- Carried over: Ameren bill past due, Cash App alerts, Sell Murdoch timeline,
+  Gmail write-scope reauth
+
+---
+
 ## 2026-06-13 — Session 6: Urgent bill flag + Gmail write-block confirmed
 
 **Urgent flag for Boss:**
