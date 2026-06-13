@@ -91,12 +91,12 @@ Claude-native skills/routines run within sessions, not scheduled Telegram alerts
 | Item | Status | Notes |
 |------|--------|-------|
 | Wake/sleep session memory (hooks + Ember_Dreams.md) | ✅ Done | SessionStart injects Playbook+Dreams; Stop hook snapshots state |
-| `/briefing` skill — Gmail + Calendar + ClickUp survey | ⏳ Next | On-demand, replaces "daily briefing → Telegram" |
-| `/health` skill — workspace health check | ⏳ Next | Rebuild as proper skill (earlier smoke.sh prototype removed) |
-| `/openclaw-fix` skill — recovery checklist walkthrough | ⏳ Next | Wraps `logs/openclaw_errors.md` checklist |
-| Finance review routine | ⏳ Next | Flag if June budget missing |
-| Charybdis check-in routine | ⏳ Next | Prompt to log new evidence |
-| Market research routine | ⏳ Next | What's trending in AI/agent space |
+| `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand, replaces "daily briefing → Telegram" |
+| `/health` skill — workspace health check | ✅ Done | `.claude/skills/health/` |
+| `/openclaw-fix` skill — recovery checklist walkthrough | ✅ Done | `.claude/skills/openclaw-fix/` — wraps `logs/openclaw_errors.md` checklist |
+| Finance review routine | ✅ Done | `.claude/skills/finance-review/` — flags if month's budget missing |
+| Charybdis check-in routine | ✅ Done | `.claude/skills/charybdis-checkin/` — prompts to log new evidence |
+| Market research routine | ✅ Done | `.claude/skills/market-research/` — anchored to Phase 2B projects |
 
 ---
 

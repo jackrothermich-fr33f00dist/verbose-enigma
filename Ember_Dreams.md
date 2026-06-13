@@ -10,21 +10,22 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-12 22:00
+- **Date**: 2026-06-13 03:19
 - **Branch**: claude/openclaw-readiness-review-X4sya
 - **Last commits**:
-  - fb976a4 Session 3 close: add session close routine, update activity log
-  - aed7252 Add SessionStart hook: auto-inject Ember_Playbook.md at session start
-  - 504145d Remove incomplete run skill (not needed)
-- **Uncommitted at close**: 4 file(s)
+  - 0ee4c6d Update Dreams handoff notes after Part 2 session close
+  - c9717d5 Add Claude-native automation skills (Part 2)
+  - 66ba257 Merge pull request #4 from jackrothermich-fr33f00dist/claude/openclaw-readiness-review-X4sya
+- **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- Wake/sleep automation now live: SessionStart hook injects Playbook + Dreams ACTIVE section; Stop hook snapshots session facts into this file. No more manual context priming needed.
-- Next session: start Part 2 of the automation request — build Claude-native skills/routines (NOT OpenClaw/Telegram) for: `/briefing` (Gmail+Calendar+ClickUp survey), `/health` (workspace check), `/openclaw-fix` (recovery checklist walkthrough), finance review, Charybdis check-in, market research.
-- Fix OpenClaw JSON5 error (line 164) — only thing blocking Telegram/gateway (still deferred, needs Boss on WSL/tablet)
-- Review Charybdis purpose/urgency with Boss — pipeline scope is clear, but the "why" is still unknown
+- **Fixed**: the session-end hook was registered on `Stop`, which fires after every agent turn (not just true session end) — caused a loop of rewriting `Ember_Dreams.md` and re-flagging the repo dirty. Switched `.claude/settings.json` to the `SessionEnd` event, which fires once when the session actually ends.
+- Part 2 done: six Claude-native skills now live under `.claude/skills/` — `health`, `briefing`, `openclaw-fix`, `finance-review`, `charybdis-checkin`, `market-research`. PR #5 is open as a draft against main, no CI configured, no review comments yet.
+- Next session: review/merge PR #5 if Boss hasn't already, then do a first real run of `/health` and `/briefing` to validate the new skills against live Gmail/Calendar/ClickUp data.
+- Fix OpenClaw JSON5 error (line 164) — still deferred, needs Boss on WSL/tablet — `/openclaw-fix` is ready when that happens
+- Review Charybdis purpose/urgency with Boss — still unknown
 - June budget not yet created — flag again if still missing
 
 ## Current Blockers
