@@ -24,20 +24,26 @@ What creates the most happiness and value for Boss right now, given:
 in the live ledger app, with this repo's consolidated CSV (`finances/`) used
 once to backfill 2025 history.
 
-**Single blocking dependency**: the `expense_tracker` GitHub repo
-(`jackrothermich-fr33f00dist/expense_tracker`) is not in this session's
-GitHub MCP scope, and orcav.io/ledger is a JS SPA with no inspectable
-API/import docs via WebFetch (tried `/api/transactions`, `/api/import` —
-both just return the SPA shell). Until that repo is added to scope (or Boss
-adds it via the web UI's repo picker), I cannot:
-- inspect the ledger's data model / import format
-- write a script to push `finances/2025_transactions_jul_oct.csv` into it
-- confirm whether CSV import even exists as a feature
+**Correction (2026-06-13, later)**: repo access alone does NOT solve this.
+The `expense_tracker` repo is source code — it has no path to the *live*
+deployed app's database. Actually pushing data into orcav.io/ledger requires
+either (a) an authenticated API call against the running instance, or (b)
+driving the UI via a browser. This session has neither: no browser/computer-use
+tool, and WebFetch can't run JS or hold a login session.
 
-**When unblocked**, next steps are: read the expense_tracker schema (likely
-Drizzle/MySQL models), map `finances/2025_transactions_jul_oct.csv` columns
-to it, and either call an import API or write rows directly via a migration
-script.
+**Realistic plan given actual toolset**: this agent cannot automate the
+upload. The deliverable is a clean, ready-to-import file plus instructions —
+Boss does the actual import via the ledger's UI (one-time, ~64 rows).
+Reading the `expense_tracker` repo (if ever in scope) would still be useful
+to learn the exact expected import format/columns so the CSV can be
+reshaped to match exactly, but it's a "nice to have for formatting," not the
+core blocker anymore.
+
+**Next step**: ask Boss what format the ledger's import feature (if any)
+expects, or have Boss do a one-time manual entry/import of
+`finances/2025_transactions_jul_oct.csv` (64 rows, Jul-Oct 2025) and
+`06JUN2026` going forward. After that, the manual budget-sheet workflow can
+be retired per the overarching goal above.
 
 ---
 

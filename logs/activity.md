@@ -4,6 +4,30 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-13 — Session 8: Corrected the Discreet Ledger plan
+
+**Actions:**
+- Boss correctly pointed out a flaw in Session 7's plan: the `expense_tracker`
+  GitHub repo is source code, not the live app's database. Getting repo
+  access would never have let me push data into orcav.io/ledger — that needs
+  a live API call or browser/UI interaction, neither available in this
+  session (no browser/computer-use tool; WebFetch can't run JS or hold a
+  session).
+- Updated `plans/roadmap.md` to reflect the realistic plan: this agent can't
+  automate the ledger upload. The deliverable is the prepped CSV
+  (`finances/2025_transactions_jul_oct.csv`, 64 rows) + the `06JUN2026`
+  starter sheet — Boss does a one-time manual import/entry, then retires the
+  spreadsheet workflow per the overarching goal.
+
+**What's next:**
+- Boss: manually import/enter `finances/2025_transactions_jul_oct.csv` into
+  orcav.io/ledger (one-time), then use the ledger going forward instead of
+  monthly budget sheets
+- Carried over: Ameren bill past due, Cash App alerts, Sell Murdoch timeline,
+  Gmail write-scope reauth
+
+---
+
 ## 2026-06-13 — Session 7: Discreet Ledger goal clarified, repo-scope blocker confirmed again
 
 **Actions:**
