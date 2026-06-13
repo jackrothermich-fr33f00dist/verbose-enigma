@@ -13,6 +13,19 @@ Canonical path: `D:\02Domains\04Growth_Rings\01Charybdis\04WitnessVault_Project`
 | `sigilforge_bundle_input_contract.md` | What the WhisperBOT output passes to SigilForge for encryption |
 | `orcavault_drop_receipt_contract.md` | Receipt schema after OrcaVault drops a bundle to SuperDiskie |
 
+## Schemas
+
+`schemas/` contains machine-validatable JSON Schema (draft-07) files for all 7 pipeline message types, derived directly from the contract docs above:
+
+| Schema | Validates |
+|--------|-----------|
+| `whisperbot_handoff.schema.json` | WitnessVault → WhisperBOT handoff manifest |
+| `whisperbot_result.schema.json` | WhisperBOT → WitnessVault result |
+| `processed_vault_manifest.schema.json` | Processed (post-WhisperBOT) evidence record |
+| `sigilforge_request.schema.json` | WitnessVault → SigilForge bundle request |
+| `sigilforge_receipt.schema.json` | SigilForge → WitnessVault bundle receipt |
+| `orcavault_drop_receipt.schema.json` | OrcaVault drop receipt after SuperDiskie copy |
+
 ## Pipeline at a glance
 
 ```

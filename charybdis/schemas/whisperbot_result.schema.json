@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "charybdis/whisperbot_result.schema.json",
+  "title": "WhisperBOT Processing Result",
+  "type": "object",
+  "required": ["schema_version", "handoff_id", "custody_id", "processed_at", "processed_by", "status", "transcript", "diarization", "confidence", "artifacts"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "handoff_id": { "type": "string", "format": "uuid" },
+    "custody_id": { "type": "string" },
+    "processed_at": { "type": "string", "format": "date-time" },
+    "processed_by": { "const": "WhisperBOT" },
+    "model_used": { "type": "string" },
+    "status": { "enum": ["success", "partial", "failed"] },
+    "error": { "type": ["string", "null"] },
+    "transcript": {
+      "type": "object",
+      "required": ["path", "format", "word_count", "sha256"],
+      "properties": {
+        "path": { "type": "string" },
+        "format": { "enum": ["txt", "vtt", "srt", "json"] },
+        "word_count": { "type": "integer", "minimum": 0 },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+      }
+    },
+    "diarization": {
+      "type": "object",
+      "required": ["available"],
+      "properties": {
+        "available": { "type": "boolean" },
+        "speaker_count": { "type": ["integer", "null"] },
+        "path": { "type": ["string", "null"] }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "properties": {
+        "overall": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "low_confidence_segments": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "path", "sha256"],
+        "properties": {
+          "type": { "enum": ["transcript", "diarization", "summary", "other"] },
+          "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "failed" } } },
+      "then": { "required": ["error"], "properties": { "error": { "type": "string" } } }
+    }
+  ]
+}

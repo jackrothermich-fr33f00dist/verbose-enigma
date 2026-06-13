@@ -4,6 +4,26 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-13 — Session 9: Charybdis pipeline JSON Schemas
+
+**Actions:**
+- Boss said to drop the Discreet Ledger/browser approach entirely ("do
+  something else then man, fuck. if you cant do it, stop trying to do it").
+  Pivoted to a repo-only, solo-doable deliverable.
+- Wrote 7 JSON Schema (draft-07) files in `charybdis/schemas/` covering every
+  message type in the WitnessVault → WhisperBOT → SigilForge → OrcaVault
+  pipeline: handoff, result, processed manifest, sigilforge request/receipt,
+  orcavault drop receipt. Each enforces sha256 patterns, status enums, and
+  conditional required fields (e.g. `error` required when `status: failed`,
+  privileged-sensitivity review requirements).
+- Updated `charybdis/README.md` to document the new `schemas/` directory.
+
+**Next:** Commit and push this work. Phase 2A contracts now have
+machine-validatable schemas — could wire these into actual pipeline code
+when that's built.
+
+---
+
 ## 2026-06-13 — Session 8: Corrected the Discreet Ledger plan
 
 **Actions:**

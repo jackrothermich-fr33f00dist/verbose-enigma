@@ -1,0 +1,134 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "charybdis/processed_vault_manifest.schema.json",
+  "title": "Processed Vault Manifest",
+  "type": "object",
+  "required": ["schema_version", "manifest_type", "identity", "raw_file", "whisperbot", "transcript", "diarization", "event_metadata", "artifacts", "chain_of_custody", "review", "sigilforge"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "manifest_type": { "const": "processed_vault" },
+    "identity": {
+      "type": "object",
+      "required": ["custody_id", "processed_manifest_id", "created_at", "case_id"],
+      "properties": {
+        "custody_id": { "type": "string" },
+        "processed_manifest_id": { "type": "string", "format": "uuid" },
+        "created_at": { "type": "string", "format": "date-time" },
+        "case_id": { "type": "string" }
+      }
+    },
+    "raw_file": {
+      "type": "object",
+      "required": ["path", "filename", "sha256", "size_bytes", "intake_timestamp"],
+      "properties": {
+        "path": { "type": "string" },
+        "filename": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "intake_timestamp": { "type": "string", "format": "date-time" }
+      }
+    },
+    "whisperbot": {
+      "type": "object",
+      "required": ["handoff_id", "processed_at", "status"],
+      "properties": {
+        "handoff_id": { "type": "string", "format": "uuid" },
+        "processed_at": { "type": "string", "format": "date-time" },
+        "model_used": { "type": "string" },
+        "status": { "enum": ["success", "partial", "failed"] },
+        "error": { "type": ["string", "null"] }
+      }
+    },
+    "transcript": {
+      "type": "object",
+      "required": ["path", "sha256", "word_count", "format"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "word_count": { "type": "integer", "minimum": 0 },
+        "format": { "enum": ["txt", "vtt", "srt", "json"] },
+        "confidence_overall": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "low_confidence_segments": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "diarization": {
+      "type": "object",
+      "required": ["available"],
+      "properties": {
+        "available": { "type": "boolean" },
+        "speaker_count": { "type": ["integer", "null"] },
+        "path": { "type": ["string", "null"] }
+      }
+    },
+    "event_metadata": {
+      "type": "object",
+      "required": ["event_date", "sensitivity"],
+      "properties": {
+        "event_date": { "type": "string", "format": "date" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "parties": { "type": "array", "items": { "type": "string" } },
+        "sensitivity": { "enum": ["standard", "confidential", "privileged"] }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "filename", "path", "sha256", "size_bytes"],
+        "properties": {
+          "type": { "enum": ["raw_audio", "raw_video", "transcript", "diarization", "summary", "other"] },
+          "filename": { "type": "string" },
+          "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "size_bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "chain_of_custody": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "actor", "action"],
+        "properties": {
+          "timestamp": { "type": "string", "format": "date-time" },
+          "actor": { "type": "string" },
+          "action": { "enum": ["ingested", "processed", "flagged", "reviewed", "encrypted", "dropped", "other"] },
+          "note": { "type": "string" }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["ready_for_encryption"],
+      "properties": {
+        "reviewed_by": { "type": ["string", "null"] },
+        "reviewed_at": { "type": ["string", "null"], "format": "date-time" },
+        "review_notes": { "type": ["string", "null"] },
+        "ready_for_encryption": { "type": "boolean" }
+      }
+    },
+    "sigilforge": {
+      "type": "object",
+      "required": ["status"],
+      "properties": {
+        "status": { "enum": ["pending", "submitted", "complete", "failed"] },
+        "submitted_at": { "type": ["string", "null"], "format": "date-time" },
+        "bundle_id": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "event_metadata": { "properties": { "sensitivity": { "const": "privileged" } } } } },
+      "then": {
+        "properties": {
+          "review": {
+            "if": { "properties": { "ready_for_encryption": { "const": true } } },
+            "then": { "required": ["reviewed_by", "reviewed_at"], "properties": { "reviewed_by": { "type": "string" } } }
+          }
+        }
+      }
+    }
+  ]
+}

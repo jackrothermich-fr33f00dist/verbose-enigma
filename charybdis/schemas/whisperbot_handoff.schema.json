@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "charybdis/whisperbot_handoff.schema.json",
+  "title": "WhisperBOT Handoff Manifest",
+  "type": "object",
+  "required": ["schema_version", "handoff_id", "custody_id", "submitted_at", "submitted_by", "source_file", "context", "processing_instructions"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "handoff_id": { "type": "string", "format": "uuid" },
+    "custody_id": { "type": "string" },
+    "submitted_at": { "type": "string", "format": "date-time" },
+    "submitted_by": { "const": "WitnessVault" },
+    "source_file": {
+      "type": "object",
+      "required": ["path", "filename", "sha256", "size_bytes", "media_type", "format"],
+      "properties": {
+        "path": { "type": "string" },
+        "filename": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "size_bytes": { "type": "integer", "minimum": 0 },
+        "duration_seconds": { "type": ["number", "null"] },
+        "media_type": { "enum": ["audio", "video"] },
+        "format": { "enum": ["mp4", "m4a", "wav", "mp3", "ogg", "webm", "other"] }
+      }
+    },
+    "context": {
+      "type": "object",
+      "required": ["case_id", "event_date", "sensitivity"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "event_date": { "type": "string", "format": "date" },
+        "location": { "type": "string" },
+        "description": { "type": "string" },
+        "parties": { "type": "array", "items": { "type": "string" } },
+        "sensitivity": { "enum": ["standard", "confidential", "privileged"] }
+      }
+    },
+    "processing_instructions": {
+      "type": "object",
+      "required": ["transcribe", "diarize", "language"],
+      "properties": {
+        "transcribe": { "type": "boolean" },
+        "diarize": { "type": "boolean" },
+        "language": { "type": "string" },
+        "model_preference": { "type": "string" },
+        "redact_pii": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "charybdis/sigilforge_request.schema.json",
+  "title": "SigilForge Bundle Request",
+  "type": "object",
+  "required": ["schema_version", "request_id", "submitted_at", "submitted_by", "identity", "files", "encryption", "bundle", "metadata"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "request_id": { "type": "string", "format": "uuid" },
+    "submitted_at": { "type": "string", "format": "date-time" },
+    "submitted_by": { "const": "WitnessVault" },
+    "identity": {
+      "type": "object",
+      "required": ["custody_id", "processed_manifest_id", "case_id"],
+      "properties": {
+        "custody_id": { "type": "string" },
+        "processed_manifest_id": { "type": "string" },
+        "case_id": { "type": "string" }
+      }
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["role", "path", "filename", "sha256", "size_bytes", "include_in_bundle"],
+        "properties": {
+          "role": { "enum": ["raw_audio", "raw_video", "transcript", "diarization", "manifest", "other"] },
+          "path": { "type": "string" },
+          "filename": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+          "size_bytes": { "type": "integer", "minimum": 0 },
+          "include_in_bundle": { "type": "boolean" }
+        }
+      }
+    },
+    "encryption": {
+      "type": "object",
+      "required": ["algorithm", "key_source"],
+      "properties": {
+        "algorithm": { "const": "AES-256-GCM" },
+        "key_source": { "enum": ["sigilforge_managed", "provided"] },
+        "key_id": { "type": ["string", "null"] },
+        "recipients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": { "type": "string" },
+              "key_fingerprint": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    },
+    "bundle": {
+      "type": "object",
+      "required": ["format", "include_manifest", "include_chain_of_custody", "output_path"],
+      "properties": {
+        "format": { "enum": ["zip+gpg", "tar.gz+gpg", "custom"] },
+        "include_manifest": { "type": "boolean" },
+        "include_chain_of_custody": { "type": "boolean" },
+        "output_path": { "type": "string" }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["sensitivity", "event_date"],
+      "properties": {
+        "sensitivity": { "enum": ["standard", "confidential", "privileged"] },
+        "event_date": { "type": "string", "format": "date" },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}
