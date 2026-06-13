@@ -26,6 +26,18 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
   needs Boss-side Gmail reauth. Read scan of 50 unlabeled inbox threads done
   but not applied.
 
+- Checked ClickUp open tasks (space 90173686954, 100 results). Found
+  `86e1j7t5m` (Discreet Ledger upload) matches the finance CSV work just
+  done — tried to post a progress comment but `clickup_create_comment`
+  needs a permission approval not available here, skipped.
+- Saw `86e1mmg4y` ([Athanor Safety] maintained-file write hazard — Athanor's
+  live Playbook got zeroed by a timed-out PowerShell read/modify/write).
+  Same risk class applies to my own playbook/log files, so wrote
+  `plans/safe_file_edit_protocol.md`: prefer anchored `Edit` over full
+  `Write` for `Ember_Playbook.md`/`activity.md`/`roadmap.md`, commit before
+  risky edits (git is the backup git-tracked files Athanor's OneDrive
+  fallback approximates).
+
 **What's next:**
 - Boss: pay Ameren bill (past due, urgent)
 - Boss: reauth Gmail MCP (write scope) so labeling pass can actually apply
