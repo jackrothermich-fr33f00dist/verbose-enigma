@@ -22,8 +22,9 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 ## Hot Recommendations
 
 - Wake/sleep automation now live: SessionStart hook injects Playbook + Dreams ACTIVE section; Stop hook snapshots session facts into this file. No more manual context priming needed.
-- Next session: start Part 2 of the automation request — build Claude-native skills/routines (NOT OpenClaw/Telegram) for: `/briefing` (Gmail+Calendar+ClickUp survey), `/health` (workspace check), `/openclaw-fix` (recovery checklist walkthrough), finance review, Charybdis check-in, market research.
-- Fix OpenClaw JSON5 error (line 164) — only thing blocking Telegram/gateway (still deferred, needs Boss on WSL/tablet)
+- Part 2 complete: six Claude-native skills now exist under `.claude/skills/` — `health`, `briefing`, `openclaw-fix`, `finance-review`, `charybdis-checkin`, `market-research`. None have been invoked yet — first real use will show if they need tuning (especially `/briefing` and `/finance-review`'s MCP tool usage).
+- Next session: try running `/health` and `/briefing` to validate the new skills, and pick up a Phase 2B (income) item with `/market-research`.
+- Fix OpenClaw JSON5 error (line 164) — only thing blocking Telegram/gateway (still deferred, needs Boss on WSL/tablet) — `/openclaw-fix` is ready to walk this when Boss is on WSL
 - Review Charybdis purpose/urgency with Boss — pipeline scope is clear, but the "why" is still unknown
 - June budget not yet created — flag again if still missing
 
