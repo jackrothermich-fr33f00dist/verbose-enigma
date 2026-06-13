@@ -10,19 +10,20 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-13 09:33
+- **Date**: 2026-06-13 11:57
 - **Branch**: claude/openclaw-readiness-review-X4sya
 - **Last commits**:
+  - f5a9876 Update Dreams snapshot (ForgeFoundation global-install handoff)
   - 1d473b5 Session 5 close: ForgeFoundation investigation, Dreams handoff notes
   - 3541a7e Merge main (PR #5 squash-merged) into feature branch
-  - 1a40a37 Add Claude-native automation skills (Part 2) (#5)
-- **Uncommitted at close**: 0 file(s)
+- **Uncommitted at close**: 2 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- Boss confirmed ForgeFoundation (renamed local copy of `addyosmani/agent-skills`) should be installed **globally** (user-level `~/.claude/settings.json`, via `/plugin marketplace add addyosmani/agent-skills` + `/plugin install agent-skills@addy-agent-skills`), with per-project kill-switches via `enabledPlugins: {"agent-skills@addy-agent-skills": false}` in a repo's `.claude/settings.json`/`settings.local.json`. Confirmed mechanism is sound (settings precedence user < project < local).
-- **Caveat for Boss**: this session runs in an isolated remote container — global install must happen on Boss's actual machines (tablet/laptop/WSL), not here. Offered two options: (1) write up install + kill-switch instructions as a doc in this repo, and/or (2) add the kill-switch to `verbose-enigma`'s own settings as a working example (since this repo doesn't need the dev-lifecycle gates). Awaiting Boss's pick.
+- ForgeFoundation setup done: `forgefoundation/CLAUDE_SETUP.md` documents the global install (`/plugin marketplace add` + `/plugin install agent-skills@addy-agent-skills` on each of Boss's machines) and the per-project kill-switch syntax.
+- Kill-switch applied to `verbose-enigma` itself: `.claude/settings.json` now has `"enabledPlugins": {"agent-skills@addy-agent-skills": false}` — demonstrates the pattern and keeps this ops repo free of the dev-lifecycle gates.
+- Reminder for Boss: the global install step still needs to be run manually on each physical machine (tablet/laptop/WSL) — I can't do that from this remote container.
 - Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
 
 ## Current Blockers
