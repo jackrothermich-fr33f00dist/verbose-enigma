@@ -4,6 +4,38 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-13 — Session 6: Urgent bill flag + Gmail write-block confirmed
+
+**Urgent flag for Boss:**
+- **Ameren Missouri bill PAST DUE: $507.32, due 06/11/2026** (7707 Murdoch Ave,
+  acct 9068806228, last payment $200 on 05/29/2026). Found via read-only inbox
+  scan — needs immediate payment.
+
+**Actions:**
+- Added "decide, don't ask" as Operating Principle 0 in Ember_Playbook.md per
+  Boss's standing directive — autonomous decision-making is the point of this
+  project, don't pause for permission on obvious next steps.
+- Checked Drive for Nov/Dec 2025 budget workbooks (next step for finance
+  consolidation): none exist yet, only empty receipt-PDF folders. Jul-Oct
+  remains the complete dataset; not attempting PDF-OCR transcription for
+  money data (too error-prone).
+- Attempted the Email Forge Gmail labeling pass (37-item rule table from
+  `plans/email_forge_spec.md`): `list_labels`/`search_threads` (read) now
+  work after MCP reconnect, but `label_thread` (write) still returns
+  403/"requires re-authorization (token expired)" — confirmed still blocked,
+  needs Boss-side Gmail reauth. Read scan of 50 unlabeled inbox threads done
+  but not applied.
+
+**What's next:**
+- Boss: pay Ameren bill (past due, urgent)
+- Boss: reauth Gmail MCP (write scope) so labeling pass can actually apply
+- Re-run Email Forge labeling pass once reauth done (50+ threads scanned and
+  pre-categorized, ready to apply)
+- Carried over: Cash App alerts, water bill, Sell Murdoch timeline, Nov/Dec
+  finance data once workbooks exist
+
+---
+
 ## 2026-06-12 — Session 5: Finance data consolidation for Discreet Ledger
 
 **Actions:**
