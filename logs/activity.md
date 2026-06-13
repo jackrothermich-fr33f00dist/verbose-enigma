@@ -65,6 +65,14 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 - Finance review / June budget still outstanding
 - Boss: verify Cash App alerts, water bill, Sell Murdoch timeline (carried over)
 
+**Additional action this session:**
+- No June 2026 budget workbook existed in Drive (roadmap flagged this gap).
+  Created `06JUN2026` spreadsheet in the "2025 Budgets" folder with the
+  standardized Oct-2025 column schema (Date, Time, Amount, Recipient,
+  Location, Description, Funding Source, Category, Subcategory) — header
+  only, ready for Boss/receipts to populate. Updated roadmap.md Phase 1
+  finance-review row to reflect this.
+
 ---
 
 ## 2026-06-10 — Session 4: Email Forge spec + finance/timeline flags

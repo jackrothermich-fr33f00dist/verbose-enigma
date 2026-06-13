@@ -42,7 +42,7 @@ Survey what's actually happening so I can prioritize intelligently.
 | ClickUp active tasks reviewed | ✅ Done | Key tasks: OpenClaw (86e1a42fj), WitnessVault (86e1mmfdj) |
 | Gmail survey (what's urgent?) | ✅ Done | Facebook login alert (verify!), CC due Jun 13, income received |
 | Calendar survey (what's coming?) | ✅ Done | Furnace filter Jun 7, Commerce CC $47 Jun 13 |
-| Finance review (budget status, June gap) | ⏳ Next | June budget not yet created |
+| Finance review (budget status, June gap) | 🔄 Partial | Jul-Oct 2025 consolidated to `finances/2025_transactions_jul_oct.csv`; created empty `06JUN2026` budget sheet in Drive (standardized schema) since none existed |
 | Charybdis / legal status | 🔄 Partial | Pipeline scope clear; legal status/urgency unknown |
 | LivingSpark Circuit Board review | ⏳ Needs D: drive access | Via SuperDiskie in ClickUp or file share |
 
