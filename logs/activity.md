@@ -4,6 +4,24 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-13 — Session 6: ForgeFoundation Claude setup doc + SuperDiskie install
+
+**Actions:**
+- Created `forgefoundation/CLAUDE_SETUP.md` documenting how to install ForgeFoundation (Boss's renamed copy of `addyosmani/agent-skills`) as a Claude Code plugin marketplace.
+- Applied the per-project kill-switch to `verbose-enigma` itself: `.claude/settings.json` now has `"enabledPlugins": {"agent-skills@addy-agent-skills": false}` — keeps this ops repo free of the `/spec → /build → /ship` dev-lifecycle gates while demonstrating the opt-out pattern for product repos.
+- Boss clarified the install source should be the shared SuperDiskie drive's `01Skills` folder (local-path marketplace add), not GitHub. Rewrote the Global Install section accordingly — local path is primary, GitHub kept as fallback if SuperDiskie isn't mounted on a given machine.
+- Committed and pushed in three steps (261f19c, 73217ba, 16ebe04) as the work evolved.
+
+**Key learnings:**
+- `/plugin marketplace add` accepts a local filesystem path (needs `.claude-plugin/marketplace.json` at root) — confirmed via claude-code-guide agent. Local paths don't auto-update via `/plugin marketplace update`, but since SuperDiskie is a shared physical drive, edits to `01Skills` propagate to every machine that mounts it without a separate sync step.
+- Settings precedence (`user < project < local`) makes the kill-switch pattern clean: global install via SuperDiskie applies everywhere, `verbose-enigma`'s checked-in `.claude/settings.json` opts this repo out specifically.
+
+**What's next:**
+- Boss still needs to run the global install (`/plugin marketplace add "<SuperDiskie path>/01Skills"` + `/plugin install agent-skills@addy-agent-skills`) on each physical machine — can't be done from this remote container.
+- Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency clarification, June budget creation.
+
+---
+
 ## 2026-06-13 — Session 5: SessionEnd hook fix + ForgeFoundation investigation
 
 **Actions:**

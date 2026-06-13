@@ -21,7 +21,8 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 
 ## Hot Recommendations
 
-- Updated `forgefoundation/CLAUDE_SETUP.md`: Boss wants ForgeFoundation pulled from SuperDiskie's `01Skills` folder (local-path marketplace add), not GitHub. Doc now leads with the SuperDiskie local-path install (per-machine mount path varies), keeps GitHub as fallback. Kill-switch in `verbose-enigma`'s `.claude/settings.json` unchanged.
+- Session 6 closed: ForgeFoundation Claude setup is done. `forgefoundation/CLAUDE_SETUP.md` documents installing from SuperDiskie's `01Skills` folder (local-path marketplace add, mount path varies per machine), with GitHub as fallback. Kill-switch applied to `verbose-enigma`'s own `.claude/settings.json` (`agent-skills@addy-agent-skills: false`).
+- Boss action still needed: run the global install on each physical machine — `/plugin marketplace add "<SuperDiskie path>/01Skills"` + `/plugin install agent-skills@addy-agent-skills`. Cannot be done from this remote container.
 - Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
 
 ## Current Blockers
