@@ -26,6 +26,14 @@ Canonical path: `D:\02Domains\04Growth_Rings\01Charybdis\04WitnessVault_Project`
 | `sigilforge_receipt.schema.json` | SigilForge → WitnessVault bundle receipt |
 | `orcavault_drop_receipt.schema.json` | OrcaVault drop receipt after SuperDiskie copy |
 
+## Validation
+
+`schemas/examples/` has one valid example message per schema, plus a few
+negative cases. Run `python3 charybdis/schemas/validate.py` (requires
+`jsonschema`) to check examples validate correctly — also runs in CI on any
+change to `charybdis/schemas/**` via
+`.github/workflows/charybdis-schema-validate.yml`.
+
 ## Pipeline at a glance
 
 ```

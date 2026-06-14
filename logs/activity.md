@@ -4,6 +4,26 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-14 — Session 10: Schema validation tests + CI; scheduled trigger note
+
+**Actions:**
+- Boss asked for a scheduled trigger (like FordrasilsSeedling has) and
+  validation tests/checks for the Charybdis schemas.
+- Scheduled triggers are configured via the Claude Code on the web UI
+  (repo Triggers tab, cron-based) — not something I can create from inside
+  a repo session. Left this for Boss to set up; suggested prompt: "read
+  Ember_Playbook.md and plans/roadmap.md, pick the next task, do it, log it."
+- Built the validation side: `charybdis/schemas/examples/` (one valid example
+  per schema + negative cases for failed-status/error, bad sha256 pattern,
+  and unreviewed-privileged-record), `charybdis/schemas/validate.py` (runs
+  jsonschema checks, exits non-zero on failure), and
+  `.github/workflows/charybdis-schema-validate.yml` to run it in CI on any
+  change to `charybdis/schemas/**`.
+
+**Next:** Boss sets up the scheduled trigger in the web UI if wanted.
+
+---
+
 ## 2026-06-13 — Session 9: Charybdis pipeline JSON Schemas
 
 **Actions:**

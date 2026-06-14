@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "receipt_id": "44444444-4444-4444-4444-444444444444",
+  "dropped_at": "2026-06-14T13:10:00Z",
+  "dropped_by": "OrcaVault",
+  "identity": {
+    "custody_id": "CUST-2026-0001",
+    "bundle_id": "BUNDLE-2026-0001",
+    "case_id": "CASE-2026-001"
+  },
+  "status": "success",
+  "error": null,
+  "source": {
+    "path": "/vault/bundles/CUST-2026-0001.zip.gpg",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "size_bytes": 1100000
+  },
+  "destination": {
+    "drive": "SuperDiskie",
+    "path": "E:/Charybdis/CASE-2026-001/CUST-2026-0001.zip.gpg",
+    "filename": "CUST-2026-0001.zip.gpg",
+    "sha256_verified": true,
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "retention": {
+    "delete_source_after_drop": false,
+    "source_deleted": false,
+    "source_deletion_timestamp": null
+  },
+  "jarvis_ready": {
+    "ready": true,
+    "review_path": "E:/Charybdis/CASE-2026-001/",
+    "manifest_path": "E:/Charybdis/CASE-2026-001/CUST-2026-0001.manifest.json",
+    "chain_of_custody_complete": true
+  },
+  "notifications": {
+    "notify_jarvis": true,
+    "notification_sent_at": "2026-06-14T13:10:05Z",
+    "notification_method": "file_flag"
+  }
+}

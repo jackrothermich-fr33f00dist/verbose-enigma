@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "manifest_type": "processed_vault",
+  "identity": {
+    "custody_id": "CUST-2026-0001",
+    "processed_manifest_id": "22222222-2222-2222-2222-222222222222",
+    "created_at": "2026-06-14T12:35:00Z",
+    "case_id": "CASE-2026-001"
+  },
+  "raw_file": {
+    "path": "/vault/raw/CUST-2026-0001.m4a",
+    "filename": "CUST-2026-0001.m4a",
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "size_bytes": 1048576,
+    "intake_timestamp": "2026-06-10T08:00:00Z"
+  },
+  "whisperbot": {
+    "handoff_id": "11111111-1111-1111-1111-111111111111",
+    "processed_at": "2026-06-14T12:30:00Z",
+    "model_used": "whisper-large-v3",
+    "status": "success",
+    "error": null
+  },
+  "transcript": {
+    "path": "/vault/processed/CUST-2026-0001.txt",
+    "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "word_count": 4200,
+    "format": "txt",
+    "confidence_overall": 0.94,
+    "low_confidence_segments": 3
+  },
+  "diarization": {
+    "available": true,
+    "speaker_count": 2,
+    "path": "/vault/processed/CUST-2026-0001.diarization.json"
+  },
+  "event_metadata": {
+    "event_date": "2026-06-10",
+    "location": "Office",
+    "description": "Meeting recording",
+    "parties": ["Alice", "Bob"],
+    "sensitivity": "standard"
+  },
+  "artifacts": [
+    {
+      "type": "transcript",
+      "filename": "CUST-2026-0001.txt",
+      "path": "/vault/processed/CUST-2026-0001.txt",
+      "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "size_bytes": 25000
+    }
+  ],
+  "chain_of_custody": [
+    {
+      "timestamp": "2026-06-10T08:00:00Z",
+      "actor": "WitnessVault",
+      "action": "ingested"
+    },
+    {
+      "timestamp": "2026-06-14T12:30:00Z",
+      "actor": "WhisperBOT",
+      "action": "processed"
+    }
+  ],
+  "review": {
+    "reviewed_by": null,
+    "reviewed_at": null,
+    "review_notes": null,
+    "ready_for_encryption": false
+  },
+  "sigilforge": {
+    "status": "pending",
+    "submitted_at": null,
+    "bundle_id": null
+  }
+}

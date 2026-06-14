@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "request_id": "33333333-3333-3333-3333-333333333333",
+  "bundle_id": "BUNDLE-2026-0001",
+  "completed_at": "2026-06-14T13:05:00Z",
+  "identity": {
+    "custody_id": "CUST-2026-0001",
+    "case_id": "CASE-2026-001"
+  },
+  "status": "success",
+  "error": null,
+  "bundle": {
+    "path": "/vault/bundles/CUST-2026-0001.zip.gpg",
+    "filename": "CUST-2026-0001.zip.gpg",
+    "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "size_bytes": 1100000,
+    "format": "zip+gpg"
+  },
+  "encryption": {
+    "algorithm": "AES-256-GCM",
+    "key_id": "KEY-001",
+    "recipients": ["Jarvis"]
+  },
+  "files_included": [
+    {
+      "role": "transcript",
+      "filename": "CUST-2026-0001.txt",
+      "sha256_pre_encryption": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    },
+    {
+      "role": "raw_audio",
+      "filename": "CUST-2026-0001.m4a",
+      "sha256_pre_encryption": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    }
+  ],
+  "verification": {
+    "bundle_sha256_confirmed": true,
+    "all_input_hashes_verified": true
+  }
+}
