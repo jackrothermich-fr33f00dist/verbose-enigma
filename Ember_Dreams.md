@@ -10,23 +10,20 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-13 03:19
+- **Date**: 2026-06-13 13:55
 - **Branch**: claude/openclaw-readiness-review-X4sya
 - **Last commits**:
-  - 0ee4c6d Update Dreams handoff notes after Part 2 session close
-  - c9717d5 Add Claude-native automation skills (Part 2)
-  - 66ba257 Merge pull request #4 from jackrothermich-fr33f00dist/claude/openclaw-readiness-review-X4sya
+  - 73217ba Update Dreams snapshot (local-path install handoff notes)
+  - 261f19c Add ForgeFoundation Claude setup doc and apply kill-switch to this repo
+  - f5a9876 Update Dreams snapshot (ForgeFoundation global-install handoff)
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- **Fixed**: the session-end hook was registered on `Stop`, which fires after every agent turn (not just true session end) — caused a loop of rewriting `Ember_Dreams.md` and re-flagging the repo dirty. Switched `.claude/settings.json` to the `SessionEnd` event, which fires once when the session actually ends.
-- Part 2 done: six Claude-native skills now live under `.claude/skills/` — `health`, `briefing`, `openclaw-fix`, `finance-review`, `charybdis-checkin`, `market-research`. PR #5 is open as a draft against main, no CI configured, no review comments yet.
-- Next session: review/merge PR #5 if Boss hasn't already, then do a first real run of `/health` and `/briefing` to validate the new skills against live Gmail/Calendar/ClickUp data.
-- Fix OpenClaw JSON5 error (line 164) — still deferred, needs Boss on WSL/tablet — `/openclaw-fix` is ready when that happens
-- Review Charybdis purpose/urgency with Boss — still unknown
-- June budget not yet created — flag again if still missing
+- Session 6 closed: ForgeFoundation Claude setup is done. `forgefoundation/CLAUDE_SETUP.md` documents installing from SuperDiskie's `01Skills` folder (local-path marketplace add, mount path varies per machine), with GitHub as fallback. Kill-switch applied to `verbose-enigma`'s own `.claude/settings.json` (`agent-skills@addy-agent-skills: false`).
+- Boss action still needed: run the global install on each physical machine — `/plugin marketplace add "<SuperDiskie path>/01Skills"` + `/plugin install agent-skills@addy-agent-skills`. Cannot be done from this remote container.
+- Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
 
 ## Current Blockers
 
