@@ -1,0 +1,65 @@
+date,time,amount,recipient,location,description,category,subcategory,funding_source,source_month
+10/11/25,2:49 am,17.88,Me,QT Heege,"Gas, Monster","Food, Consumables, Car",1:1 0.57; 4:1 0.11; 5:2 0.32,Commerce DBT,2025-10
+10/21/25,10:57 am,15.93,"Me, Husband",QT Heege,"Pizza, Pastry, Donuts, Milk, Frozen Drink","Food, Networking",4:1 0.79; 3:3 0.21,Commerce DBT,2025-10
+10/28/25,1:35 am,10.01,Me,QT Khwy,Gas,Car,1:1 1.0,Commerce DBT,2025-10
+10/28/25,1:37 am,31.33,"Me, Husband",QT Khwy,Hospital Prep,"Food, Networking",4:1 0.75 ; 3:3 0.25,Commerce DBT,2025-10
+9/1/25,8:38 am,18.38,Me,Shell Kingsland,Drinks + Cigs,"Food, Consumables",4:1 0.486 ; 5:2 0.514,,2025-09
+9/7/25,11:37 pm,22.52,Me,QT Destruction,"Taquitos, Cigs, Energy Drink","Consumables, Food",5:2 0.70; 4:1 0.30,Visa Gift Card; Amazon CC,2025-09
+9/9/25,9:00 pm,18.76,"Me, Luci",SupplementS SoCoC,Smoothies,"Food, Networking",4:1 0.50; 3:2 0.50,Amazon CC,2025-09
+9/9/25,9:18 pm,15.04,Luci,Home Depot SoCoC,Light Tarps,Networking,3:2 1.00,Amazon CC,2025-09
+9/9/25,9:59 pm,4.86,Me,QT Gloria,Drinks/Snacks,Food,4:1 1.00,Amazon CC,2025-09
+9/10/25,9:10 am,19.03,"Me, Luci",QT Gloria,"Breakfast, Water, Taquitos","Food, Networking",4:1 0.65; 3:2 0.35,Amazon CC,2025-09
+9/13/25,2:37 am,34.21,Me,QT RR/170,"Drinks, Cigs","Consumables, Food",5:2 0.80; 4:1 0.20,Amazon CC,2025-09
+9/16/25,9:56 pm,9.48,"Me, Luci",QT Gloria,Drinks/Snacks,"Food, Networking",4:1 0.52; 3:2 0.48,Amazon CC,2025-09
+9/22/25,2:11 pm,14.65,Me,QT Maplehood,Food,Food,4:1 1.00,Amazon CC,2025-09
+9/28/25,10:10 pm,31.42,Me,QT Maplehood,Gas,Car,1:1 1.00,Amazon CC,2025-09
+8/2/25,12:08 pm,13.74,"Me, Barboss",,Caseys MV Drink Run,"Food, Consumables, Networking",4:1 0.512; 5:2 0.271; 3:6 0.217,,2025-08
+8/2/25,12:21 pm,12.83,"Me, Barboss, Greggy",,CK MV Drink Run,"Food, Networking",4:1 0.589; 3:5 0.123; 3:6 0.287,,2025-08
+8/3/25,2:27 am,18.76,"Me, Hellbound",,QT G1 Drinks/Snacks,"Food, Consumables, Networking",4:1 ; 5:2 ; 3:1 ; 3:2,,2025-08
+8/3/25,9:12 am,8.31,"Me, Greggy",,CK MV Drinks,"Food, Networking",4:1 0.70; 3:5 0.30,Amazon CC,2025-08
+8/16/25,7:21 am,26.24,Me,,Caseys MV Breakfast/Cigs/Drinks,"Food, Consumables",4:1 ; 5:2,,2025-08
+8/16/25,10:56 am,40,Rampy,,Rampy Cashapp Breakfast,Networking,3:1 1.0,,2025-08
+8/16/25,6:30 pm,8.55,Me,,CK MV Monsters,Consumables,5:2,,2025-08
+8/17/25,4:00 am,10.92,"Me, Rampy, Luci",,QT Gloria Drinks,"Food, Networking",4:1 3:1 3:2,,2025-08
+8/17/25,4:32 am,30.58,"Me, Rampage, Luci",,QT Gloria Candy/Snacks,"Food, Networking",4:1 3:1 3:2,,2025-08
+8/17/25,4:33 am,23.13,"Me, Rampage",,QT Gloria Cigs,"Consumables, Networking",5:2 0.5 3:1 0.5,,2025-08
+8/18/25,1:29 am,15,Me,,CK MV gas,Car,1:1 1.0,,2025-08
+7/3/25,Unknown,16.16,Me,,QT drinks,Food,4:1 1.0,,2025-07
+7/4/25,Unknown,23.85,"Me, Rampage",,McDonalds Breakfast,Food;Networking,4:1 0.5;3:1 0.5,,2025-07
+7/4/25,Unknown,13.42,Me,,QT cigs + drink,Consumables,5:2 1.0,,2025-07
+7/4/25,Unknown,34.86,Me,,QT gas,Car,1:1 1.0,,2025-07
+7/4/25,Unknown,47.22,Rampage,,QT gas,Networking,3:1 1.0,,2025-07
+7/4/25,Unknown,4.54,Me,,QT drinks,Food,4:1 1.0,,2025-07
+7/4/25,Unknown,44.51,"Me, Rampage, BB Luci",,Lion's Choice,Food;Networking,4:2 0.3333; 3:1 0.3333; 3:2 0.3333,,2025-07
+7/4/25,Unknown,24,Rampage,,Home Depot,Networking,3:1 1.0,,2025-07
+7/4/25,Unknown,50.3,Rampage,,AutoZone car parts,Networking,3:1 1.0,,2025-07
+7/5/25,Unknown,3.32,Me,,Circle K Monster,Consumables,5:2 1.0,,2025-07
+7/5/25,Unknown,200,Me,,ozS,Consumables,5:1 1.0,,2025-07
+7/5/25,Unknown,175,Rampage,,Rent + Tryke Debt,Networking,3:1 1.0,,2025-07
+7/5/25,Unknown,12.6,Me,,Casey's Food + Drink,Food,4:1 1.0,,2025-07
+7/6/25,Unknown,7.99,Me,,Words on the Bathroom Wall (CRU),Entertainment,7:1 1.0,,2025-07
+7/6/25,Unknown,18.91,Me,,QT food + cigs,Consumables,5:2 1.0,,2025-07
+7/6/25,Unknown,12.71,Me,,Circle K Work Drinks,Food,4:1 1.0,,2025-07
+7/7/25,Unknown,10.3,Me,,QT Drinks,Food,4:1 1.0,,2025-07
+7/7/25,Unknown,32.67,Me,,7-11 Gas,Car,1:1 1.0,,2025-07
+7/7/25,Unknown,46.16,"Me, Rupture",,Global Quesadilla,Food;Networking,4:1 0.5;3:4 0.5,,2025-07
+7/7/25,Unknown,53.49,Me,,Traya Vet,Animals,8:2 1.0,,2025-07
+7/7/25,Unknown,-1985.43,Me,,Chestnut Check (biweekly paycheck),Acct Management,9:2 1.0,,2025-07
+7/8/25,Unknown,13.64,"Me, Rampage",,McDonald's,Food;Networking,4:1 0.5; 3:1 0.5,,2025-07
+7/8/25,Unknown,98.59,Rampage,,Car Parts,Networking,3:1 1.0,,2025-07
+7/8/25,Unknown,15.76,Me,,QT Drink/Cigs,Consumables,5:2 1.0,,2025-07
+7/8/25,Unknown,91,Rampage,,AutoZone,Networking,3:1 1.0,,2025-07
+7/8/25,Unknown,300,Me,,Container Store Investment,Account Management,Transfer,,2025-07
+7/9/25,Unknown,20.28,Me,,Food (6.98) + Cigs (12.37),Food;Consumables,4:1 0.3900; 5:2 0.6100,,2025-07
+7/9/25,Unknown,50.6,"Me, Rampage, BB Luci",,Raising Cane's,Food;Networking,4:1 0.3333; 3:1 0.3333; 3.2 0.3333,,2025-07
+7/9/25,Unknown,10,Husband,,CashApp,Networking,3:3 1.0,,2025-07
+7/10/25,8:53 am,3.41,Me,,Water,Food,4:1 1.0,,2025-07
+7/10/25,2:21 pm,14.19,"Me, Luci, Rampage",,Drinks,Networking;Food,3:1 0.2635;3:2 0.2107;4:1 0.2629;5:2 0.2629,,2025-07
+7/10/25,5:00 pm,483.76,Husband,,Lady Vet,Animals,8:2 1.0,,2025-07
+7/10/25,8:00 pm,-16.45,Rampage,,CashApp?,Networking,3:1 1.0,,2025-07
+7/10/25,Unknown,153.86,Me,,Container Store Investment,Account Management,Transfer,,2025-07
+7/11/25,2:15 am,11.2,Me,,CVS,Food,4:1 1.0,,2025-07
+7/11/25,5:00 pm,6.17,Me,,Gstat,Consumables;Food,5:2 0.5931;4:1 0.4069,,2025-07
+7/11/25,Unknown,145,Doof,,Cash,Consumables,5:1 1.0,,2025-07
+7/11/25,Unknown,300,Rampage,,Rent + Seed Investment,Networking,3:1 1.0,,2025-07
+7/13/25,Unknown,70,Rampage,,Gas,Networking,3:1 1.0,,2025-07
