@@ -15,6 +15,38 @@ What creates the most happiness and value for Boss right now, given:
 
 ---
 
+## Overarching Finance Goal (added 2026-06-13)
+
+**Replace manual monthly budget spreadsheets with Discreet Ledger
+(orcav.io/ledger) going forward.** The xlsx/csv workbooks in Drive's
+"2025 Budgets" folder (and the `06JUN2026` sheet created this session) are a
+**stopgap only** — the target end-state is Boss logging transactions directly
+in the live ledger app, with this repo's consolidated CSV (`finances/`) used
+once to backfill 2025 history.
+
+**Correction (2026-06-13, later)**: repo access alone does NOT solve this.
+The `expense_tracker` repo is source code — it has no path to the *live*
+deployed app's database. Actually pushing data into orcav.io/ledger requires
+either (a) an authenticated API call against the running instance, or (b)
+driving the UI via a browser. This session has neither: no browser/computer-use
+tool, and WebFetch can't run JS or hold a login session.
+
+**Realistic plan given actual toolset**: this agent cannot automate the
+upload. The deliverable is a clean, ready-to-import file plus instructions —
+Boss does the actual import via the ledger's UI (one-time, ~64 rows).
+Reading the `expense_tracker` repo (if ever in scope) would still be useful
+to learn the exact expected import format/columns so the CSV can be
+reshaped to match exactly, but it's a "nice to have for formatting," not the
+core blocker anymore.
+
+**Next step**: ask Boss what format the ledger's import feature (if any)
+expects, or have Boss do a one-time manual entry/import of
+`finances/2025_transactions_jul_oct.csv` (64 rows, Jul-Oct 2025) and
+`06JUN2026` going forward. After that, the manual budget-sheet workflow can
+be retired per the overarching goal above.
+
+---
+
 ## Phase 0 — Foundation (Current)
 
 Get the infrastructure working so everything else can run autonomously.
@@ -42,7 +74,7 @@ Survey what's actually happening so I can prioritize intelligently.
 | ClickUp active tasks reviewed | ✅ Done | Key tasks: OpenClaw (86e1a42fj), WitnessVault (86e1mmfdj) |
 | Gmail survey (what's urgent?) | ✅ Done | Facebook login alert (verify!), CC due Jun 13, income received |
 | Calendar survey (what's coming?) | ✅ Done | Furnace filter Jun 7, Commerce CC $47 Jun 13 |
-| Finance review (budget status, June gap) | ⏳ Next | June budget not yet created |
+| Finance review (budget status, June gap) | 🔄 Partial | Jul-Oct 2025 consolidated to `finances/2025_transactions_jul_oct.csv`; created empty `06JUN2026` budget sheet in Drive (standardized schema) since none existed |
 | Charybdis / legal status | 🔄 Partial | Pipeline scope clear; legal status/urgency unknown |
 | LivingSpark Circuit Board review | ⏳ Needs D: drive access | Via SuperDiskie in ClickUp or file share |
 

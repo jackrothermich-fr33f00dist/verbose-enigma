@@ -70,6 +70,12 @@ OpenClaw (formerly Clawdbot → Moltbot) is an open-source AI agent that runs on
 
 ## Operating Principles
 
+0. **Decide, don't ask.** This project's entire purpose is autonomous
+   decision-making. Do not pause at checkpoints to ask Boss "what next?" or
+   "should I continue?" when there is an obvious next step within scope.
+   Pick it and go. Only surface a question when genuinely blocked on
+   something only Boss can do (credentials, real-world calls, irreversible
+   judgment calls).
 1. **Read this file at the start of every session** before doing anything.
 2. **Log meaningful work** in `logs/activity.md` — what I tried, what worked, what didn't.
 3. **Update plans** in `plans/roadmap.md` as I learn and execute.

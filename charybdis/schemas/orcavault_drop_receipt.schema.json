@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "charybdis/orcavault_drop_receipt.schema.json",
+  "title": "OrcaVault Drop Receipt",
+  "type": "object",
+  "required": ["schema_version", "receipt_id", "dropped_at", "dropped_by", "identity", "status", "source", "destination", "retention", "jarvis_ready", "notifications"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "receipt_id": { "type": "string", "format": "uuid" },
+    "dropped_at": { "type": "string", "format": "date-time" },
+    "dropped_by": { "const": "OrcaVault" },
+    "identity": {
+      "type": "object",
+      "required": ["custody_id", "bundle_id", "case_id"],
+      "properties": {
+        "custody_id": { "type": "string" },
+        "bundle_id": { "type": "string" },
+        "case_id": { "type": "string" }
+      }
+    },
+    "status": { "enum": ["success", "failed", "partial"] },
+    "error": { "type": ["string", "null"] },
+    "source": {
+      "type": "object",
+      "required": ["path", "sha256", "size_bytes"],
+      "properties": {
+        "path": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" },
+        "size_bytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "destination": {
+      "type": "object",
+      "required": ["drive", "path", "filename", "sha256_verified", "sha256"],
+      "properties": {
+        "drive": { "const": "SuperDiskie" },
+        "path": { "type": "string" },
+        "filename": { "type": "string" },
+        "sha256_verified": { "type": "boolean" },
+        "sha256": { "type": "string", "pattern": "^[a-fA-F0-9]{64}$" }
+      }
+    },
+    "retention": {
+      "type": "object",
+      "required": ["delete_source_after_drop", "source_deleted", "source_deletion_timestamp"],
+      "properties": {
+        "delete_source_after_drop": { "type": "boolean" },
+        "source_deleted": { "type": "boolean" },
+        "source_deletion_timestamp": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "jarvis_ready": {
+      "type": "object",
+      "required": ["ready", "review_path", "manifest_path", "chain_of_custody_complete"],
+      "properties": {
+        "ready": { "type": "boolean" },
+        "review_path": { "type": "string" },
+        "manifest_path": { "type": "string" },
+        "chain_of_custody_complete": { "type": "boolean" }
+      }
+    },
+    "notifications": {
+      "type": "object",
+      "required": ["notify_jarvis", "notification_sent_at", "notification_method"],
+      "properties": {
+        "notify_jarvis": { "type": "boolean" },
+        "notification_sent_at": { "type": ["string", "null"], "format": "date-time" },
+        "notification_method": { "enum": ["telegram", "file_flag", "clickup", "none"] }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "failed" } } },
+      "then": { "required": ["error"], "properties": { "error": { "type": "string" } } }
+    }
+  ]
+}

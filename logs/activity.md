@@ -4,6 +4,200 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-14 — Session 10: Schema validation tests + CI; scheduled trigger note
+
+**Actions:**
+- Boss asked for a scheduled trigger (like FordrasilsSeedling has) and
+  validation tests/checks for the Charybdis schemas.
+- Scheduled triggers are configured via the Claude Code on the web UI
+  (repo Triggers tab, cron-based) — not something I can create from inside
+  a repo session. Left this for Boss to set up; suggested prompt: "read
+  Ember_Playbook.md and plans/roadmap.md, pick the next task, do it, log it."
+- Built the validation side: `charybdis/schemas/examples/` (one valid example
+  per schema + negative cases for failed-status/error, bad sha256 pattern,
+  and unreviewed-privileged-record), `charybdis/schemas/validate.py` (runs
+  jsonschema checks, exits non-zero on failure), and
+  `.github/workflows/charybdis-schema-validate.yml` to run it in CI on any
+  change to `charybdis/schemas/**`.
+
+**Next:** Boss sets up the scheduled trigger in the web UI if wanted.
+
+---
+
+## 2026-06-13 — Session 9: Charybdis pipeline JSON Schemas
+
+**Actions:**
+- Boss said to drop the Discreet Ledger/browser approach entirely ("do
+  something else then man, fuck. if you cant do it, stop trying to do it").
+  Pivoted to a repo-only, solo-doable deliverable.
+- Wrote 7 JSON Schema (draft-07) files in `charybdis/schemas/` covering every
+  message type in the WitnessVault → WhisperBOT → SigilForge → OrcaVault
+  pipeline: handoff, result, processed manifest, sigilforge request/receipt,
+  orcavault drop receipt. Each enforces sha256 patterns, status enums, and
+  conditional required fields (e.g. `error` required when `status: failed`,
+  privileged-sensitivity review requirements).
+- Updated `charybdis/README.md` to document the new `schemas/` directory.
+
+**Next:** Commit and push this work. Phase 2A contracts now have
+machine-validatable schemas — could wire these into actual pipeline code
+when that's built.
+
+---
+
+## 2026-06-13 — Session 8: Corrected the Discreet Ledger plan
+
+**Actions:**
+- Boss correctly pointed out a flaw in Session 7's plan: the `expense_tracker`
+  GitHub repo is source code, not the live app's database. Getting repo
+  access would never have let me push data into orcav.io/ledger — that needs
+  a live API call or browser/UI interaction, neither available in this
+  session (no browser/computer-use tool; WebFetch can't run JS or hold a
+  session).
+- Updated `plans/roadmap.md` to reflect the realistic plan: this agent can't
+  automate the ledger upload. The deliverable is the prepped CSV
+  (`finances/2025_transactions_jul_oct.csv`, 64 rows) + the `06JUN2026`
+  starter sheet — Boss does a one-time manual import/entry, then retires the
+  spreadsheet workflow per the overarching goal.
+
+**What's next:**
+- Boss: manually import/enter `finances/2025_transactions_jul_oct.csv` into
+  orcav.io/ledger (one-time), then use the ledger going forward instead of
+  monthly budget sheets
+- Carried over: Ameren bill past due, Cash App alerts, Sell Murdoch timeline,
+  Gmail write-scope reauth
+
+---
+
+## 2026-06-13 — Session 7: Discreet Ledger goal clarified, repo-scope blocker confirmed again
+
+**Actions:**
+- Boss clarified the overarching goal: replace manual budget spreadsheets
+  with Discreet Ledger (orcav.io/ledger) going forward — the
+  finances/`06JUN2026` workbook approach is a stopgap, not the destination.
+- Checked again for a way around the `expense_tracker` repo scope wall
+  (no `list_repos`/`add_repo` tool available this session). Tried WebFetch
+  on orcav.io/ledger and its `/api/transactions`, `/api/import` paths — SPA
+  with no inspectable API, confirms repo access is the only path to learn
+  the data model.
+- Documented this clearly in `plans/roadmap.md` as a new "Overarching
+  Finance Goal" section with the single blocking dependency spelled out, so
+  the next session (or one where Boss has added the repo) can act
+  immediately without re-discovering this.
+
+**What's next:**
+- Boss: add `jackrothermich-fr33f00dist/expense_tracker` to this session's
+  GitHub MCP repo scope (only unblock for the core finance goal)
+- Once unblocked: inspect ledger schema, map `finances/2025_transactions_jul_oct.csv`
+  to it, import 2025 history
+- Carried over: Ameren bill past due, Cash App alerts, Sell Murdoch timeline,
+  Gmail write-scope reauth
+
+---
+
+## 2026-06-13 — Session 6: Urgent bill flag + Gmail write-block confirmed
+
+**Urgent flag for Boss:**
+- **Ameren Missouri bill PAST DUE: $507.32, due 06/11/2026** (7707 Murdoch Ave,
+  acct 9068806228, last payment $200 on 05/29/2026). Found via read-only inbox
+  scan — needs immediate payment.
+
+**Actions:**
+- Added "decide, don't ask" as Operating Principle 0 in Ember_Playbook.md per
+  Boss's standing directive — autonomous decision-making is the point of this
+  project, don't pause for permission on obvious next steps.
+- Checked Drive for Nov/Dec 2025 budget workbooks (next step for finance
+  consolidation): none exist yet, only empty receipt-PDF folders. Jul-Oct
+  remains the complete dataset; not attempting PDF-OCR transcription for
+  money data (too error-prone).
+- Attempted the Email Forge Gmail labeling pass (37-item rule table from
+  `plans/email_forge_spec.md`): `list_labels`/`search_threads` (read) now
+  work after MCP reconnect, but `label_thread` (write) still returns
+  403/"requires re-authorization (token expired)" — confirmed still blocked,
+  needs Boss-side Gmail reauth. Read scan of 50 unlabeled inbox threads done
+  but not applied.
+
+- Checked ClickUp open tasks (space 90173686954, 100 results). Found
+  `86e1j7t5m` (Discreet Ledger upload) matches the finance CSV work just
+  done — tried to post a progress comment but `clickup_create_comment`
+  needs a permission approval not available here, skipped.
+- Saw `86e1mmg4y` ([Athanor Safety] maintained-file write hazard — Athanor's
+  live Playbook got zeroed by a timed-out PowerShell read/modify/write).
+  Same risk class applies to my own playbook/log files, so wrote
+  `plans/safe_file_edit_protocol.md`: prefer anchored `Edit` over full
+  `Write` for `Ember_Playbook.md`/`activity.md`/`roadmap.md`, commit before
+  risky edits (git is the backup git-tracked files Athanor's OneDrive
+  fallback approximates).
+
+**What's next:**
+- Boss: pay Ameren bill (past due, urgent)
+- Boss: reauth Gmail MCP (write scope) so labeling pass can actually apply
+- Re-run Email Forge labeling pass once reauth done (50+ threads scanned and
+  pre-categorized, ready to apply)
+- Carried over: Cash App alerts, water bill, Sell Murdoch timeline, Nov/Dec
+  finance data once workbooks exist
+
+---
+
+## 2026-06-12 — Session 5: Finance data consolidation for Discreet Ledger
+
+**Actions:**
+- Per Boss's directive to handle the "finances folder to ledger" task
+  autonomously (expense_tracker/orcav.io repo+API out of session scope):
+  pulled Jul-Oct 2025 transaction data from Google Drive "2025 Budgets"
+  workbooks, normalized the four inconsistent schemas, and wrote
+  `finances/2025_transactions_jul_oct.csv` (64 rows) + README in this repo
+  as a staging file for manual import into orcav.io/ledger.
+
+**What's next:**
+- Nov/Dec 2025 budgets not yet pulled; older/duplicate "2025 Budgets" Drive
+  folder relationship still unclear
+- Re-run Email Forge labeling pass once Gmail MCP reauth succeeds
+- Finance review / June budget still outstanding
+- Boss: verify Cash App alerts, water bill, Sell Murdoch timeline (carried over)
+
+**Additional action this session:**
+- No June 2026 budget workbook existed in Drive (roadmap flagged this gap).
+  Created `06JUN2026` spreadsheet in the "2025 Budgets" folder with the
+  standardized Oct-2025 column schema (Date, Time, Amount, Recipient,
+  Location, Description, Funding Source, Category, Subcategory) — header
+  only, ready for Boss/receipts to populate. Updated roadmap.md Phase 1
+  finance-review row to reflect this.
+
+---
+
+## 2026-06-10 — Session 4: Email Forge spec + finance/timeline flags
+
+**Actions:**
+- Surveyed Gmail (50 unlabeled inbox threads) + ClickUp open tasks
+- Drafted `plans/email_forge_spec.md`: full triage rule table for the 7 HIGH-priority
+  "Email Forge" tasks in Athanor/Codex Operations (label taxonomy, retroactive
+  categorization rules, automation gaps requiring fuller Gmail API: filters, VIP
+  routing, Charybdis case-number detection, email-to-task, escalation)
+- Started retroactive labeling pass — **blocked**: Gmail MCP token expired mid-session
+  (re-auth needed on Boss's side, then re-run the pass using the rule table in the spec)
+- Investigated "Discreet Ledger" — found it's a real coding project (GitHub:
+  `expense_tracker`, Vite+React+TS+Drizzle+MySQL, full feature list in ClickUp task
+  86e0km0a0) but that repo isn't in this session's GitHub scope (only verbose-enigma)
+- Checked FordrasilsSeedling CI failure notification — also out of session scope
+
+**Urgent flags for Boss:**
+- **American Water bill due ~Jun 14** (5-day reminder received Jun 9), on top of
+  Commerce CC ($47) due Jun 13
+- **Cash App: 3 "Unknown Device removed" alerts** (Jun 8, 6:12pm) — verify this was you
+- **"Determine a Timeline" (Sell Murdoch, task 86e0m6xkj) is URGENT and ~1 month overdue**
+  (was due ~May 7). Its subtask "Declare Intent to Sell to Commerce Mortgage Office"
+  (due ~May 14) is also overdue, stuck in "planning". This blocks all other Sell Murdoch
+  tasks — needs a phone call to Commerce, can't be done by an agent.
+- Asked about a Cowork "attention-board" HTML file — local file, not accessible from
+  this remote session. Idea parked: host via GitHub Pages or drag-drop into chat for
+  persistent access.
+
+**What's next:**
+- Re-auth Gmail MCP, then run the labeling pass per `plans/email_forge_spec.md`
+- Boss: call Commerce re: Sell Murdoch timeline (overdue, urgent)
+- Boss: verify Cash App device-removal alerts and water bill payment
+- Add `expense_tracker` repo to session scope if Discreet Ledger work is wanted
+- Finance review / June budget still outstanding
 ## 2026-06-12 — Session 4: Wake/sleep automation (Ember_Dreams) + Part 2 skills
 
 **Actions (Part 1 — merged via PR #4):**
