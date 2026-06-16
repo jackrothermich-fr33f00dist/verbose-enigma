@@ -1,6 +1,6 @@
 # Forge Fire Roadmap — Ember's Operating Plan
 
-Last updated: 2026-06-12
+Last updated: 2026-06-16
 
 ---
 
@@ -141,6 +141,149 @@ Claude-native skills/routines run within sessions, not scheduled Telegram alerts
 - [ ] Does Boss want me to search for jobs actively, or is Forge Fire the only path?
 - [ ] Riverside.fm — is this for content creation / WhisperBOT integration, or personal?
 - [ ] Facebook security alert (Jun 5) — was that login near St. Louis yours?
+
+---
+
+---
+
+## Ember Operating System — Skills, Hooks & Automation
+
+Tasks to build, save, and wire up the agent's own operating infrastructure.
+Items marked **[PENDING APPROVAL]** need Boss sign-off before implementation.
+Items marked **[BOSS ACTION]** cannot be done by Ember alone.
+
+---
+
+### EOS-1 — Session Close Routine: Branch Cleanup
+**Skill name**: `github-branch-cleaner`
+**Trigger**: Called automatically by `/athanor-falls-silent` on each active repo project folder
+**Status**: 📋 Plan — to be built with skill creator and saved to 01skills library
+
+**What it does**:
+At session close, for each repo project folder:
+1. Commit any dirty working tree
+2. If on a feature branch: check for open PR
+   - PR exists + CI green + no unresolved threads → merge PR, delete remote branch, checkout main
+   - PR exists but blocked → document in roadmap under "Open Branch Blockers" as HIGH PRIORITY
+   - No PR yet + commits ahead of main → create draft PR, document in roadmap as HIGH PRIORITY
+3. Log outcome to `logs/activity.md`, commit, push
+
+**Why it matters**: Sessions end on feature branches with no cleanup. Next session starts blind.
+
+---
+
+### EOS-2 — Session Start: Roadmap Status Surfacing
+**Target**: `/forgefyre-awakens` (session start hook/skill)
+**Status**: 📋 Plan — attach to `/forgefyre-awakens` if not already present
+
+**What it does**: At session start, surface any "HIGH PRIORITY" or "Open Branch Blockers"
+items from `plans/roadmap.md` before anything else, so Ember picks up where it left off
+without needing to read the full document first.
+
+---
+
+### EOS-3 — Scheduled Trigger Setup
+**Status**: 📋 Plan — [BOSS ACTION] configured in Claude Code on the web UI
+
+**How to set it up**:
+1. Go to the repo in Claude Code on the web → Triggers tab → Add trigger
+2. Set cron schedule (e.g., daily 7am)
+3. Use this prompt: *"Read Ember_Playbook.md and plans/roadmap.md. Check for HIGH PRIORITY
+   blockers first. Pick the next highest-value task, do it, log it in logs/activity.md,
+   commit and push. Run /athanor-falls-silent before ending."*
+
+**Known limitation**: There is a documented bug where scheduled task sessions may not have
+MCP connectors initialized at fire time. Workaround: prefix the prompt with "Use an agent
+subagent to..." which forces MCP initialization before the main task.
+
+---
+
+### EOS-4 — PR Monitoring: `send_later` Self Check-in
+**Status**: 🔍 Research needed — tool not in current session's MCP set
+
+**Background**: The `send_later` tool lives in the `mcp__claude-code-remote` MCP server
+(part of the Claude Code remote session infrastructure, not always present). It allows
+scheduling a self-wakeup ~1hr out to re-check PR state/CI without relying on webhooks,
+which don't deliver CI success or merge transitions.
+
+**Research task**: Determine when/where `mcp__claude-code-remote` is available in this
+session setup, and whether a copy can be obtained for the 01skills library as a standalone
+scheduling utility.
+
+**Until resolved**: PR monitoring relies on webhooks only (CI failures, review comments
+are delivered; CI success and merges require manual check or scheduled triggers).
+
+---
+
+### EOS-5 — Charybdis Schema-First Enforcement
+**Status**: 📋 Plan — ready to implement
+
+**What it is**: A GitHub Actions workflow that rejects any PR that:
+- Changes files in `charybdis/` (contracts, code, docs)
+- But does NOT also change `charybdis/schemas/` (schema files, examples, or validate.py)
+
+**Escape hatch**: If a Charybdis change genuinely needs no schema update, the PR author
+adds a one-line note to `charybdis/schemas/SCHEMA_SKIP_REASONS.md` explaining why.
+The workflow checks for this file's presence as an override.
+
+**Why it matters**: Contracts evolve; schemas must stay in sync or validation breaks.
+Without enforcement, schema drift happens silently.
+
+---
+
+### EOS-6 — Schema-First Rule Elaboration [PENDING APPROVAL]
+**Status**: ⏸ Pending Boss approval
+
+**What this means in plain terms**:
+The Charybdis pipeline is built on message contracts — each agent (WhisperBOT, SigilForge,
+OrcaVault, etc.) sends and receives JSON messages that must match an agreed format.
+The JSON Schema files in `charybdis/schemas/` ARE that agreement, machine-readable.
+
+The "schema-first" rule means: **you write or update the schema before you write the code.**
+Not after. If WhisperBOT's output format changes, update `whisperbot_result.schema.json`
+first, update the example fixture, run `validate.py`, then change the code.
+
+EOS-5 (the GitHub Action) enforces this automatically. Without it, the rule is just a
+convention that gets forgotten under deadline pressure.
+
+**Why it needs approval**: It adds friction to Charybdis PRs. If the pipeline isn't being
+actively coded yet, the enforcement may be premature. Boss decides when to turn it on.
+
+---
+
+### EOS-7 — OpenClaw Alternatives Research
+**Status**: 📋 Plan — research task queued
+
+**Context**: OpenClaw runs on Boss's tablet. Boss is considering downloading a similar
+alternative on laptop to test. Currently blocked on full OpenClaw setup (Telegram token
+needed, systemd service issues partly resolved — see `logs/openclaw_errors.md`).
+
+**Research task**: Run `/research-compare` on local agent daemon alternatives to OpenClaw.
+Compare options across: open-source availability, platform support (Windows/WSL/Linux),
+messaging integrations (Telegram, WhatsApp, etc.), cron/scheduler capability, complexity
+to set up, and community health.
+
+**Output**: `plans/research/openclaw-alternatives.md` with pros/cons table, ranked options,
+and open questions for Boss to resolve before choosing.
+
+**Skill to build**: `/research-compare` — a general-purpose research skill for any topic
+with multiple options and fewer decisions than options. Produces structured comparison +
+surfaces to Boss rather than auto-selecting. Save to 01skills library.
+
+Spec:
+- Takes a topic + optional constraints as args
+- Web-searches for current landscape
+- Builds a comparison table (what it does, cost, platform, complexity, community, top pro,
+  top con)
+- Ranks by fit but does NOT declare a winner
+- Lists open questions only Boss can answer
+- Saves output to `plans/research/<topic>.md`, logs in `logs/activity.md`
+
+---
+
+### Open Branch Blockers
+
+_(Populated automatically by github-branch-cleaner at session close)_
 
 ---
 
