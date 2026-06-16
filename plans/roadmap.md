@@ -115,12 +115,20 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ## Phase 3 — Autonomous Value Creation
 
-Once OpenClaw is running and I have situational awareness, I can run scheduled tasks:
+**Update (2026-06-12)**: Boss redirected this phase away from OpenClaw/Telegram. Wake/sleep
+automation is now handled natively via Claude Code hooks (SessionStart/Stop +
+`Ember_Dreams.md`) — done, see Phase 0. The items below become on-demand
+Claude-native skills/routines run within sessions, not scheduled Telegram alerts:
 
-- **Daily briefing** (7am): calendar, ClickUp tasks, email summary → Telegram
-- **Weekly market research** (Monday): what's trending in AI/agent space → Telegram
-- **Charybdis check-in** (as needed): prompt Boss to log new evidence before it fades
-- **Finance alert** (1st of month): flag if June budget not yet created
+| Item | Status | Notes |
+|------|--------|-------|
+| Wake/sleep session memory (hooks + Ember_Dreams.md) | ✅ Done | SessionStart injects Playbook+Dreams; Stop hook snapshots state |
+| `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand, replaces "daily briefing → Telegram" |
+| `/health` skill — workspace health check | ✅ Done | `.claude/skills/health/` |
+| `/openclaw-fix` skill — recovery checklist walkthrough | ✅ Done | `.claude/skills/openclaw-fix/` — wraps `logs/openclaw_errors.md` checklist |
+| Finance review routine | ✅ Done | `.claude/skills/finance-review/` — flags if month's budget missing |
+| Charybdis check-in routine | ✅ Done | `.claude/skills/charybdis-checkin/` — prompts to log new evidence |
+| Market research routine | ✅ Done | `.claude/skills/market-research/` — anchored to Phase 2B projects |
 
 ---
 
