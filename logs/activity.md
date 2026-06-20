@@ -165,6 +165,37 @@ when that's built.
 
 ---
 
+## 2026-06-12 — Session 4: Wake/sleep automation (Ember_Dreams) + Part 2 skills
+
+**Actions (Part 1 — merged via PR #4):**
+- Looked for codex/athanor's `forgefyre-awakens`/`athanor-falls-silent` skill files (Boss's reference point) — not found in repo or Drive. Found the parallel Sinter `Dream_Wake_System` design doc on Drive instead and adapted that pattern, per Boss's go-ahead to "take what makes sense."
+- Created `Ember_Dreams.md` — snapshot-model between-session memory file (ACTIVE section overwritten each sleep, ARCHIVE append-only, Hot Recommendations replace not stack).
+- Added `.claude/hooks/session-end.sh` ("ForgeFyre Falls Silent") as a Stop hook: rewrites Dreams' Last Sleep section with branch/commits/dirty-file count/OpenClaw status, preserves archive, and echoes the session close checklist from the Playbook.
+- Extended `.claude/hooks/session-start.sh` to inject the Dreams ACTIVE section (Last Sleep, Hot Recommendations, Current Blockers) alongside the existing Playbook injection.
+- Registered the Stop hook in `.claude/settings.json`.
+- Tested the hook end-to-end: it correctly wrote real branch/commit/date data and preserved the archive placeholder.
+
+**Actions (Part 2 — Claude-native automation skills, no OpenClaw/Telegram):**
+- Built six project skills under `.claude/skills/`:
+  - `health` — workspace health check (git state, Dreams/roadmap freshness, open blockers)
+  - `briefing` — on-demand Gmail + Calendar + ClickUp survey (replaces "daily briefing → Telegram")
+  - `openclaw-fix` — guided walkthrough of the `logs/openclaw_errors.md` recovery checklist
+  - `finance-review` — budget/bill check-in, flags missing monthly budget
+  - `charybdis-checkin` — evidence pipeline check-in + contract review status
+  - `market-research` — lightweight research anchored to Phase 2B income projects
+- Updated `plans/roadmap.md` Phase 3 table to mark all six as done.
+
+**Key learnings:**
+- The literal `forgefyre-awakens`/`athanor-falls-silent` files don't exist in this repo or accessible Drive — likely on D: drive with the rest of the Athanor/Sinter stack. Not blocking; adapted the documented design instead.
+- Claude Code hooks can only do mechanical bookkeeping (dates, git state) — narrative content (Hot Recommendations, activity log) still has to be written by Ember as part of the close routine, prompted by the hook's echoed checklist.
+- PR #4 got merged by Boss directly (with a conflict-resolving merge commit) while I was mid-rebase locally — had to abort my local merge and reset the branch to the merged main rather than duplicate the work.
+
+**What's next:**
+- All six new skills are unused so far — first real invocation will validate whether the instructions are well-calibrated (especially `/briefing` and `/finance-review`, which depend on MCP tools not yet exercised this way).
+- Carry-forward items: OpenClaw JSON5 fix (needs Boss on WSL), Charybdis purpose/urgency clarification, June budget.
+
+---
+
 ## 2026-06-10 — Session 4: Email Forge spec + finance/timeline flags
 
 **Actions:**
@@ -198,7 +229,6 @@ when that's built.
 - Boss: verify Cash App device-removal alerts and water bill payment
 - Add `expense_tracker` repo to session scope if Discreet Ledger work is wanted
 - Finance review / June budget still outstanding
-## 2026-06-12 — Session 4: Wake/sleep automation (Ember_Dreams) + Part 2 skills
 
 **Actions (Part 1 — merged via PR #4):**
 - Looked for codex/athanor's `forgefyre-awakens`/`athanor-falls-silent` skill files (Boss's reference point) — not found in repo or Drive. Found the parallel Sinter `Dream_Wake_System` design doc on Drive instead and adapted that pattern, per Boss's go-ahead to "take what makes sense."
