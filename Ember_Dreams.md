@@ -10,20 +10,18 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-13 13:55
-- **Branch**: claude/openclaw-readiness-review-X4sya
+- **Date**: 2026-06-20 20:29
+- **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
-  - 73217ba Update Dreams snapshot (local-path install handoff notes)
-  - 261f19c Add ForgeFoundation Claude setup doc and apply kill-switch to this repo
-  - f5a9876 Update Dreams snapshot (ForgeFoundation global-install handoff)
+  - c2b7904 Merge pull request #8 from jackrothermich-fr33f00dist/claude/festive-shannon-ts16ip
+  - ae2c855 Merge branch 'main' into claude/festive-shannon-ts16ip
+  - a9abbe2 Add Ember Operating System task plan to roadmap (EOS-1 through EOS-7)
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-- Session 6 closed: ForgeFoundation Claude setup is done. `forgefoundation/CLAUDE_SETUP.md` documents installing from SuperDiskie's `01Skills` folder (local-path marketplace add, mount path varies per machine), with GitHub as fallback. Kill-switch applied to `verbose-enigma`'s own `.claude/settings.json` (`agent-skills@addy-agent-skills: false`).
-- Boss action still needed: run the global install on each physical machine — `/plugin marketplace add "<SuperDiskie path>/01Skills"` + `/plugin install agent-skills@addy-agent-skills`. Cannot be done from this remote container.
-- Carry-forward: OpenClaw JSON5 fix (`/openclaw-fix` ready when Boss is on WSL/tablet), Charybdis purpose/urgency still unclear, June budget not yet created.
+_[Ember: replace this with your actual handoff notes before closing]_
 
 ## Current Blockers
 
