@@ -4,6 +4,39 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-21 — Session 11: Newest-first convention fix + EOS-1 branch cleaner skill
+
+**Actions:**
+- Boss asked for a general convention: chronological content (activity log,
+  roadmap dated sections) should read newest-first, top to bottom. Found and
+  fixed two violations: a `logs/activity.md` Session 4 entry (06-12) stuck
+  below an older Session 4 entry (06-10), and `plans/roadmap.md`'s most
+  recently added section (EOS tasks, 06-16) appended below older dated
+  sections instead of near the top.
+- Built EOS-1 (`github-branch-cleaner` skill, `.claude/skills/github-branch-cleaner/SKILL.md`):
+  commits dirty work, merges a ready PR (CI green, no unresolved threads),
+  opens a draft PR for unreviewed commits, or documents a blocked branch
+  under roadmap's "Open Branch Blockers" — so sessions never start blind on
+  stale branch state. Scoped to the current repo only (no filesystem access
+  to other project folders from this session).
+
+**Key learnings:**
+- Stop hook (`~/.claude/stop-hook-git-check.sh`) flags any uncommitted
+  changes at session end, including the session-start hook's own
+  `Ember_Dreams.md` rewrite — that file needs an explicit commit+push every
+  session even when no other work happened.
+- EOS-1 isn't wired into automatic triggering yet (no `/athanor-falls-silent`
+  equivalent exists in this repo to call it from). It's usable on-demand now;
+  wiring it into the Stop hook is a natural next step.
+
+**What's next:**
+- Wire `github-branch-cleaner` into the Stop hook so it runs automatically,
+  not just on-demand
+- EOS-2 through EOS-7 still open (see roadmap)
+- Carried over: OpenClaw JSON5 fix, Charybdis purpose/urgency, June budget
+
+---
+
 ## 2026-06-14 — Session 10: Schema validation tests + CI; scheduled trigger note
 
 **Actions:**

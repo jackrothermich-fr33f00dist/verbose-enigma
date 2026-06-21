@@ -26,7 +26,7 @@ Items marked **[BOSS ACTION]** cannot be done by Ember alone.
 ### EOS-1 — Session Close Routine: Branch Cleanup
 **Skill name**: `github-branch-cleaner`
 **Trigger**: Called automatically by `/athanor-falls-silent` on each active repo project folder
-**Status**: 📋 Plan — to be built with skill creator and saved to 01skills library
+**Status**: ✅ Done — built as `.claude/skills/github-branch-cleaner/SKILL.md` (2026-06-21). Scoped to the current repo/branch only (no multi-repo filesystem access from this session); not yet wired into an automatic trigger — call it manually as part of session close, or extend `/athanor-falls-silent`/the Stop hook to invoke it once that automation exists.
 
 **What it does**:
 At session close, for each repo project folder:
