@@ -10,12 +10,12 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-20 20:29
+- **Date**: 2026-06-20 20:42
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - a805104 Update Dreams snapshot
+  - 72d8540 Reorder activity.md and roadmap.md to strict newest-first
   - c2b7904 Merge pull request #8 from jackrothermich-fr33f00dist/claude/festive-shannon-ts16ip
-  - ae2c855 Merge branch 'main' into claude/festive-shannon-ts16ip
-  - a9abbe2 Add Ember Operating System task plan to roadmap (EOS-1 through EOS-7)
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
