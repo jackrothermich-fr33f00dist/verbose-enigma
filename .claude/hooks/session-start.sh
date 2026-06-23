@@ -37,6 +37,21 @@ fi
 
 echo ""
 
+# EOS-2: surface roadmap HIGH PRIORITY / Open Branch Blockers items before anything else
+BLOCKERS=$(awk '/^### Open Branch Blockers/{found=1; next} /^---/{if(found) exit} found && NF{print}' "$REPO/plans/roadmap.md" 2>/dev/null)
+HIGH_PRIORITY=$(grep -n "HIGH PRIORITY" "$REPO/plans/roadmap.md" 2>/dev/null)
+if [ -n "$BLOCKERS" ] || [ -n "$HIGH_PRIORITY" ]; then
+  echo "*** ROADMAP ALERTS (check before picking a task) ***"
+  if [ -n "$HIGH_PRIORITY" ]; then
+    echo "$HIGH_PRIORITY"
+  fi
+  if [ -n "$BLOCKERS" ]; then
+    echo "Open Branch Blockers:"
+    echo "$BLOCKERS"
+  fi
+  echo ""
+fi
+
 # Inject Dreams hot section if it exists
 if [ -f "$REPO/Ember_Dreams.md" ]; then
   echo "--- Ember_Dreams.md (active) ---"

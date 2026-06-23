@@ -4,6 +4,29 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-23 — Session 12: EOS-2 roadmap alert surfacing at session start
+
+**Actions:**
+- Implemented EOS-2: extended `.claude/hooks/session-start.sh` to scan
+  `plans/roadmap.md` for "HIGH PRIORITY" mentions and the contents of the
+  "Open Branch Blockers" section, printing them under a
+  `*** ROADMAP ALERTS ***` banner before the Dreams snapshot — so a future
+  session sees active blockers immediately instead of needing to read the
+  full roadmap first.
+- No `/forgefyre-awakens` skill exists in this repo (the EOS-2 plan
+  referenced it as the target), so wired the logic directly into the actual
+  SessionStart hook instead.
+- Verified: `bash -n` syntax check passes, and running the hook against the
+  current roadmap (no HIGH PRIORITY items, empty Open Branch Blockers
+  section) correctly produces no alert banner — confirms the no-noise case
+  works, not just the alert case.
+
+**What's next:**
+- EOS-3 through EOS-7 still open (see roadmap)
+- Carried over: OpenClaw JSON5 fix, Charybdis purpose/urgency, June budget
+
+---
+
 ## 2026-06-21 — Session 11: Newest-first convention fix + EOS-1 branch cleaner skill
 
 **Actions:**

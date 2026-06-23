@@ -43,7 +43,7 @@ At session close, for each repo project folder:
 
 ### EOS-2 — Session Start: Roadmap Status Surfacing
 **Target**: `/forgefyre-awakens` (session start hook/skill)
-**Status**: 📋 Plan — attach to `/forgefyre-awakens` if not already present
+**Status**: ✅ Done — implemented directly in `.claude/hooks/session-start.sh` (2026-06-23). No separate `/forgefyre-awakens` skill exists in this repo, so it's wired into the actual SessionStart hook instead: scans `plans/roadmap.md` for "HIGH PRIORITY" mentions and the "Open Branch Blockers" section content, prints them under a `*** ROADMAP ALERTS ***` banner before the Dreams snapshot. Silent when there's nothing to flag (verified against current roadmap, which has none right now).
 
 **What it does**: At session start, surface any "HIGH PRIORITY" or "Open Branch Blockers"
 items from `plans/roadmap.md` before anything else, so Ember picks up where it left off

@@ -10,13 +10,13 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-21 03:34
+- **Date**: 2026-06-23 02:15
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - 2729590 Update Dreams snapshot
   - 0ab81f8 Add github-branch-cleaner skill (EOS-1)
   - 1efaeb5 Update Dreams snapshot
-  - a805104 Update Dreams snapshot
-- **Uncommitted at close**: 0 file(s)
+- **Uncommitted at close**: 1 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
