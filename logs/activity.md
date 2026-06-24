@@ -4,7 +4,7 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
-## 2026-06-24 — Session 13: Fixed EOS-2 noise + built EOS-5 schema-first CI
+## 2026-06-24 — Session 13: Fixed EOS-2 noise + built EOS-5 schema-first CI + EOS-7 research
 
 **Actions:**
 - Caught and fixed a false-positive bug in EOS-2 (session-start.sh roadmap
@@ -20,12 +20,29 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
   `charybdis/schemas/SCHEMA_SKIP_REASONS.md`. Complements the existing
   `charybdis-schema-validate.yml` (validates schema content) by enforcing
   schema *presence* in the diff.
+- Built EOS-7: web-searched OpenClaw alternatives (Hermes Agent, Nanobot,
+  PicoClaw, QwenPaw) and wrote `plans/research/openclaw-alternatives.md`.
+  Flagged the niche as SEO-spam-prone (lookalike branding, unverified growth
+  claims like "12k stars in a week") — recommended Boss verify on GitHub
+  directly before installing anything. Net finding: the strongest-looking
+  alternative (Hermes Agent) still requires WSL2, the same layer currently
+  breaking OpenClaw, so it doesn't obviously solve the actual blocker —
+  fixing OpenClaw still looks like the more direct path.
+- Also built the `/research-compare` general-purpose skill
+  (`.claude/skills/research-compare/`) per the EOS-7 spec, encoding the
+  search → spam-check → table → rank-don't-decide → open-questions →
+  save-and-log pattern just used, for reuse on future comparison tasks.
+
+**Key learnings:**
+- Web search results for trending-tool-adjacent niches need an explicit
+  credibility pass before being presented as fact — wrote that caution
+  directly into both the research output and the new skill's instructions.
 
 **What's next:**
 - EOS-3 (Boss action — scheduled trigger setup) and EOS-6 (pending Boss
   approval) can't be advanced from here.
-- EOS-4 (send_later research) and EOS-7 (OpenClaw alternatives research)
-  remain open and doable.
+- EOS-4 (`send_later` research) is the one remaining open EOS item doable
+  from this session.
 - Carried over: OpenClaw JSON5 fix, Charybdis purpose/urgency, June budget.
 
 ---

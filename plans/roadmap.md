@@ -125,7 +125,15 @@ actively coded yet, the enforcement may be premature. Boss decides when to turn 
 ---
 
 ### EOS-7 — OpenClaw Alternatives Research
-**Status**: 📋 Plan — research task queued
+**Status**: ✅ Done (2026-06-24) — `plans/research/openclaw-alternatives.md` written
+(Hermes Agent, Nanobot, PicoClaw, QwenPaw compared against OpenClaw). Flagged this niche
+as SEO-spam-prone (lookalike branding, unverified growth claims) — recommend verifying
+on GitHub directly before any install. Net read: none of the alternatives obviously
+solve Boss's actual blocker (Hermes Agent still needs WSL2, same layer breaking
+OpenClaw now), so fixing OpenClaw remains the more direct path; Nanobot is the most
+credible "test in parallel" option if Boss wants one anyway. Also built the
+`/research-compare` skill (`.claude/skills/research-compare/`) per the EOS-7 spec, for
+reuse on future comparison-shaped research tasks.
 
 **Context**: OpenClaw runs on Boss's tablet. Boss is considering downloading a similar
 alternative on laptop to test. Currently blocked on full OpenClaw setup (Telegram token
