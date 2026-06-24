@@ -85,7 +85,11 @@ are delivered; CI success and merges require manual check or scheduled triggers)
 ---
 
 ### EOS-5 — Charybdis Schema-First Enforcement
-**Status**: 📋 Plan — ready to implement
+**Status**: ✅ Done — `.github/workflows/charybdis-schema-first.yml` (2026-06-24). Diffs any
+charybdis/ change in a PR; fails unless `charybdis/schemas/**` is also touched or
+`charybdis/schemas/SCHEMA_SKIP_REASONS.md` is updated in the same PR (also created, empty,
+as the escape hatch). Runs alongside the existing `charybdis-schema-validate.yml` (which
+validates schema *content*; this one enforces schema *presence* in the diff).
 
 **What it is**: A GitHub Actions workflow that rejects any PR that:
 - Changes files in `charybdis/` (contracts, code, docs)

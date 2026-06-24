@@ -4,6 +4,32 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-06-24 — Session 13: Fixed EOS-2 noise + built EOS-5 schema-first CI
+
+**Actions:**
+- Caught and fixed a false-positive bug in EOS-2 (session-start.sh roadmap
+  alert banner) right after it shipped: it was grepping "HIGH PRIORITY"
+  across the whole roadmap file, which matched the spec prose describing
+  EOS-1/EOS-2 themselves, and printing the empty Open Branch Blockers
+  section's italic placeholder text as if it were a real entry. Narrowed
+  the scan to just that section, filtering the placeholder line. Verified
+  silent again on the current (empty) state.
+- Built EOS-5: `.github/workflows/charybdis-schema-first.yml` — fails any PR
+  that changes `charybdis/**` without also touching `charybdis/schemas/**`,
+  with an override path via a one-line note in the newly created
+  `charybdis/schemas/SCHEMA_SKIP_REASONS.md`. Complements the existing
+  `charybdis-schema-validate.yml` (validates schema content) by enforcing
+  schema *presence* in the diff.
+
+**What's next:**
+- EOS-3 (Boss action — scheduled trigger setup) and EOS-6 (pending Boss
+  approval) can't be advanced from here.
+- EOS-4 (send_later research) and EOS-7 (OpenClaw alternatives research)
+  remain open and doable.
+- Carried over: OpenClaw JSON5 fix, Charybdis purpose/urgency, June budget.
+
+---
+
 ## 2026-06-23 — Session 12: EOS-2 roadmap alert surfacing at session start
 
 **Actions:**
