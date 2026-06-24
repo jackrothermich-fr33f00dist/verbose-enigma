@@ -10,13 +10,13 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-24 03:35
+- **Date**: 2026-06-24 03:48
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
-  - c3b52a4 Implement EOS-2: surface roadmap alerts at session start
-  - 2729590 Update Dreams snapshot
-  - 0ab81f8 Add github-branch-cleaner skill (EOS-1)
-- **Uncommitted at close**: 1 file(s)
+  - c35688f Resolve EOS-4: send_later unavailable, ScheduleWakeup isn't a substitute
+  - c0239d6 Complete EOS-7: OpenClaw alternatives research + research-compare skill
+  - eaac805 Add EOS-5 schema-first CI check for charybdis/
+- **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
