@@ -33,16 +33,29 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
   search → spam-check → table → rank-don't-decide → open-questions →
   save-and-log pattern just used, for reuse on future comparison tasks.
 
+- Resolved EOS-4: confirmed `send_later`/`mcp__claude-code-remote` is not in
+  this session's tool set (ToolSearch, no match). Found `ScheduleWakeup` as a
+  built-in alternative, but it's not a drop-in replacement — its `prompt`
+  param is scoped to `/loop` dynamic-mode re-entry, not a free-form
+  self-check-in, and it clamps to 60–3600s. Conclusion: PR monitoring still
+  relies on webhooks for CI-failure/review events; CI-success/merge
+  transitions need a manual check, a Boss-configured scheduled trigger
+  (EOS-3), or an explicit `/loop` if a session needs to actively babysit a
+  PR. No standalone scheduling utility came out of this for 01skills — real
+  gap, just not solvable with what's available here.
+
 **Key learnings:**
 - Web search results for trending-tool-adjacent niches need an explicit
   credibility pass before being presented as fact — wrote that caution
   directly into both the research output and the new skill's instructions.
+- `ScheduleWakeup` exists as a harness-level tool but is purpose-built for
+  `/loop` re-entry, not general async self-wakeup — worth remembering before
+  assuming it solves any "check back later" need.
 
 **What's next:**
-- EOS-3 (Boss action — scheduled trigger setup) and EOS-6 (pending Boss
-  approval) can't be advanced from here.
-- EOS-4 (`send_later` research) is the one remaining open EOS item doable
-  from this session.
+- All seven EOS items are now resolved to the extent possible from this
+  session: EOS-1, -2, -5, -7 fully done; EOS-4 researched and concluded;
+  EOS-3 and EOS-6 remain genuinely blocked on Boss action/approval.
 - Carried over: OpenClaw JSON5 fix, Charybdis purpose/urgency, June budget.
 
 ---

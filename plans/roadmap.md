@@ -68,19 +68,20 @@ subagent to..." which forces MCP initialization before the main task.
 ---
 
 ### EOS-4 — PR Monitoring: `send_later` Self Check-in
-**Status**: 🔍 Research needed — tool not in current session's MCP set
+**Status**: ✅ Research complete (2026-06-24) — `send_later`/`mcp__claude-code-remote`
+confirmed **not present** in this session's tool set (checked via ToolSearch, no match).
+Found a built-in alternative, `ScheduleWakeup`, but it's **not a drop-in replacement**:
+its `prompt` parameter is scoped to `/loop` dynamic-mode re-entry (expects a `/loop`
+input or the `<<autonomous-loop-dynamic>>` sentinel), not a free-form "wake me to
+re-check this PR" call. It also clamps to 60s–3600s, so it can't reach the ~1hr-out
+check-in pattern EOS-4 originally wanted in one call without being inside a `/loop`.
 
-**Background**: The `send_later` tool lives in the `mcp__claude-code-remote` MCP server
-(part of the Claude Code remote session infrastructure, not always present). It allows
-scheduling a self-wakeup ~1hr out to re-check PR state/CI without relying on webhooks,
-which don't deliver CI success or merge transitions.
-
-**Research task**: Determine when/where `mcp__claude-code-remote` is available in this
-session setup, and whether a copy can be obtained for the 01skills library as a standalone
-scheduling utility.
-
-**Until resolved**: PR monitoring relies on webhooks only (CI failures, review comments
-are delivered; CI success and merges require manual check or scheduled triggers).
+**Practical conclusion**: PR monitoring in this repo still relies on webhooks for
+CI-failure/review-comment events (those deliver); CI-success and merge transitions
+still need either a manual check, a scheduled trigger (Boss sets up via Claude Code on
+the web UI — see EOS-3), or running an explicit `/loop` if a session needs to actively
+babysit a PR to completion. No standalone scheduling utility to save to 01skills came
+out of this — the gap is real, just not solvable with what's available here.
 
 ---
 
