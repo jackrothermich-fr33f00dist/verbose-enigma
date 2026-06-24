@@ -10,12 +10,12 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-23 02:15
+- **Date**: 2026-06-24 03:35
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - c3b52a4 Implement EOS-2: surface roadmap alerts at session start
   - 2729590 Update Dreams snapshot
   - 0ab81f8 Add github-branch-cleaner skill (EOS-1)
-  - 1efaeb5 Update Dreams snapshot
 - **Uncommitted at close**: 1 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 

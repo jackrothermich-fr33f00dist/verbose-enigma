@@ -37,18 +37,14 @@ fi
 
 echo ""
 
-# EOS-2: surface roadmap HIGH PRIORITY / Open Branch Blockers items before anything else
-BLOCKERS=$(awk '/^### Open Branch Blockers/{found=1; next} /^---/{if(found) exit} found && NF{print}' "$REPO/plans/roadmap.md" 2>/dev/null)
-HIGH_PRIORITY=$(grep -n "HIGH PRIORITY" "$REPO/plans/roadmap.md" 2>/dev/null)
-if [ -n "$BLOCKERS" ] || [ -n "$HIGH_PRIORITY" ]; then
+# EOS-2: surface real entries in roadmap's Open Branch Blockers section
+# (only that section, not "HIGH PRIORITY"/"Open Branch Blockers" wherever they're
+# mentioned in spec prose elsewhere in the file — that was noisy/false-positive)
+BLOCKERS=$(awk '/^### Open Branch Blockers/{found=1; next} /^---/{if(found) exit} found && NF && !/^_\(.*\)_$/{print}' "$REPO/plans/roadmap.md" 2>/dev/null)
+if [ -n "$BLOCKERS" ]; then
   echo "*** ROADMAP ALERTS (check before picking a task) ***"
-  if [ -n "$HIGH_PRIORITY" ]; then
-    echo "$HIGH_PRIORITY"
-  fi
-  if [ -n "$BLOCKERS" ]; then
-    echo "Open Branch Blockers:"
-    echo "$BLOCKERS"
-  fi
+  echo "Open Branch Blockers:"
+  echo "$BLOCKERS"
   echo ""
 fi
 
