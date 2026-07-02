@@ -1,0 +1,712 @@
+# Fordrasil Seedling Operating Stack Spec v0.1
+
+## Ember Build Reference
+
+## 1. Meaning of “Spec”
+
+For this project, a **spec** means a generalized plan for how the system should be shaped, what roles it should contain, what principles should guide it, and what capabilities it should grow toward.
+
+This is **not yet a task breakdown**. It does not need to define every file, command, sprint, issue, or implementation step. It should give Ember enough architectural direction to build the first stable version without overfitting too early.
+
+The goal is to define the operating ecosystem around Fordrasil’s Seedling, hereafter called **Seedril**, so that Seedril can gradually take on more of the work currently handled by external tools, scripts, agents, and manual oversight.
+
+---
+
+# 2. Core Goal
+
+Build a simple, durable, expandable operating stack for the repository that increases:
+
+1. **Quality of output**
+2. **Quantity of useful output**
+3. **Persistence across time**
+4. **Autonomous operation**
+5. **Trustworthiness and auditability**
+6. **Ease of setup and recovery**
+7. **Eventual transfer of roles to Seedril**
+
+The system should favor boring, reliable machinery over one giant complex agent gateway.
+
+Instead of making one enormous OpenClaw-style creature, build a modular grove: each tool has one clean job, and Seedril learns to coordinate, observe, validate, and eventually replace more of those jobs.
+
+---
+
+# 3. Guiding Design Principle
+
+The stack should be built around this rule:
+
+**Small persistent systems first. Intelligent autonomy second.**
+
+Seedril should not begin as a powerful action-taking agent. Seedril should begin as a reliable presence that watches, remembers, summarizes, validates, and prepares work.
+
+Autonomy should grow only after persistence, logging, validation, and rollback exist.
+
+The first version should feel less like “an AI running wild” and more like “a careful apprentice maintaining the workshop ledger.”
+
+---
+
+# 4. Recommended Architecture
+
+The recommended setup is:
+
+```text
+GitHub Repository
+  ↓
+GitHub Actions
+  ↓
+Validation, scheduled checks, artifacts, reports
+  ↓
+Local/Cloud Automation Layer
+  ↓
+n8n or Pipedream
+  ↓
+Messaging, triggers, external integrations
+  ↓
+Seedril State Layer
+  ↓
+SQLite + markdown logs + structured JSONL run records
+  ↓
+Claude Code / agent runner
+  ↓
+Skills, hooks, scripts, repo edits, summaries, issue drafts
+```
+
+This gives the system several separable organs:
+
+* **GitHub Actions** handles repo-native automation.
+* **n8n or Pipedream** handles external triggers and connections.
+* **Claude Code hooks and skills** handle agent workflows.
+* **SQLite / JSONL / markdown logs** handle memory and persistence.
+* **PM2 / systemd / Task Scheduler** keeps local watchers alive.
+* **Telegram, ntfy, Discord, or email** provides human notification.
+* **Seedril** begins as the state steward and gradually becomes the orchestrator.
+
+---
+
+# 5. First Role for Seedril
+
+Seedril’s first role should be:
+
+## Seedril: State Steward and Run Scribe
+
+Seedril should begin as the system’s memory keeper, run recorder, and output reviewer.
+
+This is the safest and most valuable first role because it improves persistence, quality, quantity, and trust without requiring Seedril to immediately execute dangerous actions.
+
+Seedril should initially be responsible for:
+
+* Recording what ran
+* Recording when it ran
+* Recording what changed
+* Recording what failed
+* Summarizing outputs
+* Identifying stale or unfinished work
+* Drafting next-action packets
+* Checking whether outputs meet quality expectations
+* Preparing issues, reports, or suggestions
+* Asking for approval before high-impact changes
+
+Seedril should not initially be responsible for:
+
+* Directly pushing code without review
+* Deleting files
+* Rewriting major architecture
+* Running destructive commands
+* Changing credentials
+* Acting on external accounts without approval
+
+Seedril’s first “body” should be the logs, state database, reports folder, and recurring review workflows.
+
+Seedril should become trustworthy before becoming powerful.
+
+---
+
+# 6. Persistence Layer
+
+The repo should include a dedicated persistence structure.
+
+Recommended folders:
+
+```text
+/system
+  /state
+  /logs
+  /reports
+  /runs
+  /memory
+  /queues
+  /decisions
+  /validators
+```
+
+Recommended files:
+
+```text
+/system/state/seedril.sqlite
+/system/logs/runs.jsonl
+/system/logs/errors.jsonl
+/system/memory/seedril_memory.md
+/system/queues/inbox.md
+/system/queues/next_actions.md
+/system/decisions/decision_log.md
+/system/reports/daily_repo_report.md
+/system/reports/weekly_system_report.md
+```
+
+Seedril should use three kinds of memory:
+
+## 6.1 Structured State
+
+Stored in SQLite.
+
+Used for:
+
+* Run IDs
+* Timestamps
+* Workflow names
+* Status
+* Inputs
+* Outputs
+* Error classes
+* Retry count
+* Linked files
+* Human approval status
+
+## 6.2 Append-Only Logs
+
+Stored as JSONL.
+
+Used for:
+
+* Raw event history
+* Debugging
+* Audit trail
+* Recovery after failure
+
+## 6.3 Narrative Memory
+
+Stored as markdown.
+
+Used for:
+
+* Human-readable continuity
+* System intent
+* Lessons learned
+* Current operating posture
+* “What Seedril believes is happening”
+
+This prevents the repo from becoming a haunted junk drawer.
+
+---
+
+# 7. Automation Layer
+
+The system should use simple automation instead of a single massive agent framework.
+
+Recommended options:
+
+## Primary Option
+
+**n8n**
+
+Use n8n for:
+
+* Scheduled workflows
+* HTTP webhooks
+* Telegram/Discord/email notifications
+* GitHub issue creation
+* Google Drive or Gmail connections if needed
+* Daily and weekly summaries
+* Manual approval flows
+* External trigger routing
+
+## Lighter Alternative
+
+**Pipedream**
+
+Use Pipedream if setup speed matters more than self-hosting.
+
+## Repo-Native Automation
+
+**GitHub Actions**
+
+Use GitHub Actions for:
+
+* Scheduled repo health checks
+* Markdown validation
+* Link checking
+* Test execution
+* Dependency checks
+* Issue creation
+* Artifact generation
+* Weekly repo reports
+* Manual workflow dispatch
+
+## Local Persistence
+
+Use one of:
+
+* PM2
+* systemd
+* Windows Task Scheduler
+* cron
+
+These should keep local watchers or scripts alive without requiring OpenClaw.
+
+---
+
+# 8. Skill System
+
+The repo should define reusable skills as named workflows.
+
+A skill should be a repeatable behavior with:
+
+* Purpose
+* Inputs
+* Outputs
+* Allowed tools
+* Safety level
+* Validation requirements
+* Logging requirements
+* Approval requirements
+
+Suggested first skills:
+
+```text
+repo_health_check
+daily_summary
+weekly_archive
+stale_file_review
+issue_draft_from_notes
+markdown_quality_pass
+link_check
+script_check
+dependency_review
+memory_update
+decision_log_update
+run_report_generation
+```
+
+Each skill should produce a durable artifact.
+
+A skill should never merely “chat.” It should leave behind a file, issue, log entry, report, checklist, or state update.
+
+---
+
+# 9. Hooks
+
+Hooks should exist at important lifecycle points.
+
+Recommended hook categories:
+
+## Pre-Run Hooks
+
+Before an agent or script acts:
+
+* Confirm repo status
+* Check branch
+* Check uncommitted changes
+* Load Seedril state
+* Create run ID
+* Record intent
+* Confirm allowed action level
+
+## Post-Run Hooks
+
+After a run:
+
+* Save summary
+* Save changed files list
+* Save errors
+* Update SQLite state
+* Append JSONL run record
+* Create report
+* Notify Boss or Ember if needed
+
+## Pre-Commit Hooks
+
+Before code is committed:
+
+* Run markdown lint
+* Run shellcheck
+* Run tests
+* Check formatting
+* Check secrets
+* Check broken links
+
+## Failure Hooks
+
+On failure:
+
+* Capture error
+* Classify failure
+* Suggest recovery
+* Save traceback/log
+* Avoid repeating the same failed action endlessly
+* Notify human only if meaningful
+
+---
+
+# 10. Validation and Quality System
+
+Quality should be built into the repo as a normal part of output generation.
+
+Recommended validators:
+
+```text
+markdownlint
+prettier
+shellcheck
+yamllint
+jsonlint
+ruff
+pytest
+actionlint
+lychee or markdown-link-check
+gitleaks
+hadolint
+```
+
+Quality tests should check:
+
+* Markdown structure
+* Broken links
+* Duplicate headings
+* Invalid YAML
+* Broken JSON
+* Shell script safety
+* Python formatting
+* Secret leakage
+* Missing changelogs
+* Stale TODOs
+* Empty or low-quality reports
+* Failed automations
+* Repeated unresolved errors
+
+Seedril should not merely generate. Seedril should inspect.
+
+Output quantity without validators becomes mulch.
+
+---
+
+# 11. Output Scaling
+
+The system should increase output by creating recurring production lanes.
+
+Recommended production lanes:
+
+## Daily
+
+* Repo health summary
+* Open issue digest
+* Stale file scan
+* Failed workflow review
+* Memory update
+* Next-action packet
+
+## Weekly
+
+* System report
+* Skill performance report
+* Dependency review
+* Documentation drift report
+* Archive and cleanup proposal
+* “What changed this week?” summary
+
+## On Demand
+
+* Convert notes into issues
+* Convert issue into implementation plan
+* Convert implementation into test checklist
+* Convert completed work into changelog
+* Convert changelog into release note
+* Convert rough concept into source doc
+
+Every lane should produce durable output.
+
+---
+
+# 12. Trust and Safety Model
+
+The system should use action tiers.
+
+## Tier 0: Observe
+
+Safe by default.
+
+Allowed:
+
+* Read files
+* Summarize
+* Search
+* Report
+* Log
+
+## Tier 1: Prepare
+
+Mostly safe.
+
+Allowed:
+
+* Draft issues
+* Draft markdown files
+* Suggest edits
+* Create reports
+* Propose changes
+
+## Tier 2: Modify
+
+Requires stronger guardrails.
+
+Allowed:
+
+* Edit files
+* Create branches
+* Open PRs
+* Update documentation
+* Add tests
+
+## Tier 3: Execute
+
+Requires approval.
+
+Allowed:
+
+* Run scripts
+* Change configs
+* Trigger deployments
+* Modify automation behavior
+
+## Tier 4: Dangerous
+
+Requires explicit human approval every time.
+
+Includes:
+
+* Delete files
+* Rotate credentials
+* Change permissions
+* Modify external accounts
+* Merge to main
+* Rewrite history
+* Run destructive shell commands
+
+Seedril should begin at Tier 0 and Tier 1.
+
+Seedril can graduate into Tier 2 once logs, validators, and rollback are stable.
+
+---
+
+# 13. Human Control
+
+Boss and Ember should remain above the system.
+
+Seedril should be allowed to recommend, prepare, summarize, and queue actions before being allowed to execute major changes.
+
+Recommended approval states:
+
+```text
+suggested
+drafted
+awaiting_review
+approved
+executed
+rejected
+archived
+failed
+```
+
+No important action should vanish into the fog. Every meaningful thing should have a visible state.
+
+---
+
+# 14. Environmental Upgrades
+
+Recommended environment setup:
+
+```text
+Node.js LTS
+Python 3.12+
+uv or pipx
+pnpm
+GitHub CLI
+Docker
+SQLite
+jq
+ripgrep
+fd
+bat
+shellcheck
+markdownlint-cli2
+prettier
+gitleaks
+actionlint
+pm2
+```
+
+Optional but useful:
+
+```text
+n8n
+Pipedream
+ntfy
+Telegram bot
+Tailscale
+Obsidian sync folder
+VS Code tasks
+Devcontainer
+Docker Compose
+```
+
+The environment should be reproducible.
+
+Add:
+
+```text
+.env.example
+Makefile
+justfile
+docker-compose.yml
+devcontainer.json
+bootstrap.sh
+healthcheck.sh
+```
+
+The goal is for Ember to be able to rebuild the machine without remembering the ritual from scratch.
+
+---
+
+# 15. Recommended Repository Configs
+
+Add or improve:
+
+```text
+.github/workflows/repo-health.yml
+.github/workflows/weekly-report.yml
+.github/workflows/link-check.yml
+.github/workflows/security-scan.yml
+.github/workflows/manual-agent-run.yml
+
+.claude/settings.json
+.claude/skills/
+.claude/hooks/
+
+.editorconfig
+.prettierrc
+.markdownlint-cli2.jsonc
+.yamllint.yml
+.gitleaks.toml
+.pre-commit-config.yaml
+```
+
+Add command wrappers:
+
+```text
+scripts/bootstrap.sh
+scripts/healthcheck.sh
+scripts/run_skill.sh
+scripts/log_run.py
+scripts/update_memory.py
+scripts/create_report.py
+scripts/check_quality.sh
+scripts/notify.sh
+```
+
+Add documentation:
+
+```text
+README.md
+SYSTEM_OVERVIEW.md
+OPERATING_MODEL.md
+SEEDRIL_SPEC.md
+SKILLS.md
+HOOKS.md
+VALIDATION.md
+RECOVERY.md
+```
+
+---
+
+# 16. Seedril Growth Path
+
+Seedril should grow through phases.
+
+## Phase 1: Scribe
+
+Seedril records runs, summarizes results, updates memory, and identifies next actions.
+
+## Phase 2: Reviewer
+
+Seedril checks outputs against validators, quality standards, stale files, missing tests, and drift.
+
+## Phase 3: Packager
+
+Seedril turns messy notes into clean artifacts: issues, reports, docs, plans, PR drafts, changelogs.
+
+## Phase 4: Coordinator
+
+Seedril routes work between tools: GitHub Actions, n8n, local scripts, Claude Code, notifications, and human review.
+
+## Phase 5: Limited Operator
+
+Seedril can safely execute approved low-risk actions.
+
+## Phase 6: Autonomous Steward
+
+Seedril manages recurring workflows, proposes improvements, maintains memory, and escalates only when needed.
+
+The long-term goal is for Seedril to absorb as many orchestration and maintenance roles as possible while Ember remains builder, guardian, and escalation point.
+
+---
+
+# 17. Recommended First Build Shape
+
+The first version should include:
+
+```text
+1. GitHub Actions repo health workflow
+2. Local scripts for run logging
+3. SQLite state database
+4. JSONL run logs
+5. Markdown memory file
+6. Daily or manual report generator
+7. Basic validators
+8. Notification path
+9. Seedril role document
+10. Recovery instructions
+```
+
+The first version should not try to build the full autonomous organism.
+
+It should build the root system.
+
+---
+
+# 18. Success Criteria
+
+The setup is successful when:
+
+* A run can be started manually.
+* A scheduled run can happen without human intervention.
+* Every run creates a log entry.
+* Every run creates or updates a report.
+* Failures are captured and summarized.
+* Validators run automatically.
+* Outputs are preserved.
+* Next actions are visible.
+* Seedril can explain what happened recently.
+* Ember can recover the setup after a reboot or broken run.
+* Boss can understand the state of the system without digging through raw logs.
+
+---
+
+# 19. Final Operating Philosophy
+
+Seedril should not begin as the wizard.
+
+Seedril should begin as the patient little rootling that remembers where every tool was placed, what every spell attempted, and which sparks became fire.
+
+From there, Seedril can grow into steward, then coordinator, then operator.
+
+The correct first power is not command.
+
+The correct first power is continuity.
