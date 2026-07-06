@@ -10,13 +10,13 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-06-26 23:36
+- **Date**: 2026-07-01 22:17
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - d6e6c78 Update Dreams snapshot
   - 99467e3 Update Dreams snapshot
   - c35688f Resolve EOS-4: send_later unavailable, ScheduleWakeup isn't a substitute
-  - c0239d6 Complete EOS-7: OpenClaw alternatives research + research-compare skill
-- **Uncommitted at close**: 1 file(s)
+- **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
