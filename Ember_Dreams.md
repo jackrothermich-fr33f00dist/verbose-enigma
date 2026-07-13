@@ -10,12 +10,12 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-07-12 12:55
+- **Date**: 2026-07-13 03:21
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - f6aba33 Add tailscale-connect skill (01Skills + .claude/skills)
   - 7c13bf1 Update Dreams snapshot
   - e042c81 Update Dreams snapshot
-  - bc54659 Update Dreams snapshot
 - **Uncommitted at close**: 1 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
