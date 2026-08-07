@@ -10,18 +10,17 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-08-07 08:23
+- **Date**: 2026-08-07 10:43
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - 6e9109b Retire OpenClaw: archive artifacts, scrub operational references
   - f078417 Revert "Remove OpenClaw — defunct, no longer part of the stack"
   - 53074f0 Remove OpenClaw — defunct, no longer part of the stack
-  - 5f794ab Fix session-end hook: preserve Hot Recommendations instead of resetting to placeholder
 - **Uncommitted at close**: 0 file(s)
-- **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-OpenClaw cleanup complete — all operational references removed from active files, all pure OpenClaw artifacts moved to `99BackUps/openclaw/`. Changelogs added to every edited file. Next: roadmap guiding question and priority sections need a refresh (still reflects June 2026 context).
+
 
 ## Current Blockers
 

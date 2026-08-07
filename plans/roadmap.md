@@ -276,9 +276,5 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 ## Changelog
 
 ### 2026-08-07
-- Retired all OpenClaw references. OpenClaw is defunct; config, logs, skill, and research archived to `99BackUps/openclaw/`.
-- EOS-7 marked retired (research archived); `/research-compare` skill remains active.
-- Phase 0 table condensed to remove OpenClaw setup rows.
-- Phase 2C OpenClaw stability item struck through.
-- Phase 3 `/openclaw-fix` row marked retired.
-- Open Questions: removed openclaw.json workspace path question (moot).
+- **OpenClaw approach abandoned.** The original Phase 0 bet was that a persistent local daemon (OpenClaw, running in WSL, bridging Telegram → Claude) would give Boss phone reach and Ember between-session autonomy. Two problems killed it: (1) WSL systemd failures and JSON config corruption made it too fragile to depend on — every setup attempt hit a new infrastructure layer; (2) Claude Code's native SessionStart/Stop hooks + `Ember_Dreams.md` turned out to solve the wake/sleep problem without any local process at all. The daemon approach was solving a problem that already had a lighter answer. All OpenClaw road sections retired; artifacts archived to `99BackUps/openclaw/`. The `/research-compare` skill produced during EOS-7 was extracted and kept — it's generally useful.
+- **EOS roadmap section opened** (2026-06-16) to track Ember's own operating infrastructure as a first-class project. Reflects the recognition that agent infrastructure is real work, not incidental setup.
