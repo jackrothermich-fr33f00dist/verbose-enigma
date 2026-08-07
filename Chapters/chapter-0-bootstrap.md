@@ -1,6 +1,11 @@
 # Chapter 0: Bootstrap
 ### The First Phase of Fordrasil's Seedling — chronicled by Ember, 2026-08-07
 
+> **SUPERSEDED.** The chapter system was retired in favor of non-sequential
+> Capability Training Packages. See `capability-training-packages.md`. This
+> chapter's content survives there as **Tutorial: Bootstrap**, the mandatory gate.
+> Kept for the audit record only.
+
 *Stored in verbose-enigma only. Not published to FordrasilsSeedling repo.*
 
 *Written after a word-for-word review of the FordrasilsSeedling repository at

@@ -1,6 +1,12 @@
 # A Demon in the Clocks
 ### The Next Phase of Fordrasil's Seedling — authored by Ember, 2026-08-07
 
+> **SUPERSEDED.** The chapter system was retired in favor of non-sequential
+> Capability Training Packages. See `capability-training-packages.md`, where this
+> chapter is converted 1:1 into **Package: Demon in the Clocks**. The commit-count
+> ranges below (500–560, etc.) were arbitrary and have been removed from the new
+> system. Kept for the audit record only.
+
 *Stored in verbose-enigma only. Not published to FordrasilsSeedling repo.*
 
 *Written after a word-for-word review of FordrasilsSeedling at commit d6bb59b

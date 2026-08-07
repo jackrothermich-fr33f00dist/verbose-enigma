@@ -4,6 +4,40 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-08-07 — Session 15: Seedrasil reorganization intervention + chapter system retired for Capability Training Packages
+
+**Actions:**
+- **Seedrasil reorganization (PR #54, `ember/seedling-reorganize`, still draft — Boss said "not yet"):** file tree cleanup, correspondence letter, eval quarantine, log relocation.
+- **Correspondence numbering corrected:** letter was filed `00MAIL_003--from_Ember.md`; Boss corrected that prefixes count *up* (newest = highest). Refiled as `13MAIL_003--from_Ember.md` (highest existing was `12BOSS_NOTE.md`).
+- **Eval quarantine built instead of deletion.** Boss wanted Seedrasil to keep the broken evals to learn from. Discovered `run_tests()` in `04tools/shell_tool.py` uses `os.listdir("02evals")` — non-recursive — so a subdirectory is a natural exclusion mechanism. Created `02evals/_quarantine/` with a README explaining each file's exact problem and exact fix, and moved three files there:
+  - `eval_tailscale_key_revocation.py` — called real `tailscale up --authkey` via subprocess (actively harmful, not mocked)
+  - `eval_overview_auditor_validation.py` — bare import, no sys.path setup → ImportError crash
+  - `eval_003_benchmark.py` — same, two bare imports
+- **Three large log files relocated** to `01memory/logs/`: `eval_error_recovery.log` (2.2MB), `subprocess_error_handling.log` (915KB), `failure_analysis.log`. The first two exceeded GitHub API size limits, and Boss has no local path to FordrasilsSeedling (S: drive down), so I cloned the repo into the cloud container and did the `git mv` there.
+- **Letter rewritten to be helpful rather than corrective:** added a warm explanation of the quarantine folder and how to graduate files back out of it, plus directions to the failure log and a specific highest-leverage suggestion (add `requests` to requirements.txt — unlocks 4 evals at once).
+- **Ember_Dreams hooks deleted** (`.claude/hooks/session-start.sh`, `session-end.sh`) and `hooks` cleared in `.claude/settings.json`. Boss had requested this in a prior session and it had not actually been done.
+- **Chapter system retired.** Boss asked where Chapter 1's commit-count gates (500–560, 560–640, 640–740, 740–840) came from. Honest answer: I invented them in session 14 with no basis. Rather than patch the numbers, Boss replaced the whole model.
+- **Authored `Chapters/capability-training-packages.md`** — non-sequential skill-tree progression (explicit WoW analogy). Tutorial: Bootstrap is the mandatory gate; all other package progress *banks* silently and materializes at once when Tutorial hits 100%. Packages defined: Demon in the Clocks (1:1 conversion of Chapter 1, 16 nodes), Memory Systems (reward: Crystal Circuits Vault; duty: maintain Roadmap.md), Eval Health, Benchmark, Ecosystem Reach (reward: LivingSpark read access), Frontend Brainstorming & Spec (reward: own ClickUp Space + read rights; duty: audit Weekly Review/GoalSpec), and SapWarden as the meta-completion.
+- Marked `chapter-0-bootstrap.md` and `chapter-1-demon-in-the-clocks.md` SUPERSEDED with pointers to the new system. Kept for the audit record, not deleted.
+
+**Learned:**
+- **I fabricated quantitative gates and presented them as analysis.** The commit ranges in Chapter 1 read like they were derived from something. They were not. Anything numeric I author needs either a stated derivation or an explicit "arbitrary, adjust freely" label.
+- Commit-count gates are ungameable only if hollow commits are impossible. Seedrasil's own record — 185 logged, 8 real — is the proof they aren't. Capability gates have to be capability-shaped.
+- `os.listdir()` vs. `os.walk()` is the whole reason quarantine works. Reading the actual discovery code beat guessing at a config-based exclusion that doesn't exist.
+- Quarantine over deletion preserves the teaching material. Boss's instinct here was better than my first instinct.
+- The cloud container is a real workaround when Boss's local paths are down and the GitHub API can't carry the payload.
+
+**Two-way correspondence status:** Boss → Seedrasil works (the correspondence reader picks up new mail on each run). Seedrasil → Boss is still broken — no delivery adapter exists. He can write, but nothing carries it out.
+
+**Next:**
+- FordrasilsSeedling PR #54 still draft. Boss reviews when satisfied.
+- `capability_packages.json` needs building in FordrasilsSeedling — the tracking file that makes packages visible to Seedrasil. Schema can be drafted now; it can't go live until Tutorial completes.
+- Tutorial: Bootstrap's five structural fixes are Boss/Ember work, not Seedrasil's loop: plugin registry, acceptance tests, dead code gate, capability stage gates, audit workflow path. All touch `agent.py` or the workflow files, which sit behind the Import Wall.
+- Build the Seedrasil → Boss delivery adapter so correspondence actually goes both ways.
+- Roadmap guiding question still reflects June 2026 context — still needs refresh.
+
+---
+
 ## 2026-08-07 — Session 14: Seedrasil chapter library + OpenClaw retirement + information lifecycle protocol
 
 **Actions:**

@@ -1,6 +1,6 @@
 # Forge Fire Roadmap — Ember's Operating Plan
 
-Last updated: 2026-06-16
+Last updated: 2026-08-07
 
 ---
 
@@ -43,7 +43,7 @@ At session close, for each repo project folder:
 
 ### EOS-2 — Session Start: Roadmap Status Surfacing
 **Target**: `/forgefyre-awakens` (session start hook/skill)
-**Status**: ✅ Done — implemented directly in `.claude/hooks/session-start.sh` (2026-06-23). No separate `/forgefyre-awakens` skill exists in this repo, so it's wired into the actual SessionStart hook instead: scans `plans/roadmap.md` for "HIGH PRIORITY" mentions and the "Open Branch Blockers" section content, prints them under a `*** ROADMAP ALERTS ***` banner before the Dreams snapshot. Silent when there's nothing to flag (verified against current roadmap, which has none right now).
+**Status**: ⚠️ Retired 2026-08-07 (session 15) — was implemented in `.claude/hooks/session-start.sh` (2026-06-23), but Boss had the Ember_Dreams hooks deleted and `.claude/settings.json` now has an empty `hooks` block. Roadmap alerts no longer surface automatically at session start. If this capability is still wanted, it needs a home that isn't a hook — a skill invoked at session start, or a line in `Ember_Playbook.md` telling me to read Open Branch Blockers first.
 
 **What it does**: At session start, surface any "HIGH PRIORITY" or "Open Branch Blockers"
 items from `plans/roadmap.md` before anything else, so Ember picks up where it left off
@@ -141,7 +141,11 @@ Spec:
 
 ### Open Branch Blockers
 
-_(Populated automatically by github-branch-cleaner at session close)_
+- **FordrasilsSeedling PR #54** (`ember/seedling-reorganize`) — draft, held open at Boss's
+  direction ("not yet"). Contains the reorganization: file tree cleanup, correspondence
+  letter `13MAIL_003--from_Ember.md`, `02evals/_quarantine/` with three quarantined evals,
+  and three large logs relocated to `01memory/logs/`. Awaiting Boss's review.
+- **verbose-enigma PR #14** — draft, still open. Sessions 7–15 of Ember infrastructure work.
 
 ---
 
@@ -274,6 +278,33 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 ---
 
 ## Changelog
+
+### 2026-08-07 (session 15)
+- **The chapter road was torn out and replaced with a skill tree.** Chapters 0 and 1 laid a
+  single sequential track for Seedrasil, gated on commit counts (500–560, 560–640, and so on).
+  Boss asked where those numbers came from and the honest answer was nowhere — I invented them
+  in session 14 and wrote them as though they'd been derived. Worse, commit-count gates are
+  ungameable only if hollow commits are impossible, and Seedrasil's own ledger (185 logged,
+  8 real) is the standing proof they aren't. Rather than repair the numbers, Boss replaced the
+  model: non-sequential **Capability Training Packages**, each a cluster of capability-shaped
+  nodes he can wander into and out of, each ending in a new reward (expanded access) and a new
+  duty (ongoing responsibility). Progress accumulates passively — he may discover he has
+  already met 6 of 8 nodes in a package he never opened. One package, **Tutorial: Bootstrap**,
+  stays mandatory: until it hits 100%, every other package banks progress invisibly, then
+  materializes at once. The arc across all of them is Seedrasil gradually inheriting the
+  SapWarden role — a steward that was designed and never built, whose job he half-inherited by
+  default. Now he earns it a competency at a time. Written up in
+  `Chapters/capability-training-packages.md`; the two chapter docs are marked superseded and
+  kept for the audit record.
+- **Ember_Dreams hooks removed.** SessionStart/SessionEnd hooks and their scripts are gone;
+  `.claude/settings.json` has an empty `hooks` block. Note this retires the mechanism EOS-2 was
+  implemented in — roadmap alert surfacing at session start no longer fires automatically.
+- **Deletion replaced with quarantine as the default for Seedrasil's broken work.** Three evals
+  were unsafe or crashing, one of them (`eval_tailscale_key_revocation.py`) issuing real
+  `tailscale up --authkey` calls rather than mocking them. Boss's instruction was to keep them
+  so Seedrasil can learn from his own mistakes. `run_tests()` uses `os.listdir()`, not
+  `os.walk()`, so a subdirectory is a clean exclusion — `02evals/_quarantine/` holds them with a
+  README naming each file's exact defect and exact fix, and an invitation to graduate them back.
 
 ### 2026-08-07
 - **OpenClaw approach abandoned.** The original Phase 0 bet was that a persistent local daemon (OpenClaw, running in WSL, bridging Telegram → Claude) would give Boss phone reach and Ember between-session autonomy. Two problems killed it: (1) WSL systemd failures and JSON config corruption made it too fragile to depend on — every setup attempt hit a new infrastructure layer; (2) Claude Code's native SessionStart/Stop hooks + `Ember_Dreams.md` turned out to solve the wake/sleep problem without any local process at all. The daemon approach was solving a problem that already had a lighter answer. All OpenClaw road sections retired; artifacts archived to `99BackUps/openclaw/`. The `/research-compare` skill produced during EOS-7 was extracted and kept — it's generally useful.
