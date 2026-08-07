@@ -41,13 +41,11 @@ $LAST_COMMITS
 
 ## Hot Recommendations
 
-_[Ember: replace this with your actual handoff notes before closing]_
+$(awk '/^## Hot Recommendations/{found=1; next} /^## Current Blockers/{exit} found{print}' "$DREAMS" 2>/dev/null | sed '/^$/d' || true)
 
 ## Current Blockers
 
-$(grep -i "Unresolved\|blocked\|Status: Unresolved" "$REPO/logs/openclaw_errors.md" 2>/dev/null \
-  | head -5 | sed 's/^/- /' \
-  || echo "- None flagged in openclaw_errors.md")
+$(awk '/^## Current Blockers/{found=1; next} /^---/{if(found) exit} found{print}' "$DREAMS" 2>/dev/null | sed '/^$/d' || true)
 
 ---
 

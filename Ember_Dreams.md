@@ -10,12 +10,12 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-08-07 07:44
+- **Date**: 2026-08-07 08:03
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - c172bc4 Update Dreams snapshot — session close
   - af90252 Update Dreams snapshot — session close
   - 74bd922 Add Seedrasil chapter library: Bootstrap, Demon in the Clocks, Planting Kit, README draft
-  - 52c6554 Update Dreams snapshot — session close
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
@@ -27,9 +27,9 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 - `Chapters/Planting New Seedling Kit/` — kit index + original README verbatim
 - `Chapters/FordrasilsSeedling-README-draft.md` — ready to publish to Seedrasil repo (Boss action)
 
-**Before resuming Seedrasil**: 5 structural fixes documented in chapter-0-bootstrap.md Bootstrap Audit.
+**session-end.sh fixed** — no longer resets Hot Recommendations to placeholder on every close.
 
-**PR #14** is draft, CI green, no review comments. Boss can merge when ready.
+**Before resuming Seedrasil**: 5 structural fixes documented in chapter-0-bootstrap.md Bootstrap Audit.
 
 ## Current Blockers
 
