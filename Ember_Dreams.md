@@ -10,19 +10,20 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-08-07 12:00
+- **Date**: 2026-08-07 13:00
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
-  - 6845394 Update Dreams snapshot — session close
-  - fec4b2c Update Dreams snapshot — session close
-  - 364dc28 Add information lifecycle protocol; rewrite roadmap changelog
+  - af76bc7 Log session 14 activity; update Dreams handoff
 - **Uncommitted at close**: 0 file(s)
 
 ## Hot Recommendations
 
-FordrasilsSeedling PR #53 merged this session — Seedling now has its honest README, Chapter 0, Chapter 1, and Planting Kit in its own repo. verbose-enigma PR #14 (draft) still open and contains all Ember infrastructure work from sessions 7–14; check status and merge when Boss is ready. Roadmap guiding question section is stale (reflects June 2026 context) — worth refreshing to current Boss priorities next session.
+- FordrasilsSeedling PR #54 (ember/seedling-reorganize) open — draft, Boss needs to approve deletions of originals at old paths. List is in PR description.
+- session-end.sh deletion still pending — Boss must explicitly say "delete `.claude/hooks/session-end.sh`" to unblock.
 
 ## Current Blockers
+
+- Boss deletion approval needed for: 7 root-level originals in FordrasilsSeedling, 3 stale Python files in `00Correspondence/`, 2 large log files (manual git mv needed). All listed in PR #54.
 
 
 
