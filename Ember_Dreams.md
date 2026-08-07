@@ -12,28 +12,27 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 
 - **Date**: 2026-08-07
 - **Branch**: claude/bold-newton-9w2bxh
-- **Last commits**:
-  - 4f946da Update Dreams snapshot — session close
-  - 82b6820 Update Dreams snapshot
-  - 95d6cbe Update Dreams snapshot
-- **Uncommitted at close**: 0 file(s)
+- **Delivered this session**:
+  - `Chapters/chapter-0-bootstrap.md` — full chapter write, word-for-word chronicle of Bootstrap
+  - `Chapters/chapter-1-demon-in-the-clocks.md` — "A Demon in the Clocks" (moved from plans/)
+  - `Chapters/Planting New Seedling Kit/STARTER_README.md` — original FordrasilsSeedling README preserved verbatim
+  - `Chapters/Planting New Seedling Kit/README.md` — kit index with setup checklist and governance decisions
+  - `Chapters/FordrasilsSeedling-README-draft.md` — new accurate README draft for FordrasilsSeedling, summarizing both chapters and linking to Chapters/ structure
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-**PRIMARY TASK: "A Demon in the Clocks"** — 4-phase roadmap chapter for FordrasilsSeedling's next evolution (giving Seedrasil OpenClaw-like persistent/event-driven/phone-reach capabilities). Save to `plans/seedrasil-demon-in-the-clocks.md`. Do NOT publish to FordrasilsSeedling repo.
+**Chapters/ folder is complete.** Next natural step: review `FordrasilsSeedling-README-draft.md` and decide whether to publish it to the FordrasilsSeedling repo. Boss action required to publish.
 
-**Blocker**: Need to read FordrasilsSeedling. Options:
-1. Tailscale SMB mount `//100.107.39.71/S-Fordrasil` — needs fresh ephemeral auth key + FyreHeart-Forge online. Revoke old keys first.
-2. GitHub MCP `add_repo` — not available in this session type.
+**Structural fixes before resuming Seedrasil** — five items documented in `Chapters/chapter-0-bootstrap.md` (Bootstrap Audit section) and Chapter 1. These are one human session each. Seedrasil should not resume autonomous operation until at least Fix 1 (Plugin Registry) and Fix 2 (Proposal Acceptance Tests) are in place.
 
-**To unblock next session**: Ask Boss if FyreHeart-Forge is online, request fresh ephemeral `tag:jack` auth key, run `/tailscale-connect`, then prompt Boss to run mount command with their credentials.
+**plans/seedrasil-demon-in-the-clocks.md** still exists in plans/ (legacy location). Can be deleted if Chapters/ is now canonical — or leave as a redirect note.
 
 ## Current Blockers
 
-- **"A Demon in the Clocks"**: Waiting on FyreHeart-Forge online + SMB mount to read FordrasilsSeedling.
 - **OpenClaw**: Unresolved items in `logs/openclaw_errors.md` (WSL systemd + Telegram token).
 - **Roadmap date stale**: `plans/roadmap.md` still shows "Last updated: 2026-06-16".
+- **Seedrasil paused**: intentionally, pending structural fixes. Boss decides when to resume.
 
 ---
 
