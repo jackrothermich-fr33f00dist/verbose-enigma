@@ -29,12 +29,6 @@ else
   echo "  Working tree : clean"
 fi
 
-# Flag unresolved OpenClaw blockers
-if grep -q "Unresolved" "$REPO/logs/openclaw_errors.md" 2>/dev/null; then
-  echo ""
-  echo "  OpenClaw: unresolved items in logs/openclaw_errors.md"
-fi
-
 echo ""
 
 # EOS-2: surface real entries in roadmap's Open Branch Blockers section
@@ -57,3 +51,5 @@ if [ -f "$REPO/Ember_Dreams.md" ]; then
 fi
 
 echo "Read plans/roadmap.md for current priorities before acting."
+
+# Changelog: 2026-08-07 — removed OpenClaw blocker check (openclaw_errors.md); OpenClaw archived to 99BackUps/

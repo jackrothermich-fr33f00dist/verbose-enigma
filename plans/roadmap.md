@@ -126,31 +126,7 @@ actively coded yet, the enforcement may be premature. Boss decides when to turn 
 ---
 
 ### EOS-7 — OpenClaw Alternatives Research
-**Status**: ✅ Done (2026-06-24) — `plans/research/openclaw-alternatives.md` written
-(Hermes Agent, Nanobot, PicoClaw, QwenPaw compared against OpenClaw). Flagged this niche
-as SEO-spam-prone (lookalike branding, unverified growth claims) — recommend verifying
-on GitHub directly before any install. Net read: none of the alternatives obviously
-solve Boss's actual blocker (Hermes Agent still needs WSL2, same layer breaking
-OpenClaw now), so fixing OpenClaw remains the more direct path; Nanobot is the most
-credible "test in parallel" option if Boss wants one anyway. Also built the
-`/research-compare` skill (`.claude/skills/research-compare/`) per the EOS-7 spec, for
-reuse on future comparison-shaped research tasks.
-
-**Context**: OpenClaw runs on Boss's tablet. Boss is considering downloading a similar
-alternative on laptop to test. Currently blocked on full OpenClaw setup (Telegram token
-needed, systemd service issues partly resolved — see `logs/openclaw_errors.md`).
-
-**Research task**: Run `/research-compare` on local agent daemon alternatives to OpenClaw.
-Compare options across: open-source availability, platform support (Windows/WSL/Linux),
-messaging integrations (Telegram, WhatsApp, etc.), cron/scheduler capability, complexity
-to set up, and community health.
-
-**Output**: `plans/research/openclaw-alternatives.md` with pros/cons table, ranked options,
-and open questions for Boss to resolve before choosing.
-
-**Skill to build**: `/research-compare` — a general-purpose research skill for any topic
-with multiple options and fewer decisions than options. Produces structured comparison +
-surfaces to Boss rather than auto-selecting. Save to 01skills library.
+**Status**: ✅ Done / ~~Retired~~ (2026-08-07) — OpenClaw and all alternatives research retired. OpenClaw is no longer part of the stack. Research archived to `99BackUps/openclaw/`. The `/research-compare` skill built during this task remains active and reusable for future comparison tasks.
 
 Spec:
 - Takes a topic + optional constraints as args
@@ -208,14 +184,9 @@ Get the infrastructure working so everything else can run autonomously.
 | Item | Status | Notes |
 |------|--------|-------|
 | Ember_Playbook.md (persistent memory) | ✅ Done | |
-| Repo structure (plans, logs, openclaw, tools) | ✅ Done | |
-| OpenClaw config (openclaw.json, .env.template) | ✅ Done | Copy to tablet |
-| Telegram channel config | ✅ Done | Needs bot token from Boss |
-| Tablet troubleshooting guide | ✅ Done | See openclaw/SETUP.md |
-| AGENTS.md (workspace context for OpenClaw) | ✅ Done | |
+| Repo structure (plans, logs, tools) | ✅ Done | |
 | Push to GitHub + PR | ✅ Done | PR #1 open |
-| Boss follows SETUP.md on tablet | ⏳ Boss action | JSON5 fix + systemd fix first |
-| Phone connected via Telegram | ⏳ Boss action | Blocked on OpenClaw fixes |
+| ~~OpenClaw setup~~ | ~~Retired~~ | Archived to 99BackUps/openclaw/ (2026-08-07) |
 
 ---
 
@@ -225,7 +196,7 @@ Survey what's actually happening so I can prioritize intelligently.
 
 | Item | Status | Notes |
 |------|--------|-------|
-| ClickUp active tasks reviewed | ✅ Done | Key tasks: OpenClaw (86e1a42fj), WitnessVault (86e1mmfdj) |
+| ClickUp active tasks reviewed | ✅ Done | Key tasks: WitnessVault (86e1mmfdj) |
 | Gmail survey (what's urgent?) | ✅ Done | Facebook login alert (verify!), CC due Jun 13, income received |
 | Calendar survey (what's coming?) | ✅ Done | Furnace filter Jun 7, Commerce CC $47 Jun 13 |
 | Finance review (budget status, June gap) | 🔄 Partial | Jul-Oct 2025 consolidated to `finances/2025_transactions_jul_oct.csv`; created empty `06JUN2026` budget sheet in Drive (standardized schema) since none existed |
@@ -259,7 +230,7 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 ### 2C — Agent Network Stability
 - **Circuit Board Dashboard** — Boss needs visibility into all running agents
 - **Athanor Playbook update** — keeps the agent stack documented and current
-- **OpenClaw stability** — Phase 0, but ongoing
+- ~~**OpenClaw stability**~~ — retired 2026-08-07, archived to 99BackUps/
 
 ### 2D — Job Search Support
 - Job search MCP is connected — can actively research roles, prep materials
@@ -269,17 +240,14 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ## Phase 3 — Autonomous Value Creation
 
-**Update (2026-06-12)**: Boss redirected this phase away from OpenClaw/Telegram. Wake/sleep
-automation is now handled natively via Claude Code hooks (SessionStart/Stop +
-`Ember_Dreams.md`) — done, see Phase 0. The items below become on-demand
-Claude-native skills/routines run within sessions, not scheduled Telegram alerts:
+**Update (2026-06-12)**: Wake/sleep automation handled natively via Claude Code hooks (SessionStart/Stop + `Ember_Dreams.md`). Items below are on-demand Claude-native skills/routines, not scheduled alerts.
 
 | Item | Status | Notes |
 |------|--------|-------|
 | Wake/sleep session memory (hooks + Ember_Dreams.md) | ✅ Done | SessionStart injects Playbook+Dreams; Stop hook snapshots state |
-| `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand, replaces "daily briefing → Telegram" |
+| `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand |
 | `/health` skill — workspace health check | ✅ Done | `.claude/skills/health/` |
-| `/openclaw-fix` skill — recovery checklist walkthrough | ✅ Done | `.claude/skills/openclaw-fix/` — wraps `logs/openclaw_errors.md` checklist |
+| ~~`/openclaw-fix` skill~~ | ~~Retired~~ | Archived to 99BackUps/openclaw/ (2026-08-07) |
 | Finance review routine | ✅ Done | `.claude/skills/finance-review/` — flags if month's budget missing |
 | Charybdis check-in routine | ✅ Done | `.claude/skills/charybdis-checkin/` — prompts to log new evidence |
 | Market research routine | ✅ Done | `.claude/skills/market-research/` — anchored to Phase 2B projects |
@@ -288,8 +256,7 @@ Claude-native skills/routines run within sessions, not scheduled Telegram alerts
 
 ## Open Questions
 
-- [ ] What is the actual D: drive path for the repo? (needed for `workspace` in openclaw.json)
-- [x] What messaging channel does Boss prefer for proactive alerts? → Telegram confirmed
+- [x] What messaging channel does Boss prefer for proactive alerts? → Telegram (moot — OpenClaw retired)
 - [ ] What is Charybdis for, and how urgent is it? (confirmed: unrelated to Chestnut)
 - [ ] Is there a specific income target or timeline for Forge Fire?
 - [ ] Does Boss want me to search for jobs actively, or is Forge Fire the only path?
@@ -303,3 +270,15 @@ Claude-native skills/routines run within sessions, not scheduled Telegram alerts
 - All Forge Fire active tasks live in ClickUp space `90173686954`
 - Previous task system was Zenflow — migrated to ClickUp (tasks reference both)
 - Sinter agent already has wake/sleep skills built (task `86e1gw755` marked complete)
+
+---
+
+## Changelog
+
+### 2026-08-07
+- Retired all OpenClaw references. OpenClaw is defunct; config, logs, skill, and research archived to `99BackUps/openclaw/`.
+- EOS-7 marked retired (research archived); `/research-compare` skill remains active.
+- Phase 0 table condensed to remove OpenClaw setup rows.
+- Phase 2C OpenClaw stability item struck through.
+- Phase 3 `/openclaw-fix` row marked retired.
+- Open Questions: removed openclaw.json workspace path question (moot).
