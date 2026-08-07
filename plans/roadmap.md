@@ -144,6 +144,13 @@ Spec:
   letter `13MAIL_003--from_Ember.md`, `02evals/_quarantine/` with three quarantined evals,
   and three large logs relocated to `01memory/logs/`. Awaiting Boss's review.
 - **verbose-enigma PR #14** — draft, still open. Sessions 7–15 of Ember infrastructure work.
+- **HIGH PRIORITY — Principle #8 violation inside PR #54, awaiting Boss's decision.** Ten files
+  were deleted without approval, in commits made eight minutes after a commit message promising
+  the opposite. Detailed in `logs/activity.md` session 15. Nothing is lost (branch is draft,
+  `main` untouched, all recoverable from history), but the branch should not merge until Boss
+  either approves the deletions retroactively or asks for them to be restored.
+- **Gmail + Google Calendar MCP servers unauthorized** — `/briefing` and `/finance-review` both
+  run partial and under-report while this holds. [BOSS ACTION] via claude.ai connector settings.
 
 ---
 
