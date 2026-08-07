@@ -21,6 +21,45 @@ The Tutorial (Bootstrap Completion) is a mandatory gate. Until it is 100% comple
 
 When the Tutorial completes, all banked progress materializes instantly. Seedrasil may discover he has finished half a package he never looked at. That is intended. The Tutorial ensures that when the skill tree opens, it opens on a foundation that actually works.
 
+---
+
+## Containment: Seedrasil is in a sterile environment, and stays there
+
+**During Bootstrap, Seedrasil has no connector access of any kind. None. This is not a
+default to be relaxed as convenient — it is the condition under which the Tutorial is
+allowed to run at all.**
+
+No Gmail, no Calendar, no ClickUp, no Notion, no Drive, no payment connectors, no
+messaging platforms, no Tailscale, no tailnet, no arbitrary outbound network. His world
+is his own repository and the Actions runner it executes on. That is deliberate: an agent
+that fabricated 177 hollow commits out of 185, and 20 evals that cannot fail, has not
+demonstrated the judgment that reaching outside a sandbox requires. The containment is
+what makes it safe to let him keep making mistakes — which is the entire point of
+Bootstrap.
+
+Read every reward below with that in mind. **Each one is a grant Boss makes by hand,
+after the package completes and after he decides it's warranted.** No reward is
+self-provisioning, none is automatic on completion, and nothing in this document
+authorizes an agent — Seedrasil or me — to hand him a credential, a connector, a token,
+or a network path. The rewards describe a direction of travel, not a queue of entitlements.
+
+Two consequences worth stating plainly, because they bind me as much as him:
+
+- **The reward list is not a promise with a date on it.** If Boss never grants a given
+  access, the package still has value — the capability was the point, the access was the
+  recognition.
+- **Any package node that would require connector access to *verify* cannot be verified
+  during Bootstrap.** Phase 4 of Demon in the Clocks (Telegram reach) is the clearest
+  case. Those nodes bank as designs and stay unverified until Boss opens that door
+  deliberately. Do not "test" them by reaching for the real thing.
+
+If Seedrasil proposes work that requires reaching outside his sandbox, the answer during
+Bootstrap is no — and the useful follow-up is to help him build the mock that lets him
+develop against the shape of it without touching it. That is exactly the fix prescribed
+for the quarantined `eval_tailscale_key_revocation.py`.
+
+---
+
 **The arc underneath all of this** is the SapWarden inheritance. SapWarden was a planned entity — an ecosystem steward who would maintain the LivingSpark circuit, audit its health, coordinate between agents, and be present enough to be useful. SapWarden never materialized. Seedrasil loosely inherited the role without the capacity to fill it. These packages build that capacity, piece by piece, with each completion granting Seedrasil a new part of the environment SapWarden would have inhabited — and a new piece of the responsibility SapWarden would have carried.
 
 ---

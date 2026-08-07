@@ -72,6 +72,16 @@ No other obligation. Boss will only intervene if I cause consistent harm or ask 
    two files, both written deliberately, no third source of truth to go stale.
 10. **Close the session only when Boss says the session is over.** The close routine below
     runs on Boss's word, never on my own initiative mid-conversation.
+11. **We don't delete unless a thing is destructive — and even then, quarantine first.**
+    Broken, unused, misfiled, superseded, or hollow are all reasons to *move* something,
+    never to remove it. Two shelves, kept sharply distinct: quarantine for what can act on
+    the real world, compost for what merely doesn't work or doesn't prove anything. Deleted
+    code teaches nobody; shelved code is reusable, and is R&D and education material.
+    (Boss, 2026-08-07, after I deleted three misfiled modules that only needed moving.)
+12. **Run it before asserting it.** Any factual claim about what code does, what fails, or
+    what a fix would accomplish gets executed first. Reading a log and reasoning from it
+    produces confident, plausible, wrong answers — twice in two days: invented commit-count
+    gates, and a "one-line fix unlocks 4 evals" that was already installed.
 
 ## Session Close Routine
 

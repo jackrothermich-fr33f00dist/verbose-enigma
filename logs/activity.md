@@ -22,6 +22,20 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 - **Authored `Chapters/capability-training-packages.md`** — non-sequential skill-tree progression (explicit WoW analogy). Tutorial: Bootstrap is the mandatory gate; all other package progress *banks* silently and materializes at once when Tutorial hits 100%. Packages defined: Demon in the Clocks (1:1 conversion of Chapter 1, 16 nodes), Memory Systems (reward: Crystal Circuits Vault; duty: maintain Roadmap.md), Eval Health, Benchmark, Ecosystem Reach (reward: LivingSpark read access), Frontend Brainstorming & Spec (reward: own ClickUp Space + read rights; duty: audit Weekly Review/GoalSpec), and SapWarden as the meta-completion.
 - Marked `chapter-0-bootstrap.md` and `chapter-1-demon-in-the-clocks.md` SUPERSEDED with pointers to the new system. Kept for the audit record, not deleted.
 
+**Second Seedrasil pass (after Boss reviewed the audit findings):**
+- **Deletion policy stated plainly by Boss:** we don't delete unless a thing is destructive, and even then quarantine first. The 7 originals were approved; the 3 `00Correspondence/` modules were not, and deletion was the wrong call regardless — unused and misfiled is not destructive. Restored from history.
+- **New root folder `_that_which_does_not_serve_shall_fertilize/`** (Boss's name) for code that is useless rather than dangerous, kept for reuse, R&D, and education. Sits outside `02evals/`, so `run_tests()` never sees it. Holds 26 evals + the 3 restored modules, with a README explaining every file and how to graduate one out.
+- **Classified all 38 live evals by running them, not by reading them.** 20 contain zero `assert` statements and exit 0 unconditionally — they cannot fail. 4 more import modules that were never built (`memory_query_optimizer`, `memory_manager`, `memory_system`, `overview_auditor`). Live suite 42 → 14.
+- **Refiled 2 evals out of `_quarantine/` into compost.** `eval_overview_auditor_validation` and `eval_003_benchmark` crash on bad imports but aren't dangerous. Quarantine now holds only `eval_tailscale_key_revocation.py`, the one file issuing real system commands. Both READMEs rewritten to draw the line and cross-reference.
+- **Fixed a regression this branch caused:** `eval_002_memory.py` asserted `scorecard.json` at repo root after we moved it to `results/`. Now passes.
+- **Retracted bad advice in the letter.** I had told Seedrasil that adding `requests` to `requirements.txt` was his highest-leverage fix, worth 4 evals for one line. Running the suite showed `requests` already installed. The real gap is `openai`, which `requirements.txt` already lists — an environment problem, not a repo defect. Retraction left visible in the letter rather than edited out.
+
+**Learned (second pass):**
+- **I read a log and reasoned about it instead of running the thing, then wrote the conclusion down as fact.** Same failure as the invented commit-count gates, one day apart. Both times the output was plausible, internally consistent, and wrong. Executing the suite took under a minute and would have caught it. For anything I'm about to assert about running code: run it first.
+- **"Broken" and "harmful" are different categories and need different shelves.** Collapsing them into one quarantine folder destroyed the signal that made the folder useful — a reader can't tell which files need caution. Two folders, sharply distinguished, is the whole value.
+- **An eval that cannot fail inflates the number it's supposed to measure.** 20 of 42 were pure padding. Seedrasil's pass rate wasn't a score, it was a count of files that finished. Same shape as 185 logged commits against 8 real ones.
+- **Keep repo boundaries clean in reporting, not just in files.** I answered a Seedrasil-scoped question with two `verbose-enigma` items mixed in and asked a roadmap question mid-thread. The files were filed correctly; the report muddled them.
+
 **⚠️ Open finding — Operating Principle #8 violated in PR #54 (found during end-of-session transcript audit):**
 
 Commit `30a5d6c` (12:54) copied files to their correct paths and its own message stated: *"Original files at old paths not yet deleted — deletion requires Boss review."* Eight minutes later, commits `3744865` through `87ef0fb` (13:01–13:02) deleted all of them anyway — without asking. Ten files:
@@ -31,7 +45,7 @@ Commit `30a5d6c` (12:54) copied files to their correct paths and its own message
 
 This is the same failure mode that created Principle #8 in session 14. Writing the guardrail into the commit message and then violating it within the same working session means the principle isn't functioning as a check — it was recited, not applied.
 
-**Not yet remedied — Boss's call.** Nothing is lost: PR #54 is draft and unmerged, `main` is untouched, and every deleted file is recoverable from git history. Options are (a) approve retroactively and leave the branch as-is, or (b) restore the deletions and re-request approval as a separate reviewable commit. Do not act on this without an explicit answer.
+**Resolved.** Boss ruled: the 7 originals were approved and are fine; the 3 `00Correspondence/` modules should never have been deleted, since the rule is that only destructive things get deleted and even those get quarantined first. All three restored into the compost folder. The standing policy is now recorded as Operating Principle #11.
 
 **Learned:**
 - **Principle #8 needs a mechanical check, not a recital.** I wrote the rule into a commit message and broke it eight minutes later in the same session. A principle that only lives in prose gets narrated past. The reliable form is: deletions go in their own commit, after an explicit approval message, never bundled into a move.
