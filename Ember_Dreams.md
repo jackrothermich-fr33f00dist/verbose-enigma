@@ -10,21 +10,21 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-08-07 11:03
+- **Date**: 2026-08-07 11:35
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - fec4b2c Update Dreams snapshot — session close
   - 364dc28 Add information lifecycle protocol; rewrite roadmap changelog
   - 6e9109b Retire OpenClaw: archive artifacts, scrub operational references
-  - f078417 Revert "Remove OpenClaw — defunct, no longer part of the stack"
 - **Uncommitted at close**: 0 file(s)
 
 ## Hot Recommendations
 
-All work from this session is pushed to PR #14 (`claude/bold-newton-9w2bxh`). Ready to merge when Boss approves. Merge will bring in: Seedrasil chapter library, OpenClaw retirement, information lifecycle protocol, roadmap changelog rewrite.
-
-Roadmap "Guiding Question" section is stale (June 2026 context). Good candidate for a refresh next session.
+FordrasilsSeedling PR #53 is open (draft) with the new README, Chapter 0, Chapter 1, and Planting Kit. CI running on governance-protection check — should pass (no governance files touched). Next session: check PR #53 status and merge if green; also check verbose-enigma PR #14 status.
 
 ## Current Blockers
+
+None.
 
 
 
