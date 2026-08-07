@@ -29,6 +29,11 @@ else
   echo "  Working tree : clean"
 fi
 
+# Flag unresolved OpenClaw blockers
+if grep -q "Unresolved" "$REPO/logs/openclaw_errors.md" 2>/dev/null; then
+  echo ""
+  echo "  OpenClaw: unresolved items in logs/openclaw_errors.md"
+fi
 
 echo ""
 
