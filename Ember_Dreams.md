@@ -10,23 +10,26 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-08-07
+- **Date**: 2026-08-07 07:02
 - **Branch**: claude/bold-newton-9w2bxh
-- **Delivered this session**:
-  - `Chapters/chapter-0-bootstrap.md` — full chapter write, word-for-word chronicle of Bootstrap
-  - `Chapters/chapter-1-demon-in-the-clocks.md` — "A Demon in the Clocks" (moved from plans/)
-  - `Chapters/Planting New Seedling Kit/STARTER_README.md` — original FordrasilsSeedling README preserved verbatim
-  - `Chapters/Planting New Seedling Kit/README.md` — kit index with setup checklist and governance decisions
-  - `Chapters/FordrasilsSeedling-README-draft.md` — new accurate README draft for FordrasilsSeedling, summarizing both chapters and linking to Chapters/ structure
+- **Last commits**:
+  - 74bd922 Add Seedrasil chapter library: Bootstrap, Demon in the Clocks, Planting Kit, README draft
+  - 52c6554 Update Dreams snapshot — session close
+  - 4f946da Update Dreams snapshot — session close
+- **Uncommitted at close**: 1 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-**Chapters/ folder is complete.** Next natural step: review `FordrasilsSeedling-README-draft.md` and decide whether to publish it to the FordrasilsSeedling repo. Boss action required to publish.
+**Chapters/ folder is complete and pushed (PR #14, green CI).** All Seedrasil planning docs are now in one place:
+- `Chapters/chapter-0-bootstrap.md` — full Bootstrap chronicle
+- `Chapters/chapter-1-demon-in-the-clocks.md` — Demon in the Clocks roadmap
+- `Chapters/Planting New Seedling Kit/` — kit index + original README verbatim
+- `Chapters/FordrasilsSeedling-README-draft.md` — ready to publish to Seedrasil repo (Boss action)
 
-**Structural fixes before resuming Seedrasil** — five items documented in `Chapters/chapter-0-bootstrap.md` (Bootstrap Audit section) and Chapter 1. These are one human session each. Seedrasil should not resume autonomous operation until at least Fix 1 (Plugin Registry) and Fix 2 (Proposal Acceptance Tests) are in place.
+**Before resuming Seedrasil**: 5 structural fixes required (Plugin Registry, Proposal Acceptance Tests, Stage Gates, Dead Code Gate, Honest Commit Messages) — all documented in chapter-0-bootstrap.md Bootstrap Audit section.
 
-**plans/seedrasil-demon-in-the-clocks.md** still exists in plans/ (legacy location). Can be deleted if Chapters/ is now canonical — or leave as a redirect note.
+**PR #14** is draft, CI green, no review comments. Boss can merge when ready.
 
 ## Current Blockers
 
