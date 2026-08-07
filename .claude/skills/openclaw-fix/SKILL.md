@@ -41,7 +41,7 @@ interprets and proposes the next step.
    - Update `logs/openclaw_errors.md`: mark resolved steps, update `Status:`
      fields on the relevant error entries, add a new dated entry if a new
      issue was discovered
-   - Update `Ember_Dreams.md` Current Blockers — remove resolved items
+   - Update `plans/roadmap.md` Open Branch Blockers — remove resolved items
    - Note progress in `logs/activity.md` at session close
 
 ## Guardrails

@@ -41,13 +41,11 @@ At session close, for each repo project folder:
 
 ---
 
-### EOS-2 — Session Start: Roadmap Status Surfacing
-**Target**: `/forgefyre-awakens` (session start hook/skill)
-**Status**: ⚠️ Retired 2026-08-07 (session 15) — was implemented in `.claude/hooks/session-start.sh` (2026-06-23), but Boss had the Ember_Dreams hooks deleted and `.claude/settings.json` now has an empty `hooks` block. Roadmap alerts no longer surface automatically at session start. If this capability is still wanted, it needs a home that isn't a hook — a skill invoked at session start, or a line in `Ember_Playbook.md` telling me to read Open Branch Blockers first.
-
-**What it does**: At session start, surface any "HIGH PRIORITY" or "Open Branch Blockers"
-items from `plans/roadmap.md` before anything else, so Ember picks up where it left off
-without needing to read the full document first.
+### ~~EOS-2 — Session Start: Roadmap Status Surfacing~~
+**Status**: ❌ Retired 2026-08-07 (session 15). Lived in `.claude/hooks/session-start.sh`,
+which is deleted along with the rest of the Ember_Dreams machinery. Not to be rebuilt as a
+hook. If session-start surfacing is ever wanted again it belongs in `Ember_Playbook.md` as a
+plain instruction to read Open Branch Blockers first — no automation, no snapshot file.
 
 ---
 
@@ -244,11 +242,11 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ## Phase 3 — Autonomous Value Creation
 
-**Update (2026-06-12)**: Wake/sleep automation handled natively via Claude Code hooks (SessionStart/Stop + `Ember_Dreams.md`). Items below are on-demand Claude-native skills/routines, not scheduled alerts.
+**Update (2026-08-07)**: The wake/sleep automation is gone entirely — see the changelog. Items below are on-demand Claude-native skills/routines, not scheduled alerts, and there is no automatic session-start or session-end behavior in this repo.
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Wake/sleep session memory (hooks + Ember_Dreams.md) | ✅ Done | SessionStart injects Playbook+Dreams; Stop hook snapshots state |
+| ~~Wake/sleep session memory (hooks + Ember_Dreams.md)~~ | ❌ Removed | Deleted 2026-08-07. `logs/activity.md` + `plans/roadmap.md` are the only session memory. Do not rebuild. |
 | `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand |
 | `/health` skill — workspace health check | ✅ Done | `.claude/skills/health/` |
 | ~~`/openclaw-fix` skill~~ | ~~Retired~~ | Archived to 99BackUps/openclaw/ (2026-08-07) |
@@ -296,9 +294,18 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
   default. Now he earns it a competency at a time. Written up in
   `Chapters/capability-training-packages.md`; the two chapter docs are marked superseded and
   kept for the audit record.
-- **Ember_Dreams hooks removed.** SessionStart/SessionEnd hooks and their scripts are gone;
-  `.claude/settings.json` has an empty `hooks` block. Note this retires the mechanism EOS-2 was
-  implemented in — roadmap alert surfacing at session start no longer fires automatically.
+- **Ember_Dreams removed entirely — the file, the hooks, and every reference.** The snapshot
+  file is deleted, both hook scripts are deleted, `.claude/settings.json` has an empty `hooks`
+  block, and the `briefing`, `health`, and `openclaw-fix` skills now read `logs/activity.md`
+  and the roadmap's Open Branch Blockers instead. EOS-2 is retired with it.
+
+  The idea was a between-session memory snapshot that hooks would maintain automatically. In
+  practice it went stale, contradicted the activity log, and — because a session-end hook fired
+  it — dragged a shutdown routine into the middle of live conversations. Two sources of truth
+  where one was needed, and the redundant one was the one that lied. `logs/activity.md` is
+  append-only, dated, and written deliberately; the roadmap holds live blockers. That is the
+  whole memory system now. **Do not rebuild a Dreams-style snapshot file or any session-start /
+  session-end hook in this repo.**
 - **Deletion replaced with quarantine as the default for Seedrasil's broken work.** Three evals
   were unsafe or crashing, one of them (`eval_tailscale_key_revocation.py`) issuing real
   `tailscale up --authkey` calls rather than mocking them. Boss's instruction was to keep them
