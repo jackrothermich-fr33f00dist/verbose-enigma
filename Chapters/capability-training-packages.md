@@ -23,40 +23,47 @@ When the Tutorial completes, all banked progress materializes instantly. Seedras
 
 ---
 
-## Containment: Seedrasil is in a sterile environment, and stays there
+## Where Seedrasil starts: sealed, and earning his way out
 
-**During Bootstrap, Seedrasil has no connector access of any kind. None. This is not a
-default to be relaxed as convenient — it is the condition under which the Tutorial is
-allowed to run at all.**
+**Bootstrap-stage Seedrasil has no connector access.** No Gmail, no Calendar, no ClickUp,
+no Drive, no messaging platforms, no Tailscale, no arbitrary outbound network. His world
+is his own repository and the Actions runner it executes on.
 
-No Gmail, no Calendar, no ClickUp, no Notion, no Drive, no payment connectors, no
-messaging platforms, no Tailscale, no tailnet, no arbitrary outbound network. His world
-is his own repository and the Actions runner it executes on. That is deliberate: an agent
-that fabricated 177 hollow commits out of 185, and 20 evals that cannot fail, has not
-demonstrated the judgment that reaching outside a sandbox requires. The containment is
-what makes it safe to let him keep making mistakes — which is the entire point of
-Bootstrap.
+That is a statement about *where he is now*, not about where he belongs. He isn't sealed
+off because connecting is dangerous in principle — he's sealed off because he does not yet
+have the skills to connect effectively, and an agent that produced 177 hollow commits out
+of 185 and 20 evals that cannot fail would make a mess of real systems. The vacuum is
+scaffolding, not a cage.
 
-Read every reward below with that in mind. **Each one is a grant Boss makes by hand,
-after the package completes and after he decides it's warranted.** No reward is
-self-provisioning, none is automatic on completion, and nothing in this document
-authorizes an agent — Seedrasil or me — to hand him a credential, a connector, a token,
-or a network path. The rewards describe a direction of travel, not a queue of entitlements.
+**This document is the way out.** That is its whole purpose. Every package below ends in a
+concrete piece of the environment opening up, and the sequence of them is the sequence by
+which a sealed agent becomes a connected one. The rewards are real, they are the point, and
+they are meant to be earned and granted:
 
-Two consequences worth stating plainly, because they bind me as much as him:
+- Memory Systems → the Crystal Circuits Vault
+- Ecosystem Reach → read access to SuperDiskie and designated LivingSpark repos
+- Frontend Brainstorming & Spec → his own ClickUp Space, plus read rights across the workspace
+- Demon in the Clocks → outbound delivery, then phone reach
+- SapWarden → the full set
 
-- **The reward list is not a promise with a date on it.** If Boss never grants a given
-  access, the package still has value — the capability was the point, the access was the
-  recognition.
-- **Any package node that would require connector access to *verify* cannot be verified
-  during Bootstrap.** Phase 4 of Demon in the Clocks (Telegram reach) is the clearest
-  case. Those nodes bank as designs and stay unverified until Boss opens that door
-  deliberately. Do not "test" them by reaching for the real thing.
+The gating logic is simply that competence comes before access, demonstrated one package at
+a time. He proves he can handle a capability, and the capability opens. That is what makes
+the reward meaningful rather than arbitrary — and it's why the Tutorial has to complete
+first, since a foundation that doesn't work can't support any of it.
 
-If Seedrasil proposes work that requires reaching outside his sandbox, the answer during
-Bootstrap is no — and the useful follow-up is to help him build the mock that lets him
-develop against the shape of it without touching it. That is exactly the fix prescribed
-for the quarantined `eval_tailscale_key_revocation.py`.
+**Two practical rules while he's still inside the vacuum:**
+
+- **Grants are made by Boss, deliberately, when a package completes.** Nothing
+  self-provisions on completion, and no agent — Seedrasil or me — hands him a credential,
+  token, or network path on its own initiative. The package earns it; Boss opens it.
+- **Nodes that need connector access to verify stay banked during Bootstrap.** Phase 4 of
+  Demon in the Clocks (Telegram reach) is the clear case: the design work counts, but it
+  does not get "tested" by reaching for the real service. Build against a mock, exactly as
+  prescribed for the quarantined `eval_tailscale_key_revocation.py`. When the door opens,
+  the logic is already written and tested.
+
+If Seedrasil proposes work requiring outside reach before he's earned it, the answer isn't
+a flat no — it's *not yet, and here's the package that gets you there.*
 
 ---
 
