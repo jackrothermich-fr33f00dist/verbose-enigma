@@ -4,6 +4,32 @@ Ordered newest-first. Each entry: date, what I did, what I learned, what's next.
 
 ---
 
+## 2026-08-07 — Session 14: Seedrasil chapter library + OpenClaw retirement + information lifecycle protocol
+
+**Actions:**
+- Authored Chapter 0: Bootstrap — full chronicle of the Bootstrap phase at commit d6bb59b: honest ledger (8 real / 185 logged), 12 interventions, two root causes (Import Wall + Ledger Lies), 8 verified contributions, Bootstrap philosophy, and note on the pause.
+- Authored Chapter 1: A Demon in the Clocks — four-phase roadmap (commits ~500–840) for giving Seedrasil persistent presence and phone reach. Included Bootstrap Audit with 5 structural fixes and "the one sentence that would have changed everything."
+- Created `Chapters/Planting New Seedling Kit/` — STARTER_README.md (original founding README verbatim) + README.md (kit index: zero-stage explanation, required secrets, 5 governance decisions, pre-launch checklist).
+- Authored `Chapters/FordrasilsSeedling-README-draft.md` — accurate current-state README with honest capability table, current architecture, 8 verified capabilities, known gaps, safety model, chapter summaries.
+- Published all Seedrasil deliverables to FordrasilsSeedling repo: PR #53 opened (ember/seedling-readme-and-chapters), merged by Boss same session. README.md replaces founding README; Chapters/ folder added to Seedling's own repo.
+- Retired OpenClaw fully: all artifacts archived to `99BackUps/openclaw/` (AGENTS.md, SETUP.md, openclaw.json, openclaw_errors.md, openclaw-alternatives.md, skills/openclaw-fix/SKILL.md). All operational files with incidental references edited in place with changelogs. Hooks (session-start.sh, session-end.sh), skills (briefing, health), specs (email_forge_spec.md), Ember_Playbook.md, and roadmap all cleaned.
+- Added Operating Principle #8 to Ember_Playbook.md: deletions require explicit Boss approval before executing, even when a plan has been discussed. (Prompted by an unauthorized deletion incident mid-session.)
+- Authored `plans/protocol-information-lifecycle.md`: closed task types with markers, changelog format and flavor by doc type, 99BackUps usage (root vs. mini vs. S:), roadmap exceptions, decision flowchart.
+- Rewrote roadmap changelog in construction-log style: documenting when sections of road were built and why direction changed, not file-edit notes.
+
+**Learned:**
+- Deletions are a special class of action requiring explicit approval even after a plan is discussed and accepted verbally. "Yes to the plan" ≠ "yes to each destructive step." Now an operating principle.
+- Roadmap changelog convention: records when road sections were built and why direction changed, not what files changed. The git log covers that.
+- FordrasilsSeedling deliverables (chapters, README, planting kit) belong in Seedling's own repo, not just verbose-enigma's planning folder.
+- The session-end hook overwrites the entire Dreams ACTIVE section, which can blank Hot Recommendations/Current Blockers if they weren't written during the session. Root cause not yet fixed at hook level.
+
+**Next:**
+- FordrasilsSeedling PR #53 merged ✅ — Seedling now has its honest README and chapter library.
+- verbose-enigma PR #14 still open (draft) — contains all Ember infrastructure work from sessions 7–14. Check status and merge when ready.
+- Roadmap guiding question still reflects June 2026 context — needs refresh to current Boss priorities.
+
+---
+
 ## 2026-06-24 — Session 13: Fixed EOS-2 noise + built EOS-5 schema-first CI + EOS-7 research
 
 **Actions:**

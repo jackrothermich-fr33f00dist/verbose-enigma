@@ -10,21 +10,19 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-08-07 11:35
+- **Date**: 2026-08-07 12:00
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - 6845394 Update Dreams snapshot — session close
   - fec4b2c Update Dreams snapshot — session close
   - 364dc28 Add information lifecycle protocol; rewrite roadmap changelog
-  - 6e9109b Retire OpenClaw: archive artifacts, scrub operational references
 - **Uncommitted at close**: 0 file(s)
 
 ## Hot Recommendations
 
-FordrasilsSeedling PR #53 is open (draft) with the new README, Chapter 0, Chapter 1, and Planting Kit. CI running on governance-protection check — should pass (no governance files touched). Next session: check PR #53 status and merge if green; also check verbose-enigma PR #14 status.
+FordrasilsSeedling PR #53 merged this session — Seedling now has its honest README, Chapter 0, Chapter 1, and Planting Kit in its own repo. verbose-enigma PR #14 (draft) still open and contains all Ember infrastructure work from sessions 7–14; check status and merge when Boss is ready. Roadmap guiding question section is stale (reflects June 2026 context) — worth refreshing to current Boss priorities next session.
 
 ## Current Blockers
-
-None.
 
 
 
