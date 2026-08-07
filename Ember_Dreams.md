@@ -10,32 +10,30 @@ Durable knowledge that survives multiple sessions graduates to `Ember_Playbook.m
 <!-- ACTIVE — overwritten each sleep by session-end hook -->
 ## Last Sleep
 
-- **Date**: 2026-07-13 04:20
+- **Date**: 2026-08-07
 - **Branch**: claude/bold-newton-9w2bxh
 - **Last commits**:
+  - 4f946da Update Dreams snapshot — session close
   - 82b6820 Update Dreams snapshot
   - 95d6cbe Update Dreams snapshot
-  - f6aba33 Add tailscale-connect skill (01Skills + .claude/skills)
 - **Uncommitted at close**: 0 file(s)
 - **OpenClaw**: unresolved items in logs/openclaw_errors.md
 
 ## Hot Recommendations
 
-**PRIMARY TASK: "A Demon in the Clocks"** — Write 4-phase roadmap chapter for FordrasilsSeedling's next evolution phase (giving Seedrasil OpenClaw-like persistent/event-driven/phone-reach capabilities). Save to `plans/seedrasil-demon-in-the-clocks.md` + mirror to `01Skills/` if applicable. Do NOT publish to FordrasilsSeedling repo.
+**PRIMARY TASK: "A Demon in the Clocks"** — 4-phase roadmap chapter for FordrasilsSeedling's next evolution (giving Seedrasil OpenClaw-like persistent/event-driven/phone-reach capabilities). Save to `plans/seedrasil-demon-in-the-clocks.md`. Do NOT publish to FordrasilsSeedling repo.
 
-To do this, need to read FordrasilsSeedling. Options:
-1. Mount `//100.107.39.71/S-Fordrasil` via Tailscale SMB (preferred — Boss working on ACL/Tailscale entrance to S:). Share name: `S-Fordrasil`. Boss runs mount command themselves with credentials.
-2. Use GitHub MCP if FordrasilsSeedling gets added to session scope (currently blocked — not in scope list, `add_repo` not available this session type).
+**Blocker**: Need to read FordrasilsSeedling. Options:
+1. Tailscale SMB mount `//100.107.39.71/S-Fordrasil` — needs fresh ephemeral auth key + FyreHeart-Forge online. Revoke old keys first.
+2. GitHub MCP `add_repo` — not available in this session type.
 
-**Tailscale status this session**: Connected as claude-cloud (100.96.196.103) on jackrothermich@gmail.com tailnet. FyreHeart-Forge (100.107.39.71) not appearing as peer — Boss updated ACL tag but FyreHeart-Forge may be offline/sleeping. Check `tailscale status` at next session start; if FyreHeart-Forge appears, prompt Boss for mount.
-
-**Auth key**: Boss generated new ephemeral key tagged `tag:jack`. Both previous keys should be revoked in Tailscale admin console.
+**To unblock next session**: Ask Boss if FyreHeart-Forge is online, request fresh ephemeral `tag:jack` auth key, run `/tailscale-connect`, then prompt Boss to run mount command with their credentials.
 
 ## Current Blockers
 
-- **"A Demon in the Clocks"**: Blocked on FordrasilsSeedling content. FyreHeart-Forge not visible as Tailscale peer this session. Needs FyreHeart-Forge online + SMB mount.
+- **"A Demon in the Clocks"**: Waiting on FyreHeart-Forge online + SMB mount to read FordrasilsSeedling.
 - **OpenClaw**: Unresolved items in `logs/openclaw_errors.md` (WSL systemd + Telegram token).
-- **Roadmap date stale**: `plans/roadmap.md` still shows "Last updated: 2026-06-16" — update when next making roadmap changes.
+- **Roadmap date stale**: `plans/roadmap.md` still shows "Last updated: 2026-06-16".
 
 ---
 
