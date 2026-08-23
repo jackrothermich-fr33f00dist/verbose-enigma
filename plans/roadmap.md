@@ -139,6 +139,20 @@ Spec:
 
 ### Open Branch Blockers
 
+- **⛔ UNPAUSE GATE — Seedrasil must not be unpaused until the eval threshold is
+  resolved.** `validate_improvement()` in `agent.py` ends with `return rate >= 0.5`:
+  no proposal can ever be committed unless the eval suite passes at 50%. PR #54 removed
+  20 assertionless evals that were passing unconditionally and padding that gate.
+  Measured post-merge rate, with `openai` stubbed to match CI: **8/14 = 57%**, against a
+  50% floor. That is a one-eval margin. Two more failures and the loop silently locks —
+  it can never commit anything again, and cannot diagnose why, because `agent.py` is
+  behind the Import Wall.
+
+  This is safe while he stays paused. **Resolving it is a prerequisite for resuming,
+  and belongs in the same PR as the Tutorial's `agent.py` fixes.** Either repair the
+  four genuinely-fixable failing evals to open real daylight above the floor, or lower
+  the threshold deliberately with a comment stating why. Do not unpause first.
+
 - **FordrasilsSeedling PR #54** (`ember/seedling-reorganize`) — draft, held open at Boss's
   direction ("not yet"). Contains the reorganization: file tree cleanup, correspondence
   letter `13MAIL_003--from_Ember.md`, `02evals/_quarantine/` with three quarantined evals,
