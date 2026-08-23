@@ -1,13 +1,12 @@
 ---
 name: briefing
-description: On-demand briefing across Gmail, Calendar, and ClickUp. Use when Boss asks for a "briefing", "what's going on", "catch me up", "/briefing", or similar — replaces the old OpenClaw/Telegram daily-briefing idea with an on-demand Claude-native survey.
+description: On-demand briefing across Gmail, Calendar, and ClickUp. Use when Boss asks for a "briefing", "what's going on", "catch me up", "/briefing", or similar.
 ---
 
 # Briefing
 
-A point-in-time survey of what's active and what needs attention. This is the
-on-demand replacement for the "daily briefing → Telegram" idea from the
-roadmap — run it whenever Boss wants a catch-up, not on a fixed schedule.
+A point-in-time survey of what's active and what needs attention. Run it
+whenever Boss wants a catch-up, not on a fixed schedule.
 
 ## Steps
 
@@ -31,14 +30,13 @@ roadmap — run it whenever Boss wants a catch-up, not on a fixed schedule.
 
 4. **Synthesize**
    - Group findings by urgency: "needs action", "fyi", "routine/no action"
-   - Cross-check against `Ember_Dreams.md` Hot Recommendations and Current
-     Blockers — does this briefing change any of them?
+   - Cross-check against `plans/roadmap.md` Open Branch Blockers — does this
+     briefing change any of them?
 
 ## Output format
 
 Short, scannable — bullets grouped by urgency, not a wall of text. End with
-1-2 sentences on whether anything from this briefing should become a new Hot
-Recommendation for the next sleep.
+1-2 sentences on whether anything from this briefing should change the roadmap.
 
 ## Notes
 
@@ -46,3 +44,10 @@ Recommendation for the next sleep.
   modify ClickUp tasks unless Boss asks as a follow-up.
 - If it's been a long time since the last briefing, say so — don't silently
   widen the search window without noting it.
+
+---
+
+## Changelog
+
+### 2026-08-07
+- Removed OpenClaw/Telegram references from description and body; OpenClaw archived to 99BackUps/.

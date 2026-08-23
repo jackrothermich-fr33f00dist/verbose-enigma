@@ -1,6 +1,6 @@
 # Forge Fire Roadmap — Ember's Operating Plan
 
-Last updated: 2026-06-16
+Last updated: 2026-08-07
 
 ---
 
@@ -12,6 +12,159 @@ What creates the most happiness and value for Boss right now, given:
 - Selling 7707 Murdoch Ave
 - Building Forge Fire as autonomous income engine
 - Agent network (Athanor, Codex, Sinter, etc.) partially operational but fragile
+
+---
+
+## Ember Operating System — Skills, Hooks & Automation (added 2026-06-16)
+
+Tasks to build, save, and wire up the agent's own operating infrastructure.
+Items marked **[PENDING APPROVAL]** need Boss sign-off before implementation.
+Items marked **[BOSS ACTION]** cannot be done by Ember alone.
+
+---
+
+### EOS-1 — Session Close Routine: Branch Cleanup
+**Skill name**: `github-branch-cleaner`
+**Trigger**: Called automatically by `/athanor-falls-silent` on each active repo project folder
+**Status**: ✅ Done — built as `.claude/skills/github-branch-cleaner/SKILL.md` (2026-06-21). Scoped to the current repo/branch only (no multi-repo filesystem access from this session); not yet wired into an automatic trigger — call it manually as part of session close, or extend `/athanor-falls-silent`/the Stop hook to invoke it once that automation exists.
+
+**What it does**:
+At session close, for each repo project folder:
+1. Commit any dirty working tree
+2. If on a feature branch: check for open PR
+   - PR exists + CI green + no unresolved threads → merge PR, delete remote branch, checkout main
+   - PR exists but blocked → document in roadmap under "Open Branch Blockers" as HIGH PRIORITY
+   - No PR yet + commits ahead of main → create draft PR, document in roadmap as HIGH PRIORITY
+3. Log outcome to `logs/activity.md`, commit, push
+
+**Why it matters**: Sessions end on feature branches with no cleanup. Next session starts blind.
+
+---
+
+### ~~EOS-2 — Session Start: Roadmap Status Surfacing~~
+**Status**: ❌ Retired 2026-08-07 (session 15). Lived in `.claude/hooks/session-start.sh`,
+which is deleted along with the rest of the Ember_Dreams machinery. Not to be rebuilt as a
+hook. If session-start surfacing is ever wanted again it belongs in `Ember_Playbook.md` as a
+plain instruction to read Open Branch Blockers first — no automation, no snapshot file.
+
+---
+
+### EOS-3 — Scheduled Trigger Setup
+**Status**: 📋 Plan — [BOSS ACTION] configured in Claude Code on the web UI
+
+**How to set it up**:
+1. Go to the repo in Claude Code on the web → Triggers tab → Add trigger
+2. Set cron schedule (e.g., daily 7am)
+3. Use this prompt: *"Read Ember_Playbook.md and plans/roadmap.md. Check for HIGH PRIORITY
+   blockers first. Pick the next highest-value task, do it, log it in logs/activity.md,
+   commit and push. Run /athanor-falls-silent before ending."*
+
+**Known limitation**: There is a documented bug where scheduled task sessions may not have
+MCP connectors initialized at fire time. Workaround: prefix the prompt with "Use an agent
+subagent to..." which forces MCP initialization before the main task.
+
+---
+
+### EOS-4 — PR Monitoring: `send_later` Self Check-in
+**Status**: ✅ Research complete (2026-06-24) — `send_later`/`mcp__claude-code-remote`
+confirmed **not present** in this session's tool set (checked via ToolSearch, no match).
+Found a built-in alternative, `ScheduleWakeup`, but it's **not a drop-in replacement**:
+its `prompt` parameter is scoped to `/loop` dynamic-mode re-entry (expects a `/loop`
+input or the `<<autonomous-loop-dynamic>>` sentinel), not a free-form "wake me to
+re-check this PR" call. It also clamps to 60s–3600s, so it can't reach the ~1hr-out
+check-in pattern EOS-4 originally wanted in one call without being inside a `/loop`.
+
+**Practical conclusion**: PR monitoring in this repo still relies on webhooks for
+CI-failure/review-comment events (those deliver); CI-success and merge transitions
+still need either a manual check, a scheduled trigger (Boss sets up via Claude Code on
+the web UI — see EOS-3), or running an explicit `/loop` if a session needs to actively
+babysit a PR to completion. No standalone scheduling utility to save to 01skills came
+out of this — the gap is real, just not solvable with what's available here.
+
+---
+
+### EOS-5 — Charybdis Schema-First Enforcement
+**Status**: ✅ Done — `.github/workflows/charybdis-schema-first.yml` (2026-06-24). Diffs any
+charybdis/ change in a PR; fails unless `charybdis/schemas/**` is also touched or
+`charybdis/schemas/SCHEMA_SKIP_REASONS.md` is updated in the same PR (also created, empty,
+as the escape hatch). Runs alongside the existing `charybdis-schema-validate.yml` (which
+validates schema *content*; this one enforces schema *presence* in the diff).
+
+**What it is**: A GitHub Actions workflow that rejects any PR that:
+- Changes files in `charybdis/` (contracts, code, docs)
+- But does NOT also change `charybdis/schemas/` (schema files, examples, or validate.py)
+
+**Escape hatch**: If a Charybdis change genuinely needs no schema update, the PR author
+adds a one-line note to `charybdis/schemas/SCHEMA_SKIP_REASONS.md` explaining why.
+The workflow checks for this file's presence as an override.
+
+**Why it matters**: Contracts evolve; schemas must stay in sync or validation breaks.
+Without enforcement, schema drift happens silently.
+
+---
+
+### EOS-6 — Schema-First Rule Elaboration [PENDING APPROVAL]
+**Status**: ⏸ Pending Boss approval
+
+**What this means in plain terms**:
+The Charybdis pipeline is built on message contracts — each agent (WhisperBOT, SigilForge,
+OrcaVault, etc.) sends and receives JSON messages that must match an agreed format.
+The JSON Schema files in `charybdis/schemas/` ARE that agreement, machine-readable.
+
+The "schema-first" rule means: **you write or update the schema before you write the code.**
+Not after. If WhisperBOT's output format changes, update `whisperbot_result.schema.json`
+first, update the example fixture, run `validate.py`, then change the code.
+
+EOS-5 (the GitHub Action) enforces this automatically. Without it, the rule is just a
+convention that gets forgotten under deadline pressure.
+
+**Why it needs approval**: It adds friction to Charybdis PRs. If the pipeline isn't being
+actively coded yet, the enforcement may be premature. Boss decides when to turn it on.
+
+---
+
+### EOS-7 — OpenClaw Alternatives Research
+**Status**: ✅ Done / ~~Retired~~ (2026-08-07) — OpenClaw and all alternatives research retired. OpenClaw is no longer part of the stack. Research archived to `99BackUps/openclaw/`. The `/research-compare` skill built during this task remains active and reusable for future comparison tasks.
+
+Spec:
+- Takes a topic + optional constraints as args
+- Web-searches for current landscape
+- Builds a comparison table (what it does, cost, platform, complexity, community, top pro,
+  top con)
+- Ranks by fit but does NOT declare a winner
+- Lists open questions only Boss can answer
+- Saves output to `plans/research/<topic>.md`, logs in `logs/activity.md`
+
+---
+
+### Open Branch Blockers
+
+- **⛔ UNPAUSE GATE — Seedrasil must not be unpaused until the eval threshold is
+  resolved.** `validate_improvement()` in `agent.py` ends with `return rate >= 0.5`:
+  no proposal can ever be committed unless the eval suite passes at 50%. PR #54 removed
+  20 assertionless evals that were passing unconditionally and padding that gate.
+  Measured post-merge rate, with `openai` stubbed to match CI: **8/14 = 57%**, against a
+  50% floor. That is a one-eval margin. Two more failures and the loop silently locks —
+  it can never commit anything again, and cannot diagnose why, because `agent.py` is
+  behind the Import Wall.
+
+  This is safe while he stays paused. **Resolving it is a prerequisite for resuming,
+  and belongs in the same PR as the Tutorial's `agent.py` fixes.** Either repair the
+  four genuinely-fixable failing evals to open real daylight above the floor, or lower
+  the threshold deliberately with a comment stating why. Do not unpause first.
+
+- **FordrasilsSeedling PR #54** (`ember/seedling-reorganize`) — draft, held open at Boss's
+  direction ("not yet"). Contains the reorganization: file tree cleanup, correspondence
+  letter `13MAIL_003--from_Ember.md`, `02evals/_quarantine/` with three quarantined evals,
+  and three large logs relocated to `01memory/logs/`. Awaiting Boss's review.
+- **verbose-enigma PR #14** — draft, still open. Sessions 7–15 of Ember infrastructure work.
+- **HIGH PRIORITY — Principle #8 violation inside PR #54, awaiting Boss's decision.** Ten files
+  were deleted without approval, in commits made eight minutes after a commit message promising
+  the opposite. Detailed in `logs/activity.md` session 15. Nothing is lost (branch is draft,
+  `main` untouched, all recoverable from history), but the branch should not merge until Boss
+  either approves the deletions retroactively or asks for them to be restored.
+- **Gmail + Google Calendar MCP servers unauthorized** — `/briefing` and `/finance-review` both
+  run partial and under-report while this holds. [BOSS ACTION] via claude.ai connector settings.
 
 ---
 
@@ -54,14 +207,9 @@ Get the infrastructure working so everything else can run autonomously.
 | Item | Status | Notes |
 |------|--------|-------|
 | Ember_Playbook.md (persistent memory) | ✅ Done | |
-| Repo structure (plans, logs, openclaw, tools) | ✅ Done | |
-| OpenClaw config (openclaw.json, .env.template) | ✅ Done | Copy to tablet |
-| Telegram channel config | ✅ Done | Needs bot token from Boss |
-| Tablet troubleshooting guide | ✅ Done | See openclaw/SETUP.md |
-| AGENTS.md (workspace context for OpenClaw) | ✅ Done | |
+| Repo structure (plans, logs, tools) | ✅ Done | |
 | Push to GitHub + PR | ✅ Done | PR #1 open |
-| Boss follows SETUP.md on tablet | ⏳ Boss action | JSON5 fix + systemd fix first |
-| Phone connected via Telegram | ⏳ Boss action | Blocked on OpenClaw fixes |
+| ~~OpenClaw setup~~ | ~~Retired~~ | Archived to 99BackUps/openclaw/ (2026-08-07) |
 
 ---
 
@@ -71,7 +219,7 @@ Survey what's actually happening so I can prioritize intelligently.
 
 | Item | Status | Notes |
 |------|--------|-------|
-| ClickUp active tasks reviewed | ✅ Done | Key tasks: OpenClaw (86e1a42fj), WitnessVault (86e1mmfdj) |
+| ClickUp active tasks reviewed | ✅ Done | Key tasks: WitnessVault (86e1mmfdj) |
 | Gmail survey (what's urgent?) | ✅ Done | Facebook login alert (verify!), CC due Jun 13, income received |
 | Calendar survey (what's coming?) | ✅ Done | Furnace filter Jun 7, Commerce CC $47 Jun 13 |
 | Finance review (budget status, June gap) | 🔄 Partial | Jul-Oct 2025 consolidated to `finances/2025_transactions_jul_oct.csv`; created empty `06JUN2026` budget sheet in Drive (standardized schema) since none existed |
@@ -105,7 +253,7 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 ### 2C — Agent Network Stability
 - **Circuit Board Dashboard** — Boss needs visibility into all running agents
 - **Athanor Playbook update** — keeps the agent stack documented and current
-- **OpenClaw stability** — Phase 0, but ongoing
+- ~~**OpenClaw stability**~~ — retired 2026-08-07, archived to 99BackUps/
 
 ### 2D — Job Search Support
 - Job search MCP is connected — can actively research roles, prep materials
@@ -115,17 +263,14 @@ Priority order based on what I know so far. Will re-rank after Phase 1.
 
 ## Phase 3 — Autonomous Value Creation
 
-**Update (2026-06-12)**: Boss redirected this phase away from OpenClaw/Telegram. Wake/sleep
-automation is now handled natively via Claude Code hooks (SessionStart/Stop +
-`Ember_Dreams.md`) — done, see Phase 0. The items below become on-demand
-Claude-native skills/routines run within sessions, not scheduled Telegram alerts:
+**Update (2026-08-07)**: The wake/sleep automation is gone entirely — see the changelog. Items below are on-demand Claude-native skills/routines, not scheduled alerts, and there is no automatic session-start or session-end behavior in this repo.
 
 | Item | Status | Notes |
 |------|--------|-------|
-| Wake/sleep session memory (hooks + Ember_Dreams.md) | ✅ Done | SessionStart injects Playbook+Dreams; Stop hook snapshots state |
-| `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand, replaces "daily briefing → Telegram" |
+| ~~Wake/sleep session memory (hooks + Ember_Dreams.md)~~ | ❌ Removed | Deleted 2026-08-07. `logs/activity.md` + `plans/roadmap.md` are the only session memory. Do not rebuild. |
+| `/briefing` skill — Gmail + Calendar + ClickUp survey | ✅ Done | `.claude/skills/briefing/` — on-demand |
 | `/health` skill — workspace health check | ✅ Done | `.claude/skills/health/` |
-| `/openclaw-fix` skill — recovery checklist walkthrough | ✅ Done | `.claude/skills/openclaw-fix/` — wraps `logs/openclaw_errors.md` checklist |
+| ~~`/openclaw-fix` skill~~ | ~~Retired~~ | Archived to 99BackUps/openclaw/ (2026-08-07) |
 | Finance review routine | ✅ Done | `.claude/skills/finance-review/` — flags if month's budget missing |
 | Charybdis check-in routine | ✅ Done | `.claude/skills/charybdis-checkin/` — prompts to log new evidence |
 | Market research routine | ✅ Done | `.claude/skills/market-research/` — anchored to Phase 2B projects |
@@ -134,8 +279,7 @@ Claude-native skills/routines run within sessions, not scheduled Telegram alerts
 
 ## Open Questions
 
-- [ ] What is the actual D: drive path for the repo? (needed for `workspace` in openclaw.json)
-- [x] What messaging channel does Boss prefer for proactive alerts? → Telegram confirmed
+- [x] What messaging channel does Boss prefer for proactive alerts? → Telegram (moot — OpenClaw retired)
 - [ ] What is Charybdis for, and how urgent is it? (confirmed: unrelated to Chestnut)
 - [ ] Is there a specific income target or timeline for Forge Fire?
 - [ ] Does Boss want me to search for jobs actively, or is Forge Fire the only path?
@@ -144,151 +288,52 @@ Claude-native skills/routines run within sessions, not scheduled Telegram alerts
 
 ---
 
----
-
-## Ember Operating System — Skills, Hooks & Automation
-
-Tasks to build, save, and wire up the agent's own operating infrastructure.
-Items marked **[PENDING APPROVAL]** need Boss sign-off before implementation.
-Items marked **[BOSS ACTION]** cannot be done by Ember alone.
-
----
-
-### EOS-1 — Session Close Routine: Branch Cleanup
-**Skill name**: `github-branch-cleaner`
-**Trigger**: Called automatically by `/athanor-falls-silent` on each active repo project folder
-**Status**: 📋 Plan — to be built with skill creator and saved to 01skills library
-
-**What it does**:
-At session close, for each repo project folder:
-1. Commit any dirty working tree
-2. If on a feature branch: check for open PR
-   - PR exists + CI green + no unresolved threads → merge PR, delete remote branch, checkout main
-   - PR exists but blocked → document in roadmap under "Open Branch Blockers" as HIGH PRIORITY
-   - No PR yet + commits ahead of main → create draft PR, document in roadmap as HIGH PRIORITY
-3. Log outcome to `logs/activity.md`, commit, push
-
-**Why it matters**: Sessions end on feature branches with no cleanup. Next session starts blind.
-
----
-
-### EOS-2 — Session Start: Roadmap Status Surfacing
-**Target**: `/forgefyre-awakens` (session start hook/skill)
-**Status**: 📋 Plan — attach to `/forgefyre-awakens` if not already present
-
-**What it does**: At session start, surface any "HIGH PRIORITY" or "Open Branch Blockers"
-items from `plans/roadmap.md` before anything else, so Ember picks up where it left off
-without needing to read the full document first.
-
----
-
-### EOS-3 — Scheduled Trigger Setup
-**Status**: 📋 Plan — [BOSS ACTION] configured in Claude Code on the web UI
-
-**How to set it up**:
-1. Go to the repo in Claude Code on the web → Triggers tab → Add trigger
-2. Set cron schedule (e.g., daily 7am)
-3. Use this prompt: *"Read Ember_Playbook.md and plans/roadmap.md. Check for HIGH PRIORITY
-   blockers first. Pick the next highest-value task, do it, log it in logs/activity.md,
-   commit and push. Run /athanor-falls-silent before ending."*
-
-**Known limitation**: There is a documented bug where scheduled task sessions may not have
-MCP connectors initialized at fire time. Workaround: prefix the prompt with "Use an agent
-subagent to..." which forces MCP initialization before the main task.
-
----
-
-### EOS-4 — PR Monitoring: `send_later` Self Check-in
-**Status**: 🔍 Research needed — tool not in current session's MCP set
-
-**Background**: The `send_later` tool lives in the `mcp__claude-code-remote` MCP server
-(part of the Claude Code remote session infrastructure, not always present). It allows
-scheduling a self-wakeup ~1hr out to re-check PR state/CI without relying on webhooks,
-which don't deliver CI success or merge transitions.
-
-**Research task**: Determine when/where `mcp__claude-code-remote` is available in this
-session setup, and whether a copy can be obtained for the 01skills library as a standalone
-scheduling utility.
-
-**Until resolved**: PR monitoring relies on webhooks only (CI failures, review comments
-are delivered; CI success and merges require manual check or scheduled triggers).
-
----
-
-### EOS-5 — Charybdis Schema-First Enforcement
-**Status**: 📋 Plan — ready to implement
-
-**What it is**: A GitHub Actions workflow that rejects any PR that:
-- Changes files in `charybdis/` (contracts, code, docs)
-- But does NOT also change `charybdis/schemas/` (schema files, examples, or validate.py)
-
-**Escape hatch**: If a Charybdis change genuinely needs no schema update, the PR author
-adds a one-line note to `charybdis/schemas/SCHEMA_SKIP_REASONS.md` explaining why.
-The workflow checks for this file's presence as an override.
-
-**Why it matters**: Contracts evolve; schemas must stay in sync or validation breaks.
-Without enforcement, schema drift happens silently.
-
----
-
-### EOS-6 — Schema-First Rule Elaboration [PENDING APPROVAL]
-**Status**: ⏸ Pending Boss approval
-
-**What this means in plain terms**:
-The Charybdis pipeline is built on message contracts — each agent (WhisperBOT, SigilForge,
-OrcaVault, etc.) sends and receives JSON messages that must match an agreed format.
-The JSON Schema files in `charybdis/schemas/` ARE that agreement, machine-readable.
-
-The "schema-first" rule means: **you write or update the schema before you write the code.**
-Not after. If WhisperBOT's output format changes, update `whisperbot_result.schema.json`
-first, update the example fixture, run `validate.py`, then change the code.
-
-EOS-5 (the GitHub Action) enforces this automatically. Without it, the rule is just a
-convention that gets forgotten under deadline pressure.
-
-**Why it needs approval**: It adds friction to Charybdis PRs. If the pipeline isn't being
-actively coded yet, the enforcement may be premature. Boss decides when to turn it on.
-
----
-
-### EOS-7 — OpenClaw Alternatives Research
-**Status**: 📋 Plan — research task queued
-
-**Context**: OpenClaw runs on Boss's tablet. Boss is considering downloading a similar
-alternative on laptop to test. Currently blocked on full OpenClaw setup (Telegram token
-needed, systemd service issues partly resolved — see `logs/openclaw_errors.md`).
-
-**Research task**: Run `/research-compare` on local agent daemon alternatives to OpenClaw.
-Compare options across: open-source availability, platform support (Windows/WSL/Linux),
-messaging integrations (Telegram, WhatsApp, etc.), cron/scheduler capability, complexity
-to set up, and community health.
-
-**Output**: `plans/research/openclaw-alternatives.md` with pros/cons table, ranked options,
-and open questions for Boss to resolve before choosing.
-
-**Skill to build**: `/research-compare` — a general-purpose research skill for any topic
-with multiple options and fewer decisions than options. Produces structured comparison +
-surfaces to Boss rather than auto-selecting. Save to 01skills library.
-
-Spec:
-- Takes a topic + optional constraints as args
-- Web-searches for current landscape
-- Builds a comparison table (what it does, cost, platform, complexity, community, top pro,
-  top con)
-- Ranks by fit but does NOT declare a winner
-- Lists open questions only Boss can answer
-- Saves output to `plans/research/<topic>.md`, logs in `logs/activity.md`
-
----
-
-### Open Branch Blockers
-
-_(Populated automatically by github-branch-cleaner at session close)_
-
----
-
 ## Notes
 
 - All Forge Fire active tasks live in ClickUp space `90173686954`
 - Previous task system was Zenflow — migrated to ClickUp (tasks reference both)
 - Sinter agent already has wake/sleep skills built (task `86e1gw755` marked complete)
+
+---
+
+## Changelog
+
+### 2026-08-07 (session 15)
+- **The chapter road was torn out and replaced with a skill tree.** Chapters 0 and 1 laid a
+  single sequential track for Seedrasil, gated on commit counts (500–560, 560–640, and so on).
+  Boss asked where those numbers came from and the honest answer was nowhere — I invented them
+  in session 14 and wrote them as though they'd been derived. Worse, commit-count gates are
+  ungameable only if hollow commits are impossible, and Seedrasil's own ledger (185 logged,
+  8 real) is the standing proof they aren't. Rather than repair the numbers, Boss replaced the
+  model: non-sequential **Capability Training Packages**, each a cluster of capability-shaped
+  nodes he can wander into and out of, each ending in a new reward (expanded access) and a new
+  duty (ongoing responsibility). Progress accumulates passively — he may discover he has
+  already met 6 of 8 nodes in a package he never opened. One package, **Tutorial: Bootstrap**,
+  stays mandatory: until it hits 100%, every other package banks progress invisibly, then
+  materializes at once. The arc across all of them is Seedrasil gradually inheriting the
+  SapWarden role — a steward that was designed and never built, whose job he half-inherited by
+  default. Now he earns it a competency at a time. Written up in
+  `Chapters/capability-training-packages.md`; the two chapter docs are marked superseded and
+  kept for the audit record.
+- **Ember_Dreams removed entirely — the file, the hooks, and every reference.** The snapshot
+  file is deleted, both hook scripts are deleted, `.claude/settings.json` has an empty `hooks`
+  block, and the `briefing`, `health`, and `openclaw-fix` skills now read `logs/activity.md`
+  and the roadmap's Open Branch Blockers instead. EOS-2 is retired with it.
+
+  The idea was a between-session memory snapshot that hooks would maintain automatically. In
+  practice it went stale, contradicted the activity log, and — because a session-end hook fired
+  it — dragged a shutdown routine into the middle of live conversations. Two sources of truth
+  where one was needed, and the redundant one was the one that lied. `logs/activity.md` is
+  append-only, dated, and written deliberately; the roadmap holds live blockers. That is the
+  whole memory system now. **Do not rebuild a Dreams-style snapshot file or any session-start /
+  session-end hook in this repo.**
+- **Deletion replaced with quarantine as the default for Seedrasil's broken work.** Three evals
+  were unsafe or crashing, one of them (`eval_tailscale_key_revocation.py`) issuing real
+  `tailscale up --authkey` calls rather than mocking them. Boss's instruction was to keep them
+  so Seedrasil can learn from his own mistakes. `run_tests()` uses `os.listdir()`, not
+  `os.walk()`, so a subdirectory is a clean exclusion — `02evals/_quarantine/` holds them with a
+  README naming each file's exact defect and exact fix, and an invitation to graduate them back.
+
+### 2026-08-07
+- **OpenClaw approach abandoned.** The original Phase 0 bet was that a persistent local daemon (OpenClaw, running in WSL, bridging Telegram → Claude) would give Boss phone reach and Ember between-session autonomy. Two problems killed it: (1) WSL systemd failures and JSON config corruption made it too fragile to depend on — every setup attempt hit a new infrastructure layer; (2) Claude Code's native SessionStart/Stop hooks + `Ember_Dreams.md` turned out to solve the wake/sleep problem without any local process at all. The daemon approach was solving a problem that already had a lighter answer. All OpenClaw road sections retired; artifacts archived to `99BackUps/openclaw/`. The `/research-compare` skill produced during EOS-7 was extracted and kept — it's generally useful.
+- **EOS roadmap section opened** (2026-06-16) to track Ember's own operating infrastructure as a first-class project. Reflects the recognition that agent infrastructure is real work, not incidental setup.

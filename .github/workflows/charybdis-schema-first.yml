@@ -1,0 +1,56 @@
+name: Charybdis schema-first check
+
+on:
+  pull_request:
+    paths:
+      - "charybdis/**"
+
+jobs:
+  schema-first:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require a schemas/ change alongside any charybdis/ change
+        run: |
+          set -e
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          CHANGED=$(git diff --name-only "$BASE" "$HEAD" -- charybdis/)
+
+          if [ -z "$CHANGED" ]; then
+            echo "No charybdis/ changes in this PR — nothing to check."
+            exit 0
+          fi
+
+          echo "Changed charybdis/ files:"
+          echo "$CHANGED"
+
+          if echo "$CHANGED" | grep -q '^charybdis/schemas/'; then
+            echo "Schema change present — schema-first rule satisfied."
+            exit 0
+          fi
+
+          if [ -f charybdis/schemas/SCHEMA_SKIP_REASONS.md ] && \
+             echo "$CHANGED" | grep -q '^charybdis/schemas/SCHEMA_SKIP_REASONS.md$'; then
+            echo "Skip-reason note added — override accepted."
+            exit 0
+          fi
+
+          if git show "$HEAD":charybdis/schemas/SCHEMA_SKIP_REASONS.md > /tmp/skip_reasons_head.md 2>/dev/null; then
+            if ! git show "$BASE":charybdis/schemas/SCHEMA_SKIP_REASONS.md > /tmp/skip_reasons_base.md 2>/dev/null; then
+              touch /tmp/skip_reasons_base.md
+            fi
+            if ! diff -q /tmp/skip_reasons_base.md /tmp/skip_reasons_head.md > /dev/null; then
+              echo "SCHEMA_SKIP_REASONS.md was updated in this PR — override accepted."
+              exit 0
+            fi
+          fi
+
+          echo ""
+          echo "FAIL: this PR changes charybdis/ but does not touch charybdis/schemas/."
+          echo "Update the relevant schema (and example fixture) to match the contract"
+          echo "change, or add a one-line note to charybdis/schemas/SCHEMA_SKIP_REASONS.md"
+          echo "explaining why no schema update is needed."
+          exit 1

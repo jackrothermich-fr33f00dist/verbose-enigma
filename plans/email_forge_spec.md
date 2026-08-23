@@ -69,7 +69,7 @@ Sender/subject pattern → label(s):
 
 2. **VIP notification routing**
    - Define VIP sender list (legal contacts, Boss's bank, known clients).
-   - Any VIP sender → `Urgent/Follow Up` + push notification via OpenClaw/Telegram once connected.
+   - Any VIP sender → `Urgent/Follow Up` + flag in next briefing.
 
 3. **Case-number detection and Charybdis routing**
    - Regex scan subject/body for case-number patterns (format TBD — ask Boss for examples).
@@ -90,3 +90,11 @@ Sender/subject pattern → label(s):
 - Confirm whether Google security alerts (new sign-ins) are expected — multiple
   appeared this week, may just be session logins from this agent environment.
 - VIP sender list — who should trigger immediate notification?
+
+
+---
+
+## Changelog
+
+### 2026-08-07
+- Updated VIP notification routing: replaced "push notification via OpenClaw/Telegram" with briefing flag. OpenClaw archived to 99BackUps/.

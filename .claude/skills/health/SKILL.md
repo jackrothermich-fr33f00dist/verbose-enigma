@@ -14,18 +14,17 @@ before it compounds.
 1. **Git state**
    - `git status --porcelain` — flag any uncommitted changes
    - `git log --oneline -5` — confirm the latest commit matches what `logs/activity.md` claims happened
-   - Confirm current branch matches what `Ember_Dreams.md`'s last session said it should be
+   - Confirm current branch matches the designated working branch
 
 2. **Memory freshness**
-   - Read `Ember_Dreams.md` ACTIVE section — is "Last Sleep" from the previous session, or stale (multiple sessions old without being overwritten)?
+   - Read the newest entry in `logs/activity.md` — is it from the previous session, or stale?
    - Check `plans/roadmap.md`'s "Last updated" date — flag if more than ~1 week old without a corresponding roadmap change in recent commits
 
 3. **Open blockers**
-   - Grep `logs/openclaw_errors.md` for `Unresolved` / `Blocked` — report count and one-line summary of each
-   - Check `Ember_Dreams.md` "Current Blockers" section for anything new
+   - Check `plans/roadmap.md` "Open Branch Blockers" for anything unresolved
 
-4. **Hot Recommendations carry-forward**
-   - Read `Ember_Dreams.md` "Hot Recommendations" — these are the threads from last session. Report which ones are still open vs. addressed.
+4. **Carry-forward**
+   - Read the "Next" list in the newest `logs/activity.md` entry. Report which items are still open vs. addressed.
 
 ## Output format
 
@@ -34,13 +33,21 @@ A short status report, e.g.:
 ```
 Workspace: clean / N uncommitted file(s)
 Branch: <branch>
-Memory: Dreams last updated <date> (session N)
+Activity log: newest entry <date> (session N)
 Roadmap: last updated <date>
-Blockers: N unresolved (OpenClaw JSON5 fix, ...)
-Carry-forward: <list from Hot Recommendations>
+Blockers: N unresolved (<summary from Open Branch Blockers>)
+Carry-forward: <list from the newest entry's "Next">
 ```
 
 Do not take corrective action automatically — just report. If something looks
 seriously wrong (e.g. uncommitted work from a prior session, or a blocker that's
 been open for many sessions with no progress), call it out explicitly so Boss or
 a future session can decide what to do.
+
+---
+
+## Changelog
+
+### 2026-08-07
+- Removed openclaw_errors.md check from Open Blockers step; OpenClaw archived to 99BackUps/.
+- Updated Blockers output format example to remove OpenClaw-specific text.
